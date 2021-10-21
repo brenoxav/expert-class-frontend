@@ -3,6 +3,7 @@ import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import ClassesPage from './features/classes/ClassesPage'; // eslint-disable-line
 import ReservationsPage from './features/reservations/ReservationsPage'; // eslint-disable-line
 import LandingPage from './features/landingPage/landingPage';
+import SignIn from './features/signIn/signIn';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
             <ReservationsPage />
           </Route>
           <Route path="/">
-            <LandingPage />
+            {/* <LandingPage /> */}
+            <SignIn />
           </Route>
         </Switch>
       </Router>
