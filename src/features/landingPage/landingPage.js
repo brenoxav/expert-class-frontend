@@ -1,10 +1,11 @@
-import './landingPage.css';
 import React from 'react';
 
-export default function LandingPage() {
+function landingPage() {
   return (
     <div>
-      <h1>Landing Page</h1>
+      <h1>landingPage</h1>
     </div>
   );
 }
+
+export default landingPage;
