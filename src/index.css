@@ -1,3 +1,7 @@
+:root {
+  --nav-panel-width: 240px;
+}
+
 /* CSS RESET BEGIN */
 * {
   box-sizing: border-box;
