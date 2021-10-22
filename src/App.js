@@ -11,6 +11,7 @@ import ReservePage from './features/reserve/ReservePage';
 import ReservationsPage from './features/reservations/ReservationsPage'; // eslint-disable-line
 import AddClassPage from './features/addClass/AddClassPage';
 import RemoveClassPage from './features/removeClass/RemoveClassPage';
+import ClassDetails from './features/ClassDetails/ClassDetails';
 
 function App() {
   useEffect(() => {
@@ -35,6 +36,9 @@ function App() {
           <Switch>
             <Route path="/classes">
               <ClassesPage />
+            </Route>
+            <Route path="/class/:id">
+              <ClassDetails />
             </Route>
             <Route path="/reserve">
               <ReservePage />
