@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
@@ -23,8 +23,9 @@ function App() {
     setSessionCookie();
   }, []);
 
-  // const user = useSelector(currentUser);        // This is a global selector. Every componenet has access to it
-  // const loggedIn = useSelector(loggedInStatus); // This is a global selector. Every componenet has access to it
+  // These are a global selectors. Every componenet has access to them:
+  // const user = useSelector(currentUser);
+  // const loggedIn = useSelector(loggedInStatus);
 
   return (
     <div className="App">
