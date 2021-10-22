@@ -1,9 +1,15 @@
 import './ClassesPage.css';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchClassesData } from './classesSlice';
 
 export default function ClassesPage() {
+  const dispatch = useDispatch();
   const { classes } = useSelector((state) => state.classes);
+
+  useEffect(() => {
+    dispatch(fetchClassesData());
+  }, []);
 
   const classesList = classes.map((c) => (
     <div key={c.id} className="class-item">
