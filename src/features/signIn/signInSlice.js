@@ -1,7 +1,5 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-import getCSRFToken from '../../app/getCSRFToken';
 import expertClassAPI from '../../app/expertClassAPI';
 
 const initialState = {
@@ -17,14 +15,7 @@ const initialState = {
 export const loginUser = createAsyncThunk(
   'signInSlice/loginUser', async (username, thunkAPI) => {
     try {
-      const response = await expertClassAPI.post('/api/v1/sign_in', { user: { username } },
-        {
-          withCredentials: true,
-          headers: {
-            'X-CSRF-Token': getCSRFToken()
-          }
-        });
-      console.log('login response: ', response)
+      const response = await expertClassAPI.post('/api/v1/sign_in', { user: { username } });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
@@ -35,14 +26,7 @@ export const loginUser = createAsyncThunk(
 export const logoutUser = createAsyncThunk(
   'signInSlice/logoutUser', async (thunkAPI) => {
     try {
-      const response = await expertClassAPI.delete('/api/v1/sign_out',
-        {
-          withCredentials: true,
-          headers: {
-            'X-CSRF-Token': getCSRFToken()
-          }
-        });
-      console.log('logout response: ', response)
+      const response = await expertClassAPI.delete('/api/v1/sign_out');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
@@ -53,7 +37,7 @@ export const logoutUser = createAsyncThunk(
 export const loginStatus = createAsyncThunk(
   'signInSlice/loginStatus', async (thunkAPI) => {
     try {
-      const response = await expertClassAPI.get('/api/v1/signed_in', { withCredentials: true });
+      const response = await expertClassAPI.get('/api/v1/signed_in');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
@@ -71,7 +55,6 @@ export const signInSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        console.log('payload: ', action.payload);
         if (action.payload.status === 'created') {
           state.status = 'idle';
           state.user = action.payload.user;
@@ -89,7 +72,6 @@ export const signInSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(loginStatus.fulfilled, (state, action) => {
-        console.log('loginStatus payload: ', action.payload);
         if (action.payload.logged_in) {
           state.status = 'idle';
           state.user = action.payload.user;
@@ -111,7 +93,6 @@ export const signInSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(logoutUser.fulfilled, (state, action) => {
-        console.log('logoutUser payload: ', action.payload);
         if (action.payload.logged_out) {
           state.status = 'idle';
           state.user = {

@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginStatus, loginUser, logoutUser } from './signInSlice';
 import axios from 'axios';
-import getCSRFToken from '../../app/getCSRFToken';
-import { isCSRFToken } from '../../app/getCSRFToken';
+import { loginStatus, loginUser, logoutUser } from './signInSlice';
 
 const signIn = () => {
-  console.log('isCSRFToken?: ', (isCSRFToken())? 'true': 'false');
+  console.log('isCSRFToken?: ', (isCSRFToken()) ? 'true' : 'false');
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.users.user);
   const loggedInStatus = useSelector((state) => state.users.logged_in);
@@ -33,8 +31,6 @@ const signIn = () => {
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
-
-    console.log('Form input: ', input);
     dispatch(loginUser(input));
   };
 
@@ -53,7 +49,7 @@ const signIn = () => {
       </h1>
       <p>
         Logged In:
-        {loggedIn && 'true' || "false"}
+        {loggedIn && 'true' || 'false'}
       </p>
       <h2>Please Sign in</h2>
       <form onSubmit={formSubmitHandler}>
@@ -78,7 +74,9 @@ const signIn = () => {
         <button
           type="button"
           onClick={handleLoginStatusClick}
-        >Check Login Status</button>
+        >
+          Check Login Status
+        </button>
       </div>
 
       <div>
@@ -86,7 +84,9 @@ const signIn = () => {
         <button
           type="button"
           onClick={handleLogoutClick}
-        >Logout</button>
+        >
+          Logout
+        </button>
       </div>
 
     </div>
