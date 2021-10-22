@@ -1,9 +1,8 @@
-import './App.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import ClassesPage from './features/classes/ClassesPage'; // eslint-disable-line
 import LandingPage from './features/landingPage/landingPage';
-import SignIn from './features/signIn/signIn';
+import Session from './auth/session';
 import NavPanel from './features/navPanel/NavPanel';
 import ReservePage from './features/reserve/ReservePage';
 import ReservationsPage from './features/reservations/ReservationsPage'; // eslint-disable-line
@@ -11,6 +10,8 @@ import AddClassPage from './features/addClass/AddClassPage';
 import RemoveClassPage from './features/removeClass/RemoveClassPage';
 
 function App() {
+  // console.log('isCSRFToken?: ', (isCSRFToken()) ? 'true' : 'false');
+
   return (
     <div className="App">
       <Router>
@@ -36,7 +37,7 @@ function App() {
             </Route>
             <Route path="/">
               {/* <LandingPage /> */}
-              <SignIn />
+              <Session />
             </Route>
           </Switch>
         </Router>

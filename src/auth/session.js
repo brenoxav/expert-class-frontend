@@ -1,31 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { loginStatus, loginUser, logoutUser } from './signInSlice';
-import { isCSRFToken } from '../../app/getCSRFToken';
+import { loginStatus, loginUser, logoutUser, currentUser, loggedInStatus } from './sessionSlice';
+import { isCSRFToken } from '../app/getCSRFToken';
+import expertClassAPI from '../app/expertClassAPI';
 
-const signIn = () => {
+const Session = () => {
   console.log('isCSRFToken?: ', (isCSRFToken()) ? 'true' : 'false');
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.users.user);
-  const loggedInStatus = useSelector((state) => state.users.logged_in);
 
-  const [user, setUser] = useState(currentUser);
-
-  const [loggedIn, setLoggedIn] = useState(loggedInStatus);
+  const user = useSelector(currentUser);
+  const loggedIn = useSelector(loggedInStatus)
 
   const [input, setInput] = useState('');
 
   useEffect(() => {
-    if (currentUser.name !== 'no one here') {
-      setUser(currentUser);
-      setLoggedIn(loggedInStatus);
-    }
-  }, [currentUser]);
-
-  useEffect(() => {
     const setSessionCookie = async () => {
-      await axios.get('http://localhost:3001/', { withCredentials: true });
+      if (!isCSRFToken()) {
+        await axios.get('http://localhost:3001/', { withCredentials: true });
+      }
     };
     setSessionCookie();
   }, []);
@@ -39,10 +32,12 @@ const signIn = () => {
 
   const handleLoginStatusClick = () => dispatch(loginStatus());
 
-  const handleLogoutClick = () => dispatch(logoutUser());
+  const handleLogoutClick = () => {
+    dispatch(logoutUser());
+  };
 
   return (
-    <div>
+    <div style={{ marginLeft: 300}}>
       <h1>
         Hello There, &quot;
         {user.name}
@@ -94,4 +89,4 @@ const signIn = () => {
   );
 };
 
-export default signIn;
+export default Session;

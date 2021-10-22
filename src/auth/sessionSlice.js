@@ -1,12 +1,9 @@
 /* eslint-disable no-param-reassign */
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import expertClassAPI from '../../app/expertClassAPI';
+import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
+import expertClassAPI from '../app/expertClassAPI';
 
 const initialState = {
-  user: {
-    username: '',
-    name: 'no one here',
-  },
+  user: {},
   logged_in: false,
   status: 'idle',
   error: null,
@@ -45,8 +42,8 @@ export const loginStatus = createAsyncThunk(
   },
 );
 
-export const signInSlice = createSlice({
-  name: 'signIn',
+export const sessionSlice = createSlice({
+  name: 'session',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -58,15 +55,17 @@ export const signInSlice = createSlice({
         if (action.payload.status === 'created') {
           state.status = 'idle';
           state.user = action.payload.user;
-          state.logged_in = true;
+          state.logged_in = action.payload.logged_in;
         } else {
           state.status = 'idle';
-          state.error = action.payload.status;
+          state.user = {};
+          state.logged_in = false;
+          state.error = action.payload;
         }
       })
       .addCase(loginUser.rejected, (state) => {
         state.status = 'rejected';
-        state.error = 'Error fetching data';
+        state.error = 'Error login in';
       })
       .addCase(loginStatus.pending, (state) => {
         state.status = 'loading';
@@ -75,14 +74,11 @@ export const signInSlice = createSlice({
         if (action.payload.logged_in) {
           state.status = 'idle';
           state.user = action.payload.user;
-          state.logged_in = true;
+          state.logged_in = action.payload.logged_in;
         } else {
           state.status = 'idle';
-          state.logged_in = false;
-          state.user = {
-            username: '',
-            name: 'nobody',
-          };
+          state.user = {};
+          state.logged_in = action.payload.logged_in;
         }
       })
       .addCase(loginStatus.rejected, (state) => {
@@ -95,11 +91,8 @@ export const signInSlice = createSlice({
       .addCase(logoutUser.fulfilled, (state, action) => {
         if (action.payload.logged_out) {
           state.status = 'idle';
-          state.user = {
-            username: '',
-            name: 'you are logged out',
-          };
-          state.logged_in = false;
+          state.user = {};
+          state.logged_in = !action.payload.logged_out;
         }
       })
       .addCase(logoutUser.rejected, (state) => {
@@ -109,8 +102,7 @@ export const signInSlice = createSlice({
   },
 });
 
-// export const { addReservation } = reservationsSlice.actions;
+export const currentUser = (state) => state.users.user;
+export const loggedInStatus = (state) => state.users.logged_in;
 
-// export const currentUser = (state) => state.users.user;
-
-export default signInSlice.reducer;
+export default sessionSlice.reducer;
