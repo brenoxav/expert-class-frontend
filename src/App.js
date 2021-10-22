@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
-import { loginStatus, loginUser, logoutUser, currentUser, loggedInStatus } from './auth/sessionSlice';
+// import { currentUser, loggedInStatus } from './auth/sessionSlice';
 import { isCSRFToken } from './app/getCSRFToken';
 import ClassesPage from './features/classes/ClassesPage'; // eslint-disable-line
 import LandingPage from './features/landingPage/landingPage';
-import Session from './auth/session';
 import NavPanel from './features/navPanel/NavPanel';
 import ReservePage from './features/reserve/ReservePage';
 import ReservationsPage from './features/reservations/ReservationsPage'; // eslint-disable-line
@@ -14,11 +13,17 @@ import AddClassPage from './features/addClass/AddClassPage';
 import RemoveClassPage from './features/removeClass/RemoveClassPage';
 
 function App() {
-  console.log('isCSRFToken?: ', (isCSRFToken()) ? 'true' : 'false');
-  const dispatch = useDispatch();
+  useEffect(() => {
+    const setSessionCookie = async () => {
+      if (!isCSRFToken()) {
+        await axios.get('http://localhost:3001/', { withCredentials: true });
+      }
+    };
+    setSessionCookie();
+  }, []);
 
-  const user = useSelector(currentUser);
-  const loggedIn = useSelector(loggedInStatus)
+  // const user = useSelector(currentUser);        // This is a global selector. Every componenet has access to it
+  // const loggedIn = useSelector(loggedInStatus); // This is a global selector. Every componenet has access to it
 
   return (
     <div className="App">
@@ -44,8 +49,7 @@ function App() {
               <RemoveClassPage />
             </Route>
             <Route path="/">
-              {/* <LandingPage /> */}
-              <Session />
+              <LandingPage />
             </Route>
           </Switch>
         </Router>
