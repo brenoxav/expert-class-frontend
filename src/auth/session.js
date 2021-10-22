@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { loginStatus, loginUser, logoutUser, currentUser, loggedInStatus } from './sessionSlice';
 import { isCSRFToken } from '../app/getCSRFToken';
-import expertClassAPI from '../app/expertClassAPI';
 
 const Session = () => {
   console.log('isCSRFToken?: ', (isCSRFToken()) ? 'true' : 'false');
