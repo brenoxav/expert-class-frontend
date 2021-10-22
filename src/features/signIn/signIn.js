@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { loginStatus, loginUser, logoutUser } from './signInSlice';
+import { isCSRFToken } from '../../app/getCSRFToken';
 
 const signIn = () => {
   console.log('isCSRFToken?: ', (isCSRFToken()) ? 'true' : 'false');
