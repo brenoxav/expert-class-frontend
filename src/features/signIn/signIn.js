@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from './signInSlice';
+import { loginStatus, loginUser, logoutUser } from './signInSlice';
 import axios from 'axios';
+import getCSRFToken from '../../app/getCSRFToken';
+import { isCSRFToken } from '../../app/getCSRFToken';
 
 const signIn = () => {
+  console.log('isCSRFToken?: ', (isCSRFToken())? 'true': 'false');
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.users.user);
   const loggedInStatus = useSelector((state) => state.users.logged_in);
@@ -17,13 +20,13 @@ const signIn = () => {
   useEffect(() => {
     if (currentUser.name !== 'no one here') {
       setUser(currentUser);
-      setLoggedIn(true);
+      setLoggedIn(loggedInStatus);
     }
   }, [currentUser]);
 
   useEffect(() => {
     const setSessionCookie = async () => {
-      await axios.get('/', { withCredentials: true })
+      await axios.get('http://localhost:3001/', { withCredentials: true });
     };
     setSessionCookie();
   }, []);
@@ -37,6 +40,10 @@ const signIn = () => {
 
   const handleChange = (event) => setInput(event.target.value);
 
+  const handleLoginStatusClick = () => dispatch(loginStatus());
+
+  const handleLogoutClick = () => dispatch(logoutUser());
+
   return (
     <div>
       <h1>
@@ -46,7 +53,7 @@ const signIn = () => {
       </h1>
       <p>
         Logged In:
-        {loggedIn && 'true'}
+        {loggedIn && 'true' || "false"}
       </p>
       <h2>Please Sign in</h2>
       <form onSubmit={formSubmitHandler}>
@@ -66,6 +73,22 @@ const signIn = () => {
           Login
         </button>
       </form>
+      <div>
+
+        <button
+          type="button"
+          onClick={handleLoginStatusClick}
+        >Check Login Status</button>
+      </div>
+
+      <div>
+
+        <button
+          type="button"
+          onClick={handleLogoutClick}
+        >Logout</button>
+      </div>
+
     </div>
   );
 };

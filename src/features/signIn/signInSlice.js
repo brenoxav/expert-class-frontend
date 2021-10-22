@@ -2,7 +2,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import getCSRFToken from '../../app/getCSRFToken';
-// import expertClassAPI from '../../expertClassAPI';
+import expertClassAPI from '../../app/expertClassAPI';
 
 const initialState = {
   user: {
@@ -17,12 +17,11 @@ const initialState = {
 export const loginUser = createAsyncThunk(
   'signInSlice/loginUser', async (username, thunkAPI) => {
     try {
-      const response = await axios.post('http://localhost:3001/api/v1/sign_in', { user: { username } },
+      const response = await expertClassAPI.post('/api/v1/sign_in', { user: { username } },
         {
           withCredentials: true,
           headers: {
             'X-CSRF-Token': getCSRFToken()
-            // 'Content-Type': 'application/json'
           }
         });
       console.log('login response: ', response)
@@ -33,10 +32,28 @@ export const loginUser = createAsyncThunk(
   },
 );
 
+export const logoutUser = createAsyncThunk(
+  'signInSlice/logoutUser', async (thunkAPI) => {
+    try {
+      const response = await expertClassAPI.delete('/api/v1/sign_out',
+        {
+          withCredentials: true,
+          headers: {
+            'X-CSRF-Token': getCSRFToken()
+          }
+        });
+      console.log('logout response: ', response)
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: error.message });
+    }
+  },
+);
+
 export const loginStatus = createAsyncThunk(
   'signInSlice/loginStatus', async (thunkAPI) => {
     try {
-      const response = await axios.get('http://localhost:3001/api/v1/signed_in', { withCredentials: true });
+      const response = await expertClassAPI.get('/api/v1/signed_in', { withCredentials: true });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
@@ -80,10 +97,31 @@ export const signInSlice = createSlice({
         } else {
           state.status = 'idle';
           state.logged_in = false;
-          state.user = 'nobody';
+          state.user = {
+            username: '',
+            name: 'nobody',
+          };
         }
       })
       .addCase(loginStatus.rejected, (state) => {
+        state.status = 'rejected';
+        state.error = 'Error fetching data';
+      })
+      .addCase(logoutUser.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(logoutUser.fulfilled, (state, action) => {
+        console.log('logoutUser payload: ', action.payload);
+        if (action.payload.logged_out) {
+          state.status = 'idle';
+          state.user = {
+            username: '',
+            name: 'you are logged out',
+          };
+          state.logged_in = false;
+        }
+      })
+      .addCase(logoutUser.rejected, (state) => {
         state.status = 'rejected';
         state.error = 'Error fetching data';
       });
