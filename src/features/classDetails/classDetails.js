@@ -12,12 +12,8 @@ const ClassDetails = () => {
   return (
     <>
       <div>
-        <h2>Navigation</h2>
-      </div>
-      <div>
-        {
-          classObj.image
-        }
+        Image:
+        {classObj.image}
       </div>
       <div>
         Title:
