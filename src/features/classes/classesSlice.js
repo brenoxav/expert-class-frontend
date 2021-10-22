@@ -27,7 +27,7 @@ export const classesSlice = createSlice({
   name: 'classes',
   initialState,
   reducers: {
-    addClass: (state, action) => [...state, action.payload],
+    getClassById: (state, action) => state.classes.filter((c) => c.id === action.payload),
   },
   extraReducers: (builder) => {
     builder.addCase(fetchClassesData.fulfilled, (state, action) => {
@@ -36,6 +36,6 @@ export const classesSlice = createSlice({
   },
 });
 
-export const { addClass } = classesSlice.actions;
+export const { getClassById } = classesSlice.actions;
 
 export default classesSlice.reducer;
