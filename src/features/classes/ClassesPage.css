@@ -1,4 +1,45 @@
-.class-item {
+.classes-item {
+  width: 200px;
   padding: 1rem;
-  border: 1px solid #000;
+  text-align: center;
+}
+
+.classes-heading {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.classes-image-placeholder {
+  width: 100%;
+  height: 25vh;
+  background-color: #eee;
+}
+
+.classes-title {
+  margin: 1rem auto;
+}
+
+.classes-description {
+  border-top: dotted 2px #eee;
+  padding: 1rem;
+}
+
+.classes-social-btns {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+
+.classes-social-icon-circle {
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  border: 2px solid #eee;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.classes-social-icon {
+  color: #eee;
+  fill: #eee;
 }

@@ -18,7 +18,7 @@ export default function LandingPage() {
   ));
 
   return (
-    <div className="main-container">
+    <div className="main-container" style={{ marginLeft: 400 }}>
       <h1 className="page-title">OUR EXPERT CLASSES</h1>
       <p className="call-action">Please Select an Expert Class</p>
       <div className="class-display">
