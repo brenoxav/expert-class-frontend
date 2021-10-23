@@ -1,6 +1,9 @@
-import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import axios from 'axios';
+// import { currentUser, loggedInStatus } from './auth/sessionSlice';
+import { isCSRFToken } from './app/getCSRFToken';
 import ClassesPage from './features/classes/ClassesPage'; // eslint-disable-line
 import LandingPage from './features/landingPage/landingPage';
 import NavPanel from './features/navPanel/NavPanel';
@@ -11,6 +14,19 @@ import RemoveClassPage from './features/removeClass/RemoveClassPage';
 import ClassDetails from './features/ClassDetails/ClassDetails';
 
 function App() {
+  useEffect(() => {
+    const setSessionCookie = async () => {
+      if (!isCSRFToken()) {
+        await axios.get('http://localhost:3001/', { withCredentials: true });
+      }
+    };
+    setSessionCookie();
+  }, []);
+
+  // These are a global selectors. Every componenet has access to them:
+  // const user = useSelector(currentUser);
+  // const loggedIn = useSelector(loggedInStatus);
+
   return (
     <div className="App">
       <Router>
