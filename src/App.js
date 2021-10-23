@@ -11,7 +11,7 @@ import ReservePage from './features/reserve/ReservePage';
 import ReservationsPage from './features/reservations/ReservationsPage'; // eslint-disable-line
 import AddClassPage from './features/addClass/AddClassPage';
 import RemoveClassPage from './features/removeClass/RemoveClassPage';
-import ClassDetails from './features/classDetails/classDetails';
+import ClassDetails from './features/ClassDetails/classDetails';
 
 function App() {
   useEffect(() => {
