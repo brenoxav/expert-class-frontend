@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
-import classesSlice from '../features/classes/classesSlice'; // eslint-disable-line
-import reservationsSlice from '../features/reservations/reservationsSlice'; // eslint-disable-line
+import classesReducer from '../features/classes/classesSlice';
+import reservationsReducer from '../features/reservations/reservationsSlice';
+import sessionReducer from '../auth/sessionSlice';
 
 const store = configureStore({
   reducer: {
-    classes: classesSlice,
-    reservations: reservationsSlice,
+    classes: classesReducer,
+    reservations: reservationsReducer,
+    users: sessionReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
