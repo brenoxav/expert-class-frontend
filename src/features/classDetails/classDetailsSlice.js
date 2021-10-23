@@ -13,14 +13,6 @@ const initialState = {
   ],
 };
 
-const classDetails = (id) => {
-  const response = await fetch(`path/${id}`)
-  
-  dispatch({
-    payload: response
-  })
-}
-
 export const classesSlice = createSlice({
   name: 'classDetails',
   initialState,
