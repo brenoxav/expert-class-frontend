@@ -1,0 +1,27 @@
+body {
+  background-color: honeydew;
+}
+
+.mainContainer {
+  margin-left: 250px;
+  width: 1000px;
+  max-width: 100%;
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.heading {
+  padding: 2rem 0;
+  background-color:#97bf0f;
+}
+
+.reservationItem {
+  padding: 1rem;
+  border: 0.3px solid #97bf0f;
+  text-align: left;
+}
+
+.item {
+  padding: 0.2rem;
+  font-size: 1.5rem;
+}

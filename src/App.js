@@ -9,6 +9,7 @@ import LandingPage from './features/landingPage/landingPage';
 import NavPanel from './features/navPanel/NavPanel';
 import ReservePage from './features/reserve/ReservePage';
 import ReservationsPage from './features/reservations/ReservationsPage'; // eslint-disable-line
+import MyReservationsPage from './features/myReservations/myReservationsPage';
 import AddClassPage from './features/addClass/AddClassPage';
 import RemoveClassPage from './features/removeClass/RemoveClassPage';
 import ClassDetails from './features/ClassDetails/ClassDetails';
@@ -45,6 +46,9 @@ function App() {
               <ReservePage />
             </Route>
             <Route path="/my-reservations">
+              <MyReservationsPage />
+            </Route>
+            <Route path="/reservations">
               <ReservationsPage />
             </Route>
             <Route path="/add-class">
