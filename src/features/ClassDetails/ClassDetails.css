@@ -1,17 +1,18 @@
 .details-container {
   display: flex;
   width: 1050px;
-  border: 1px solid red;
+  height: 100vh;
   margin-left: 250px;
-  padding: 10px;
 }
 
 .details-col-1 {
   width: 75%;
+  padding: 20px;
 }
 
 .details-col-1 img {
   width: 100%;
+  height: 100%;
 }
 
 .details-col-2 {

@@ -1,11 +1,18 @@
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import './classDetails.css';
+import { fetchClassDetails } from './classDetailsSlice';
+import './ClassDetails.css';
 
 function ClassDetails() {
   const { id } = useParams();
-  const url = '';
-  const c = axios.get(`${url}/${id}`);
+  const dispatch = useDispatch();
+  let c = useSelector((state) => state.classObj);
+  c = {};
+
+  useEffect(() => {
+    dispatch(fetchClassDetails(id));
+  }, []);
 
   return (
     <div className="details-container">
@@ -23,14 +30,16 @@ function ClassDetails() {
             {c.instructor}
           </h3>
         </div>
-        <h4>
-          Description:
-          {c.description}
-        </h4>
-        <h4>
-          Duration:
-          {c.duration}
-        </h4>
+        <div>
+          <h4>
+            Description:
+            {c.description}
+          </h4>
+          <h4>
+            Duration:
+            {c.duration}
+          </h4>
+        </div>
       </div>
     </div>
   );

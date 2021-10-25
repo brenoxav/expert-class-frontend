@@ -1,8 +1,9 @@
 import React from 'react';
+import './ReservePage.css';
 
 function ReservePage() {
   return (
-    <div>
+    <div className="reserve-page-container">
       <h1>ReservePage</h1>
     </div>
   );

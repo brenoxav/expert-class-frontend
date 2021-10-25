@@ -15,7 +15,7 @@ export default function ReservationsPage() {
   ));
 
   return (
-    <div>
+    <div className="reservations-container">
       <h1>Reservations Page</h1>
       {reservationsList}
     </div>

@@ -46,7 +46,7 @@ export default function ClassesPage() {
   ));
 
   return (
-    <div>
+    <div className="classes-container">
       <h1 className="classes-heading">Classes Page</h1>
       <main>
         <Carousel

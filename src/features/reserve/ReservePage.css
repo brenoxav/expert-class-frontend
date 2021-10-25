@@ -1,1 +1,6 @@
-/* KEEP */
+.reserve-page-container {
+  width: 1050px;
+  height: 100vh;
+  margin-left: 250px;
+  padding: 10px;
+}

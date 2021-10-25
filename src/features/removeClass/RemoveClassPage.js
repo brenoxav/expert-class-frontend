@@ -31,26 +31,38 @@ function RemoveClassPage() {
     },
   ];
 
-  const handleRemove = (id) => {
-    fetch(`.../endpoint/${id}`);
+  const handleRemove = (id) => async () => {
+    await fetch(`http://localhost:3001/api/v1/courses/${id}`);
   };
 
   const classesList = classes.map((c) => (
-    <div key={c.id} className="class_item">
-      <h3>{c.title}</h3>
-      <h4>{c.description}</h4>
-      <p>{c.instructor}</p>
-      <p>{c.duration}</p>
-      <p>{c.image}</p>
-
-      <button type="button" className="remove_btn" onClick={handleRemove(c.class_id)}>Remove</button>
-    </div>
+    <tr key={c.id} className="class-item">
+      <td>{c.title}</td>
+      <td>{c.description}</td>
+      <td>{c.instructor}</td>
+      <td>{c.duration}</td>
+      <td>
+        <button type="button" className="remove_btn" onClick={handleRemove(c.id)}>Remove</button>
+      </td>
+    </tr>
   ));
 
   return (
-    <div>
-      <h1>Remove Class Page</h1>
-      {classesList}
+    <div className="remove-class-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Instructor</th>
+            <th>Duration</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {classesList}
+        </tbody>
+      </table>
     </div>
   );
 }

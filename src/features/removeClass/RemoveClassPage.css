@@ -1,1 +1,21 @@
-/* KEEP */
+.remove-class-container {
+  width: 1050px;
+  height: 100vh;
+  margin-left: 250px;
+  padding: 10px;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #333;
+}
+
+th {
+  background-color: #97bf0f;
+}
+
+table tr:nth-child(odd) {
+  background-color: #eee;
+}
