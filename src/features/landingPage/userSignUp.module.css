@@ -29,11 +29,6 @@
   padding: 1rem 25rem;
 }
 
-.forms {
-  display: flex;
-  flex-direction: row;
-}
-
 .button1,
 .button2 {
   margin: 2rem;
