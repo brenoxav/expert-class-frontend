@@ -1,5 +1,5 @@
 :root {
- --speed: 500ms;
+  --speed: 500ms;
 }
 
 .formContainer {
@@ -39,7 +39,7 @@ input[type=date] {
   padding: 18px;
   border: 2px solid white;
   border-radius: 50px;
-  box-shadow: 0 0.125rem rgba(0,0,0,.075);
+  box-shadow: 0 0.125rem rgba(0, 0, 0, 0.075);
   width: 300px;
   font-size: 16px;
   margin-bottom: 40px;
@@ -63,7 +63,7 @@ input[type=submit] {
   color: #97bf0f;
   padding: 20px;
   border: white 2px solid;
-  cursor:pointer;
+  cursor: pointer;
   -webkit-border-radius: 5px;
   border-radius: 50px;
   width: 300px;
