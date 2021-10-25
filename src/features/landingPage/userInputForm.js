@@ -4,10 +4,10 @@ import styles from './userInputForm.module.css';
 function UserInputForm() {
   const [showForm, setShowForm] = useState(false);
 
-  const [formData, setFormData] = useState({ name: '' });
+  const [formData, setFormData] = useState({ username: '' });
   console.log(formData);
 
-  const Change = (e) => setFormData({ ...formData, name: e.target.value });
+  const Change = (e) => setFormData({ ...formData, username: e.target.value });
 
   const handleSubmit = () => (
     alert('A name was submitted: ')

@@ -4,6 +4,17 @@ import styles from './userSignUp.module.css';
 function UserSignUp() {
   const [showForm, setShowForm] = useState(false);
 
+  const [formData, setFormData] = useState({ username: '', name: '' });
+  console.log(formData);
+
+  const Change = (e) => {
+    const { formData, value } = e.target;
+    setFormData({
+      ...values,
+      [formData]: value,
+    });
+  };
+
   const handleSubmit = () => (
     alert('A name was submitted: ')
   );
@@ -16,8 +27,8 @@ function UserSignUp() {
 
       {showForm && (
       <form className={styles.signInForm} onSubmit={handleSubmit}>
-        <input className={styles.formInput} type="text" name="username" id="username" placeholder="Please enter your username" />
-        <input className={styles.nameInput} type="text" name="name" id="name" placeholder="Please enter your name" />
+        <input className={styles.formInput} onChange={Change} type="text" name="username" id="username" placeholder="Please enter your username" />
+        <input className={styles.nameInput} onChange={Change} type="text" name="name" id="name" placeholder="Please enter your name" />
         <input className={styles.formSubmit} type="submit" value="Submit" />
       </form>
       )}
