@@ -1,4 +1,3 @@
-import './ClassDetails.css';
 import { useParams } from 'react-router';
 
 function ClassDetails() {
