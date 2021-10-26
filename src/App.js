@@ -12,6 +12,7 @@ import ReservationsPage from './features/reservations/ReservationsPage'; // esli
 import AddClassPage from './features/addClass/AddClassPage';
 import RemoveClassPage from './features/removeClass/RemoveClassPage';
 import ClassDetails from './features/ClassDetails/ClassDetails';
+import Session from './auth/Session';
 
 function App() {
   useEffect(() => {
@@ -54,7 +55,8 @@ function App() {
               <RemoveClassPage />
             </Route>
             <Route path="/">
-              <LandingPage />
+              {/* <LandingPage /> */}
+              <Session />
             </Route>
           </Switch>
         </Router>

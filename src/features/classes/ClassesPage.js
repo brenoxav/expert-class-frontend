@@ -1,7 +1,6 @@
 import './ClassesPage.css';
 import '@brainhubeu/react-carousel/lib/style.css';
-import Carousel, { slidesToShowPlugin } from '@brainhubeu/react-carousel';
-
+import Carousel, { slidesToShowPlugin, autoplayPlugin } from '@brainhubeu/react-carousel';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -33,6 +32,7 @@ export default function ClassesPage() {
 
   return (
     <div className="classes-container">
+      <h2 className="heading">Classes</h2>
       <Carousel
         plugins={[
           'centered',
@@ -44,7 +44,14 @@ export default function ClassesPage() {
               numberOfSlides: 3,
             },
           },
+          {
+            resolve: autoplayPlugin,
+            options: {
+              interval: 3000,
+            },
+          },
         ]}
+        animationSpeed={1000}
         className="carousel-component"
       >
         {classesList}

@@ -20,11 +20,7 @@ const ReservationsPage = () => {
   ));
 
   return (
-<<<<<<< HEAD
-    <div className="reservations-container">
-=======
     <div style={{ marginLeft: 400 }}>
->>>>>>> 580003b96b779e6b3ab415043337aa49f6d2a54c
       <h1>Reservations Page</h1>
       {reservations && reservationsList}
     </div>

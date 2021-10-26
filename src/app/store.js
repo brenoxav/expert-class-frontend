@@ -4,6 +4,8 @@ import classesReducer from '../features/classes/classesSlice';
 import reservationsReducer from '../features/reservations/reservationsSlice';
 import sessionReducer from '../auth/sessionSlice';
 import reservePageReducer from '../features/reserve/reservePageSlice';
+import removeClassReducer from '../features/removeClass/removeClassSlice';
+import classDetailsReducer from '../features/ClassDetails/classDetailsSlice';
 
 const store = configureStore({
   reducer: {

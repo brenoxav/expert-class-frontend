@@ -5,8 +5,15 @@
 .classes-container {
   width: 1070px;
   height: 100vh;
-  padding: 50px 20px;
+  padding: 20px;
   margin-left: 240px;
+}
+
+.heading {
+  text-align: center;
+  margin: 25px auto;
+  text-transform: uppercase;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .carousel-container {

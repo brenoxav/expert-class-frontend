@@ -1,9 +1,17 @@
 .remove-class-container {
-  width: 1050px;
+  width: 1070px;
   height: 100vh;
-  margin-left: 250px;
-  padding: 10px;
+  padding: 20px;
+  margin-left: 240px;
 }
+
+.heading {
+  text-align: center;
+  margin: 25px auto;
+  text-transform: uppercase;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .reservations-table {
   border-collapse: collapse;
   margin: 25px auto;
