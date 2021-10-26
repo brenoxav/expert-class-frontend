@@ -3,8 +3,7 @@ import logger from 'redux-logger';
 import classesReducer from '../features/classes/classesSlice';
 import reservationsReducer from '../features/reservations/reservationsSlice';
 import sessionReducer from '../auth/sessionSlice';
-import classDetailsReducer from '../features/ClassDetails/classDetailsSlice';
-import removeClassReducer from '../features/removeClass/removeClassSlice';
+import reservePageReducer from '../features/reserve/reservePageSlice';
 
 const store = configureStore({
   reducer: {
@@ -13,6 +12,7 @@ const store = configureStore({
     classDetails: classDetailsReducer,
     reservations: reservationsReducer,
     users: sessionReducer,
+    reserve: reservePageReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
