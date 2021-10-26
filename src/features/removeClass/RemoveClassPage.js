@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeClass } from './removeClassSlice';
 import './RemoveClassPage.css';
+import { reloadClasses, removeClass } from './removeClassSlice';
 
 function RemoveClassPage() {
   const dispatch = useDispatch();
-  const classes = useSelector((state) => state);
-  console.log('casss..............', classes);
+  const classes = useSelector((state) => state.classesObj.classObj);
+
+  useEffect(() => {
+    dispatch(reloadClasses());
+  }, []);
 
   const handleClick = (id) => {
     dispatch(removeClass(id));
+    dispatch(reloadClasses());
   };
 
   const classesList = classes.map((c) => (

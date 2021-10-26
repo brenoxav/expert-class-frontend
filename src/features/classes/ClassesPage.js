@@ -6,6 +6,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { fetchClassesData } from './classesSlice';
+import { reloadClasses } from '../removeClass/removeClassSlice';
 
 export default function ClassesPage() {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ export default function ClassesPage() {
 
   useEffect(() => {
     dispatch(fetchClassesData());
+    dispatch(reloadClasses());
   }, []);
 
   const classesList = classes.map((c) => (
