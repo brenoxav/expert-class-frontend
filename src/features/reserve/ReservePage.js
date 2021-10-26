@@ -119,7 +119,7 @@ const ReservePage = () => {
         />
 
         <input type="date" onChange={dateHandler} />
-        <input type="submit" value="Register" />
+        <input type="submit" value="Register" className={`${styles.submitBtn}`} />
       </form>
     </div>
   );

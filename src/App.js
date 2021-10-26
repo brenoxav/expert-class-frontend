@@ -5,14 +5,16 @@ import axios from 'axios';
 // import { currentUser, loggedInStatus } from './auth/sessionSlice';
 import { isCSRFToken } from './app/getCSRFToken';
 import ClassesPage from './features/classes/ClassesPage'; // eslint-disable-line
-// import LandingPage from './features/landingPage/landingPage';
+import LandingPage from './features/landingPage/landingPage';
 import NavPanel from './features/navPanel/NavPanel';
 import ReservePage from './features/reserve/ReservePage';
 import ReservationsPage from './features/reservations/ReservationsPage'; // eslint-disable-line
 import AddClassPage from './features/addClass/AddClassPage';
 import RemoveClassPage from './features/removeClass/RemoveClassPage';
 import ClassDetails from './features/ClassDetails/ClassDetails';
-import Session from './auth/Session';
+import SignInPage from './features/signInPage/signInPage';
+import SignUpPage from './features/signUpPage/signUpPage';
+// import Session from './auth/Session';
 
 function App() {
   useEffect(() => {
@@ -54,9 +56,14 @@ function App() {
             <Route path="/remove-class">
               <RemoveClassPage />
             </Route>
+            <Route path="/sign-in">
+              <SignInPage />
+            </Route>
+            <Route path="/sign-up">
+              <SignUpPage />
+            </Route>
             <Route path="/">
-              <Session />
-              {/* <LandingPage /> */}
+              <LandingPage />
             </Route>
           </Switch>
         </Router>

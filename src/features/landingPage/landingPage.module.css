@@ -29,7 +29,7 @@
   padding: 1rem 25rem;
 }
 
-.forms {
+.buttonsDiv {
   display: flex;
   flex-direction: row;
 }
