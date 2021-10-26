@@ -41,9 +41,9 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.button1 {  
-  color: white; 
-  background-color:rgba(151, 191, 15, 0.7);  
+.button1 {
+  color: white;
+  background-color: rgba(151, 191, 15, 0.7);
 }
 
 .button2 {
@@ -57,8 +57,8 @@
 }
 
 .button2:hover {
-  color: white; 
-  background-color:rgba(151, 191, 15, 0.7);
+  color: white;
+  background-color: rgba(151, 191, 15, 0.7);
 }
 
 .signInForm {
