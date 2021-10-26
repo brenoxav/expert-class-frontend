@@ -22,7 +22,6 @@ export default function LandingPage() {
           <UserInputForm />
           <UserSignUp />
         </div>
-
       </div>
     </div>
   );
