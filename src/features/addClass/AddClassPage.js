@@ -25,7 +25,13 @@ const AddClassPage = () => {
 
   const classesList = (courses) => courses.map((c) => (
     <div key={c.id}>
-      <img src={c.course_image_url} alt="class instructor" />
+      <img
+        src={c.course_image_url}
+        alt="class instructor"
+        style={{
+          width: 300,
+        }}
+      />
       <h3>{c.title}</h3>
       <p>{c.description}</p>
     </div>
@@ -33,7 +39,13 @@ const AddClassPage = () => {
 
   const showClass = (c) => (
     <div key={c.id}>
-      <img src={c.course_image_url} alt="class instructor" />
+      <img
+        src={c.course_image_url}
+        alt="class instructor"
+        style={{
+          width: 300,
+        }}
+      />
       <h3>{c.title}</h3>
       <p>{c.description}</p>
     </div>

@@ -1,0 +1,71 @@
+:root {
+  --speed: 500ms;
+}
+
+.formContainer {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #97bf0f;
+  margin-left: 240px;
+  color: white;
+}
+
+.title {
+  padding: 30px 0;
+  color: white;
+}
+
+.para {
+  margin-bottom: 50px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 50px;
+}
+
+input[type=date] {
+  position: relative;
+  background-color: #97bf0f;
+  color: white;
+  padding: 18px;
+  border: 2px solid white;
+  border-radius: 50px;
+  box-shadow: 0 0.125rem rgba(0, 0, 0, 0.075);
+  width: 300px;
+  font-size: 16px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+input[type=date]::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: left;
+  content: 'Date';
+  border: 20px solid transparent;
+}
+
+input[type=submit] {
+  background-color: white;
+  color: #97bf0f;
+  padding: 20px;
+  border: white 2px solid;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 50px;
+  width: 300px;
+  font-size: 16px;
+}
