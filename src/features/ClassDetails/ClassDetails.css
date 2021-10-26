@@ -35,6 +35,15 @@
   border: 1px solid #eee;
 }
 
+.desc-table h4 {
+  display: flex;
+  align-items: center;
+}
+
+.desc-table span {
+  margin: 10px;
+}
+
 .details-col-2 h4:nth-child(even) {
   background-color: #eee;
 }
@@ -45,13 +54,4 @@
 
 .class-instructor {
   margin: 2px 0;
-}
-
-.desc-table h4 {
-  display: flex;
-  align-items: center;
-}
-
-.desc-table span {
-  margin: 10px;
 }

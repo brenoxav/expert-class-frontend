@@ -13,7 +13,7 @@
   text-align: center;
   margin: 25px auto;
   text-transform: uppercase;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .carousel-container {
@@ -52,7 +52,7 @@
 }
 
 .class-instructor {
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
 .classes-social-btns {

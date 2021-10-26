@@ -9,7 +9,7 @@
   text-align: center;
   margin: 25px auto;
   text-transform: uppercase;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .reservations-table {
@@ -23,17 +23,17 @@
 
 .reservations-table thead tr {
   background-color: #97bf0f;
-  color: #ffffff;
+  color: #fff;
   text-align: left;
 }
 
 .reservations-table th,
 .reservations-table td {
-    padding: 12px 15px;
+  padding: 12px 15px;
 }
 
 .reservations-table tbody tr {
-  border-bottom: thin solid #dddddd;
+  border-bottom: thin solid #ddd;
 }
 
 .reservations-table tbody tr:nth-of-type(even) {
