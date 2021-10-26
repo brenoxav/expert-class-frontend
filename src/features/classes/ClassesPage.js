@@ -9,7 +9,7 @@ import { fetchClassesData } from './classesSlice';
 
 export default function ClassesPage() {
   const dispatch = useDispatch();
-  const { classes } = useSelector((state) => state.classes);
+  const classes = useSelector((state) => state.classes.classes);
 
   useEffect(() => {
     dispatch(fetchClassesData());
@@ -18,7 +18,7 @@ export default function ClassesPage() {
   const classesList = classes.map((c) => (
     <NavLink to={`/class/${c.id}`} key={c.id}>
       <div className="classes-item">
-        <div className="classes-image-placeholder" />
+        <img src={c.course_image_url} alt="course" />
         <h3 className="classes-title">{c.title}</h3>
         <p className="classes-description">{c.description}</p>
         <div className="classes-social-btns">
