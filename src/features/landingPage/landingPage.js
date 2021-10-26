@@ -1,34 +1,28 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+// import expertClass02 from '../images/expertClass02.jpg';
+// import { useSelector } from 'react-redux';
+import UserInputForm from './userInputForm';
+import UserSignUp from './userSignUp';
+import styles from './landingPage.module.css';
 
 export default function LandingPage() {
-  const { classes } = useSelector((state) => state.classes);
-
-  const classesList = classes.map((c) => (
-    <div key={c.id} className="class-item">
-      <img src="" alt="class instructor" />
-      <h3>{c.title}</h3>
-      <p>{c.description}</p>
-      <ul>
-        <li>facebook</li>
-        <li>messenger</li>
-        <li>twitter</li>
-      </ul>
-    </div>
-  ));
-
   return (
-    <div className="main-container" style={{ marginLeft: 400 }}>
-      <h1 className="page-title">OUR EXPERT CLASSES</h1>
-      <p className="call-action">Please Select an Expert Class</p>
-      <div className="class-display">
-        <button className="side-buttons" type="button"> arrow </button>
-        {classesList}
-        <button className="side-buttons" type="button"> arrow </button>
+    <div className={styles.mainContainer}>
+      <div className={styles.innerContainer}>
+        <h1 className={styles.pageTitle}>OUR EXPERT CLASSES</h1>
+        <p className={styles.caption}>
+          There&apos;s Nothing Better Than Getting Better.
+          Keep Growing With Unlimited Creative Classes.
+          Grow Without Limits. Discover What You Can Create With Thousands of Inspiring Classes.
+          Support of a Community.
+          Prompts & Resources. Browse Projects.
+          Offline viewing.
+        </p>
+        <div className={styles.forms}>
+          <UserInputForm />
+          <UserSignUp />
+        </div>
       </div>
-      <button type="button">SignIn</button>
-      <button type="button">SignOut</button>
-      <button type="button">SignUp</button>
     </div>
   );
 }

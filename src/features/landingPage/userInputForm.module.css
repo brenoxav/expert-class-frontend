@@ -1,0 +1,107 @@
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(151, 191, 15, 0.7), rgba(151, 191, 15, 0.7)), url(../images/expertClass02.jpg);
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  height: 100vh;
+  margin-left: 240px;
+}
+
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageTitle {
+  color: white;
+}
+
+.caption {
+  color: white;
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: 400;
+  line-height: 1.2;
+  padding: 1rem 25rem;
+}
+
+.button1,
+.button2 {
+  margin: 2rem;
+  height: 3rem;
+  width: 12rem;
+  font-size: 1.5rem;
+  border-radius: 50px;
+  border: 2px solid white;
+  font-weight: 500;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.button1 {
+  color: white;
+  background-color: rgba(151, 191, 15, 0.7);
+}
+
+.button2 {
+  background-color: white;
+  color: rgba(151, 191, 15, 1);
+}
+
+.button1:hover {
+  background-color: white;
+  color: rgba(151, 191, 15, 1);
+}
+
+.button2:hover {
+  color: white;
+  background-color: rgba(151, 191, 15, 0.7);
+}
+
+.signInForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.formInput {
+  width: 28rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-radius: 50px;
+  border: 2px solid white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.nameInput {
+  width: 28rem;
+  height: 3rem;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-radius: 50px;
+  border: 2px solid white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.formSubmit {
+  margin: 1rem 0;
+  height: 2.5rem;
+  width: 9rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: rgba(151, 191, 15, 1);
+  border-radius: 50px;
+  border: 2px solid white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.class-item {
+  padding: 1rem;
+  border: 1px solid greenyellow;
+}

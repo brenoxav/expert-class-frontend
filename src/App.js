@@ -5,7 +5,7 @@ import axios from 'axios';
 // import { currentUser, loggedInStatus } from './auth/sessionSlice';
 import { isCSRFToken } from './app/getCSRFToken';
 import ClassesPage from './features/classes/ClassesPage'; // eslint-disable-line
-import LandingPage from './features/landingPage/landingPage';
+// import LandingPage from './features/landingPage/landingPage';
 import NavPanel from './features/navPanel/NavPanel';
 import ReservePage from './features/reserve/ReservePage';
 import ReservationsPage from './features/reservations/ReservationsPage'; // eslint-disable-line
@@ -55,8 +55,8 @@ function App() {
               <RemoveClassPage />
             </Route>
             <Route path="/">
-              {/* <LandingPage /> */}
               <Session />
+              {/* <LandingPage /> */}
             </Route>
           </Switch>
         </Router>
