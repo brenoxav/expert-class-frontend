@@ -30,7 +30,7 @@ function RemoveClassPage() {
 
   return (
     <div className="remove-class-container">
-      <table>
+      <table className="reservations-table">
         <thead>
           <tr>
             <th>Title</th>
