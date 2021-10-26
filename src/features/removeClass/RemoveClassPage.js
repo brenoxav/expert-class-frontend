@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './RemoveClassPage.css';
 import { reloadClasses, removeClass } from './removeClassSlice';
-import { fetchClassDetails } from '../ClassDetails/classDetailsSlice';
 
 function RemoveClassPage() {
   const dispatch = useDispatch();
