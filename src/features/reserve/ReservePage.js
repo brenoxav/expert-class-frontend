@@ -5,7 +5,7 @@ import styles from './ReservePage.module.scss';
 import { currentUser, loggedInStatus } from '../../auth/sessionSlice';
 import { reserveCourse } from './reservePageSlice';
 import Dropdown from './dropdown';
-import SpeechBubble from './speechBubble';
+import SpeechBubble from '../../common/speechBubble';
 
 const ReservePage = () => {
   const dispatch = useDispatch();
@@ -119,7 +119,7 @@ const ReservePage = () => {
         />
 
         <input type="date" onChange={dateHandler} />
-        <input type="submit" value="Register" />
+        <input type="submit" value="Register" className={`${styles.submitBtn}`} />
       </form>
     </div>
   );
