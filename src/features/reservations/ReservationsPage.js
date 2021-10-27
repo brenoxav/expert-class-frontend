@@ -1,30 +1,53 @@
-import './ReservationsPage.css';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import styles from './Reservations.module.css';
 import { fetchReservations, userReservations } from './reservationsSlice';
+import { loggedInStatus } from '../../auth/sessionSlice';
 
-const ReservationsPage = () => {
+export default function ReservationsPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const reservations = useSelector(userReservations);
+  const loggedIn = useSelector(loggedInStatus);
+
   useEffect(() => {
-    dispatch(fetchReservations());
+    if (!loggedIn) {
+      history.push('/');
+    } else {
+      dispatch(fetchReservations());
+    }
   }, []);
 
-  const reservationsList = reservations.map((r) => (
-    <div key={r.id} className="reservation-item">
-      <h3>{r.course}</h3>
-      <h4>{r.user}</h4>
-      <p>{r.date}</p>
-      <p>{r.city}</p>
+  const ReservationsList = reservations.map((r) => (
+    <div key={r.id} className={styles.reservationItem}>
+      <h3 className={styles.item}>
+        Class:
+        {' '}
+        {r.course}
+      </h3>
+      <p className={styles.item}>
+        Username:
+        {' '}
+        {r.user}
+      </p>
+      <p className={styles.item}>
+        Date:
+        {' '}
+        {r.date}
+      </p>
+      <p className={styles.item}>
+        Location:
+        {' '}
+        {r.city}
+      </p>
     </div>
   ));
 
   return (
-    <div style={{ marginLeft: 400 }}>
-      <h1>Reservations Page</h1>
-      {reservations && reservationsList}
+    <div className={styles.mainContainer}>
+      <h1 className={styles.heading}>My Reservations</h1>
+      {ReservationsList}
     </div>
   );
-};
-
-export default ReservationsPage;
+}

@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styles from './ReservePage.module.scss';
 import { currentUser, loggedInStatus } from '../../auth/sessionSlice';
-import { reserveCourse } from './reservePageSlice';
+import { reserveCourse, currentCities, fetchCities } from './reservePageSlice';
+import { currentClasses, fetchClassesData } from '../classes/classesSlice';
 import Dropdown from './dropdown';
 import SpeechBubble from '../../common/speechBubble';
 
@@ -12,23 +13,28 @@ const ReservePage = () => {
 
   const history = useHistory();
   const user = useSelector(currentUser);
+  const classes = useSelector(currentClasses);
+  const cities = useSelector(currentCities);
   const loggedIn = useSelector(loggedInStatus);
   const [formMessage, setFormMessage] = useState({ message: '', display: false });
 
   useEffect(() => {
     if (!loggedIn) {
       history.push('/');
+    } else {
+      dispatch(fetchClassesData());
+      dispatch(fetchCities());
     }
   }, []);
 
-  const initialState = {
+  const initialFormState = {
     user_id: user.id,
     course_id: null,
     city_id: null,
     date: null,
   };
 
-  const [formData, setFormData] = useState(initialState);
+  const [formData, setFormData] = useState(initialFormState);
 
   const handleFormChange = (key, id) => {
     const selection = {};
@@ -57,40 +63,6 @@ const ReservePage = () => {
     }
   };
 
-  const cities = [
-    {
-      id: 13,
-      name: 'Ciudad de Mexico, Mexico',
-    },
-    {
-      id: 14,
-      name: 'New York, USA',
-    },
-    {
-      id: 15,
-      name: 'Abuja, Nigeria',
-    },
-    {
-      id: 16,
-      name: 'São Paulo, Brasil',
-    },
-  ];
-
-  const courses = [
-    {
-      id: 15, title: 'Urban Photography', description: 'Learn to take photos of urban landscapes.', duration: 4, instructor: 'Maria',
-    },
-    {
-      id: 16, title: 'Modern Gardening', description: 'Learn to plant plants.', duration: 8, instructor: 'Mohammed',
-    },
-    {
-      id: 17, title: 'Play the Piano', description: 'Learn to play the piano.', duration: 12, instructor: 'Yin',
-    },
-    {
-      id: 18, title: 'Master Chef', description: 'Learn to cook delicious dishes.', duration: 12, instructor: 'Paola',
-    },
-  ];
-
   return (
     <div className={`${styles.formContainer}`}>
       <h1 className={`${styles.title}`}>Register for an Expert Class</h1>
@@ -105,7 +77,7 @@ const ReservePage = () => {
         <Dropdown
           valueName="title"
           keyName="course_id"
-          items={courses}
+          items={classes}
           title="Choose a Course"
           handleFormChange={handleFormChange}
         />

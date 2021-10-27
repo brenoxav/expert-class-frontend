@@ -32,5 +32,6 @@ export const classesSlice = createSlice({
 });
 
 export const { getClassById } = classesSlice.actions;
+export const currentClasses = (state) => state.classes.classes;
 
 export default classesSlice.reducer;
