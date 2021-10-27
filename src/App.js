@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
-import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
 import axios from 'axios';
 // import { currentUser, loggedInStatus } from './auth/sessionSlice';
 import { isCSRFToken } from './app/getCSRFToken';
@@ -13,6 +17,7 @@ import AddClassPage from './features/addClass/AddClassPage';
 import RemoveClassPage from './features/removeClass/RemoveClassPage';
 import ClassDetails from './features/ClassDetails/ClassDetails';
 import Session from './auth/Session';
+import LandingPage from './features/landingPage/landingPage';
 
 function App() {
   useEffect(() => {
@@ -54,7 +59,7 @@ function App() {
             <Route path="/remove-class">
               <RemoveClassPage />
             </Route>
-            <Route path="/">
+            <Route exact path="/">
               <Session />
               {/* <LandingPage /> */}
             </Route>

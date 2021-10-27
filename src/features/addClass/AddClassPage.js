@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import getCSRFToken from '../../app/getCSRFToken';
 import expertClassAPI from '../../app/expertClassAPI';
+import { loggedInStatus } from '../../auth/sessionSlice';
 import './AddClassPage.css';
 
 const AddClassPage = () => {
+  const history = useHistory();
+  const loggedIn = useSelector(loggedInStatus);
+
+  useEffect(() => {
+    if (!loggedIn) {
+      history.push('/');
+    }
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
