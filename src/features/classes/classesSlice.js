@@ -1,6 +1,13 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const API_URL = 'http://localhost:3001/api/v1/courses';
+
+const initialState = {
+  classes: [],
+  status: 'idle',
+  error: null,
+};
 
 export const fetchClassesData = createAsyncThunk(
   'classes/fetchClassesData',
@@ -10,19 +17,6 @@ export const fetchClassesData = createAsyncThunk(
   },
 );
 
-const initialState = {
-  classes: [
-    {
-      id: 999,
-      title: 'Setup Redux',
-      description: 'Learn how to set up Redux on a React app.',
-      instructor: 'Breno',
-      duration: 4,
-      image: '',
-    },
-  ],
-};
-
 export const classesSlice = createSlice({
   name: 'classes',
   initialState,
@@ -30,9 +24,10 @@ export const classesSlice = createSlice({
     getClassById: (state, action) => state.classes.filter((c) => c.id === action.payload),
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchClassesData.fulfilled, (state, action) => {
-      state.classes = action.payload; // eslint-disable-line
-    });
+    builder
+      .addCase(fetchClassesData.fulfilled, (state, action) => {
+        state.classes = action.payload; // eslint-disable-line
+      });
   },
 });
 

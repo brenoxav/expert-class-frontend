@@ -2,7 +2,19 @@ import React from 'react';
 import styles from './Reservations.module.css';
 // import { useSelector } from 'react-redux';
 
-export default function ReservationsPage() {
+   export default function ReservationsPage() {
+//   const reservations = useSelector(userReservations);
+//   useEffect(() => {
+//     dispatch(fetchReservations());
+//   }, []);
+
+//   const reservationsList = reservations.map((r) => (
+//     <div key={r.id} className="reservation-item">
+//       <h3>{r.course}</h3>
+//       <h4>{r.user}</h4>
+//       <p>{r.date}</p>
+//       <p>{r.city}</p>
+
   // const user = useSelector(currentUser);
   const user = { user_id: 999, username: 'Julius', name: 'Mih' };
   // const { reservations } = useSelector((state) => state.reservations);
@@ -94,4 +106,6 @@ export default function ReservationsPage() {
       {ReservationsList}
     </div>
   );
-}
+};
+
+export default ReservationsPage;
