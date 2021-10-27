@@ -91,7 +91,7 @@ export const sessionSlice = createSlice({
           state.status = 'idle';
           state.user = {};
           state.logged_in = false;
-          state.error = action.payload;
+          state.error = 'Username does not exist. Please try again.';
         }
       })
       .addCase(loginUser.rejected, (state) => {

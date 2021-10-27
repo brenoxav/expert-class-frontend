@@ -22,9 +22,9 @@ function SignUpPage() {
 
   useEffect(() => {
     if (error) {
-      setFormMessage({message: error, display: true});
+      setFormMessage({ message: error, display: true });
     }
-  },[error]);
+  }, [error]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
