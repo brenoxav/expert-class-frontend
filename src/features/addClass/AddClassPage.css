@@ -18,6 +18,7 @@
 }
 
 .heading {
+  color: #fff;
   text-align: center;
   margin: 25px auto;
   text-transform: uppercase;
@@ -62,7 +63,7 @@ input.class-submit:hover {
 
 .instruction {
   margin: 10px 20px;
-  color: #333;
+  color: #fff;
 }
 
 

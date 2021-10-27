@@ -14,7 +14,7 @@ function RemoveClassPage() {
     if (!loggedIn) {
       history.push('/');
     }
-  }, []);
+  }, [loggedIn]);
 
   const classes = useSelector((state) => state.classesObj.classObj);
 

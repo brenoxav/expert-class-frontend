@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import getCSRFToken from '../../app/getCSRFToken';
-import expertClassAPI from '../../app/expertClassAPI';
 import { loggedInStatus } from '../../auth/sessionSlice';
 import './AddClassPage.css';
 
@@ -15,7 +14,7 @@ const AddClassPage = () => {
     if (!loggedIn) {
       history.push('/');
     }
-  }, []);
+  }, [loggedIn]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,47 +31,6 @@ const AddClassPage = () => {
       });
   };
 
-  const [classes, setClasses] = useState(null);
-
-  const [course, setCourse] = useState(null);
-
-  const classesList = (courses) => courses.map((c) => (
-    <div key={c.id}>
-      <img
-        src={c.course_image_url}
-        alt="class instructor"
-        style={{
-          width: 300,
-        }}
-      />
-      <h3>{c.title}</h3>
-      <p>{c.description}</p>
-    </div>
-  ));
-
-  const showClass = (c) => (
-    <div key={c.id}>
-      <img
-        src={c.course_image_url}
-        alt="class instructor"
-        style={{
-          width: 300,
-        }}
-      />
-      <h3>{c.title}</h3>
-      <p>{c.description}</p>
-    </div>
-  );
-
-  const fetchClasses = async () => {
-    const response = await expertClassAPI.get('/api/v1/courses');
-    setClasses(classesList(response.data));
-  };
-
-  const fetchClass = async () => {
-    const response = await expertClassAPI.get('/api/v1/courses/16');
-    setCourse(showClass(response.data));
-  };
 
   return (
     <>
@@ -108,23 +66,7 @@ const AddClassPage = () => {
               <input type="submit" value="Upload" className="class-submit" />
             </div>
           </form>
-
         </div>
-      </div>
-
-      <div style={{
-        width: 600, marginLeft: 400, marginTop: 100, minHeight: 200,
-      }}
-      >
-        <button type="button" onClick={fetchClasses}>Fetch Classes</button>
-        {classes}
-      </div>
-      <div style={{
-        width: 600, marginLeft: 400, marginTop: 100, minHeight: 200,
-      }}
-      >
-        <button type="button" onClick={fetchClass}>Fetch One Class</button>
-        {course}
       </div>
     </>
   );

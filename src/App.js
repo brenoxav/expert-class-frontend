@@ -1,15 +1,7 @@
 import React, { useEffect } from 'react';
-<<<<<<< HEAD
-// import { useDispatch, useSelector } from 'react-redux';
-import {
-  HashRouter as Router,
-  Switch,
-  Route,
-=======
 import { useDispatch, useSelector } from 'react-redux';
 import {
   HashRouter as Router, Switch, Route, Redirect,
->>>>>>> develop
 } from 'react-router-dom';
 import axios from 'axios';
 import { loggedInStatus, loginStatus, logoutUser } from './auth/sessionSlice';
@@ -22,14 +14,9 @@ import ReservationsPage from './features/reservations/ReservationsPage'; // esli
 import AddClassPage from './features/addClass/AddClassPage';
 import RemoveClassPage from './features/removeClass/RemoveClassPage';
 import ClassDetails from './features/ClassDetails/ClassDetails';
-<<<<<<< HEAD
-import Session from './auth/Session';
-import LandingPage from './features/landingPage/landingPage';
-=======
 import SignInPage from './features/signInPage/signInPage';
 import SignUpPage from './features/signUpPage/signUpPage';
 import './App.css';
->>>>>>> develop
 
 function App() {
   const dispatch = useDispatch();
