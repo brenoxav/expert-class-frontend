@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styles from './ReservePage.module.scss';
 import { currentUser, loggedInStatus } from '../../auth/sessionSlice';
-import { reserveCourse } from './reservePageSlice';
+import { reserveCourse, currentCities, fetchCities } from './reservePageSlice';
 import { currentClasses, fetchClassesData } from '../classes/classesSlice';
 import Dropdown from './dropdown';
 import SpeechBubble from '../../common/speechBubble';
@@ -14,6 +14,7 @@ const ReservePage = () => {
   const history = useHistory();
   const user = useSelector(currentUser);
   const classes = useSelector(currentClasses);
+  const cities = useSelector(currentCities);
   const loggedIn = useSelector(loggedInStatus);
   const [formMessage, setFormMessage] = useState({ message: '', display: false });
 
@@ -22,6 +23,7 @@ const ReservePage = () => {
       history.push('/');
     } else {
       dispatch(fetchClassesData());
+      dispatch(fetchCities());
     }
   }, []);
 
@@ -61,24 +63,24 @@ const ReservePage = () => {
     }
   };
 
-  const cities = [
-    {
-      id: 13,
-      name: 'Ciudad de Mexico, Mexico',
-    },
-    {
-      id: 14,
-      name: 'New York, USA',
-    },
-    {
-      id: 15,
-      name: 'Abuja, Nigeria',
-    },
-    {
-      id: 16,
-      name: 'São Paulo, Brasil',
-    },
-  ];
+  // const cities = [
+  //   {
+  //     id: 13,
+  //     name: 'Ciudad de Mexico, Mexico',
+  //   },
+  //   {
+  //     id: 14,
+  //     name: 'New York, USA',
+  //   },
+  //   {
+  //     id: 15,
+  //     name: 'Abuja, Nigeria',
+  //   },
+  //   {
+  //     id: 16,
+  //     name: 'São Paulo, Brasil',
+  //   },
+  // ];
 
   return (
     <div className={`${styles.formContainer}`}>
