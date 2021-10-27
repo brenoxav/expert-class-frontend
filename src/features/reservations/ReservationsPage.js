@@ -62,7 +62,7 @@ export default function ReservationsPage() {
   const ReservationsList = reservations.filter((r) => r.user === user.username).map((r) => (
     <div key={r.id} className={styles.reservationItem}>
       <h3 className={styles.item}>
-        Title:
+        Class:
         {' '}
         {r.course}
       </h3>
