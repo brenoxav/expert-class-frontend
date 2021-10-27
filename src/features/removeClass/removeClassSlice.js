@@ -19,27 +19,10 @@ export const removeClass = createAsyncThunk(
   },
 );
 
-export const reloadClasses = createAsyncThunk(
-  'classes/reloadClasses', async () => {
-    try {
-      const response = await expertClassAPI.get('/api/v1/courses/');
-      return response;
-    } catch (error) {
-      return error.message;
-    }
-  },
-);
-
 export const removeClassSlice = createSlice({
   name: 'removeClass',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(reloadClasses.fulfilled, (state, action) => {
-        state.classObj = action.payload.data;
-      });
-  },
 });
 
 export default removeClassSlice.reducer;
