@@ -2,58 +2,58 @@ import React from 'react';
 import styles from './Reservations.module.css';
 // import { useSelector } from 'react-redux';
 
-   export default function ReservationsPage() {
+export default function ReservationsPage() {
 //   const reservations = useSelector(userReservations);
 //   useEffect(() => {
 //     dispatch(fetchReservations());
 //   }, []);
 
-//   const reservationsList = reservations.map((r) => (
-//     <div key={r.id} className="reservation-item">
-//       <h3>{r.course}</h3>
-//       <h4>{r.user}</h4>
-//       <p>{r.date}</p>
-//       <p>{r.city}</p>
+  //   const reservationsList = reservations.map((r) => (
+  //     <div key={r.id} className="reservation-item">
+  //       <h3>{r.course}</h3>
+  //       <h4>{r.user}</h4>
+  //       <p>{r.date}</p>
+  //       <p>{r.city}</p>
 
   // const user = useSelector(currentUser);
-  const user = { user_id: 999, username: 'Julius', name: 'Mih' };
+  const user = { user_id: 999, username: 'Jay', name: 'Mih' };
   // const { reservations } = useSelector((state) => state.reservations);
 
   const reservations = [
     {
-      
-      course: "Computer Programming",
-      user: "Arturo",
+
+      course: 'Computer Programming',
+      user: 'Arturo',
       date: '2021-10-11',
       city: 'Tokio, Japan',
     },
     {
-      course: "Music",
-      user: "Breno",
+      course: 'Music',
+      user: 'Breno',
       date: '2021-10-11',
       city: 'Yaounde, Cameroon',
     },
     {
-      course: "Web Design",
-      user: "Francis",
+      course: 'Web Design',
+      user: 'Francis',
       date: '2021-10-11',
       city: 'Tokio, Japan',
     },
     {
-      course: "Gymnatic",
-      user: "Jay",
+      course: 'Gymnatic',
+      user: 'Jay',
       date: '2021-10-11',
       city: 'Lagos, Nigeria',
     },
     {
-      course: "Fishing",
-      user: "Jay",
+      course: 'Fishing',
+      user: 'Jay',
       date: '2021-10-11',
       city: 'Tokio, Japan',
     },
     {
-      course: "Film making",
-      user: "Jay",
+      course: 'Film making',
+      user: 'Jay',
       date: '2021-10-11',
       city: 'Texas, USA',
     },
@@ -90,6 +90,4 @@ import styles from './Reservations.module.css';
       {ReservationsList}
     </div>
   );
-};
-
-export default ReservationsPage;
+}
