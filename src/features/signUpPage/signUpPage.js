@@ -36,7 +36,7 @@ function SignUpPage() {
         <h2 className={styles.title}>Sign Up</h2>
 
         <form className={styles.signInForm} onSubmit={handleSubmit}>
-          <input className={styles.formInput} onChange={handleChange} value={formData.username} type="text" name="username" id="username" placeholder="Please enter your username" minLength="6" maxLength="12" required />
+          <input className={styles.formInput} onChange={handleChange} value={formData.username} type="text" name="username" id="username" placeholder="Please enter your username" minLength="12" maxLength="20" required />
           <input className={styles.nameInput} onChange={handleChange} value={formData.name} type="text" name="name" id="name" placeholder="Please enter your name" maxLength="24" required />
           <input className={styles.formSubmit} type="submit" value="Sign up" />
         </form>
