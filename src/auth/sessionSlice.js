@@ -9,8 +9,19 @@ const initialState = {
   error: null,
 };
 
+export const signUpUser = createAsyncThunk(
+  'session/signUpUser', async (params, thunkAPI) => {
+    try {
+      const response = await expertClassAPI.post('/api/v1/users', { user: params });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: error.message });
+    }
+  },
+);
+
 export const loginUser = createAsyncThunk(
-  'signInSlice/loginUser', async (username, thunkAPI) => {
+  'session/loginUser', async (username, thunkAPI) => {
     try {
       const response = await expertClassAPI.post('/api/v1/sign_in', { user: { username } });
       return response.data;
@@ -21,7 +32,7 @@ export const loginUser = createAsyncThunk(
 );
 
 export const logoutUser = createAsyncThunk(
-  'signInSlice/logoutUser', async (thunkAPI) => {
+  'session/logoutUser', async (thunkAPI) => {
     try {
       const response = await expertClassAPI.delete('/api/v1/sign_out');
       return response.data;
@@ -32,7 +43,7 @@ export const logoutUser = createAsyncThunk(
 );
 
 export const loginStatus = createAsyncThunk(
-  'signInSlice/loginStatus', async (thunkAPI) => {
+  'session/loginStatus', async (thunkAPI) => {
     try {
       const response = await expertClassAPI.get('/api/v1/signed_in');
       return response.data;
@@ -48,6 +59,26 @@ export const sessionSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(signUpUser.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(signUpUser.fulfilled, (state, action) => {
+        if (action.payload.status === 'created') {
+          state.status = 'idle';
+          state.user = action.payload.user;
+          state.logged_in = action.payload.logged_in;
+          state.error = null;
+        } else {
+          state.status = 'idle';
+          state.user = {};
+          state.logged_in = false;
+          state.error = action.payload.error;
+        }
+      })
+      .addCase(signUpUser.rejected, (state) => {
+        state.status = 'rejected';
+        state.error = 'Error login in';
+      })
       .addCase(loginUser.pending, (state) => {
         state.status = 'loading';
       })
@@ -60,7 +91,7 @@ export const sessionSlice = createSlice({
           state.status = 'idle';
           state.user = {};
           state.logged_in = false;
-          state.error = action.payload;
+          state.error = 'Username does not exist. Please try again.';
         }
       })
       .addCase(loginUser.rejected, (state) => {
@@ -104,5 +135,6 @@ export const sessionSlice = createSlice({
 
 export const currentUser = (state) => state.users.user;
 export const loggedInStatus = (state) => state.users.logged_in;
+export const authErrors = (state) => state.users.error;
 
 export default sessionSlice.reducer;

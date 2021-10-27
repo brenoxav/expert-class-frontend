@@ -1,3 +1,20 @@
-.app-content {
-  margin-left: var(--nav-panel-width);
+.logOutBtn {
+  position: absolute;
+  bottom: 0;
+  margin: 20px;
+  height: 2rem;
+  width: 5rem;
+  font-size: 0.8rem;
+  border-radius: 50px;
+  border: 2px solid white;
+  font-weight: 500;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  color: rgba(151, 191, 15, 1);
+  cursor: pointer;
+}
+
+.logOutBtn:hover {
+  color: white;
+  background-color: rgba(151, 191, 15, 0.7);
 }
