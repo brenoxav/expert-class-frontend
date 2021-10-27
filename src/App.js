@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  HashRouter as Router, Switch, Route, Redirect,
+} from 'react-router-dom';
 import axios from 'axios';
-// import { currentUser, loggedInStatus } from './auth/sessionSlice';
+import { loggedInStatus, loginStatus } from './auth/sessionSlice';
 import { isCSRFToken } from './app/getCSRFToken';
 import ClassesPage from './features/classes/ClassesPage'; // eslint-disable-line
 import LandingPage from './features/landingPage/landingPage';
@@ -17,6 +19,8 @@ import SignUpPage from './features/signUpPage/signUpPage';
 // import Session from './auth/Session';
 
 function App() {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const setSessionCookie = async () => {
       if (!isCSRFToken()) {
@@ -24,8 +28,17 @@ function App() {
       }
     };
     setSessionCookie();
+    dispatch(loginStatus());
   }, []);
 
+  const loggedIn = useSelector(loggedInStatus);
+  // const history = useHistory();
+
+  // useEffect(() => {
+  //   if (loggedIn) {
+  //     history.push('/classes');
+  //   }
+  // }, [loggedIn]);
   // These are a global selectors. Every componenet has access to them:
   // const user = useSelector(currentUser);
   // const loggedIn = useSelector(loggedInStatus);
@@ -63,7 +76,7 @@ function App() {
               <SignUpPage />
             </Route>
             <Route path="/">
-              <LandingPage />
+              {loggedIn ? <Redirect to="/classes" /> : <LandingPage />}
             </Route>
           </Switch>
         </Router>
