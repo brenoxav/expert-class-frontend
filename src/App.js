@@ -39,7 +39,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <NavPanel />
+        { loggedIn && <NavPanel />}
       </Router>
       { loggedIn && <button type="button" className="logOutBtn" onClick={handleLogoutClick}>Logout</button>}
       <div className="app-content">
