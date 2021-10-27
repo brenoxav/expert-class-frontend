@@ -11,6 +11,7 @@ import SocialIcons from './socialIcons';
 
 export default function ClassesPage() {
   const dispatch = useDispatch();
+
   const classes = useSelector((state) => state.classes.classes);
   const history = useHistory();
   const loggedIn = useSelector(loggedInStatus);
