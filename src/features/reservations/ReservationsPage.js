@@ -1,65 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import styles from './Reservations.module.css';
-// import { useSelector } from 'react-redux';
+import { fetchReservations, userReservations } from './reservationsSlice';
+import { loggedInStatus } from '../../auth/sessionSlice';
 
 export default function ReservationsPage() {
-//   const reservations = useSelector(userReservations);
-//   useEffect(() => {
-//     dispatch(fetchReservations());
-//   }, []);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const reservations = useSelector(userReservations);
+  const loggedIn = useSelector(loggedInStatus);
 
-  //   const reservationsList = reservations.map((r) => (
-  //     <div key={r.id} className="reservation-item">
-  //       <h3>{r.course}</h3>
-  //       <h4>{r.user}</h4>
-  //       <p>{r.date}</p>
-  //       <p>{r.city}</p>
+  useEffect(() => {
+    if (!loggedIn) {
+      history.push('/');
+    } else {
+      dispatch(fetchReservations());
+    }
+  }, []);
 
-  // const user = useSelector(currentUser);
-  const user = { user_id: 999, username: 'Jay', name: 'Mih' };
-  // const { reservations } = useSelector((state) => state.reservations);
-
-  const reservations = [
-    {
-
-      course: 'Computer Programming',
-      user: 'Arturo',
-      date: '2021-10-11',
-      city: 'Tokio, Japan',
-    },
-    {
-      course: 'Music',
-      user: 'Breno',
-      date: '2021-10-11',
-      city: 'Yaounde, Cameroon',
-    },
-    {
-      course: 'Web Design',
-      user: 'Francis',
-      date: '2021-10-11',
-      city: 'Tokio, Japan',
-    },
-    {
-      course: 'Gymnatic',
-      user: 'Jay',
-      date: '2021-10-11',
-      city: 'Lagos, Nigeria',
-    },
-    {
-      course: 'Fishing',
-      user: 'Jay',
-      date: '2021-10-11',
-      city: 'Tokio, Japan',
-    },
-    {
-      course: 'Film making',
-      user: 'Jay',
-      date: '2021-10-11',
-      city: 'Texas, USA',
-    },
-  ];
-
-  const ReservationsList = reservations.filter((r) => r.user === user.username).map((r) => (
+  const ReservationsList = reservations.map((r) => (
     <div key={r.id} className={styles.reservationItem}>
       <h3 className={styles.item}>
         Class:

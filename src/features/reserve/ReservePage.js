@@ -63,25 +63,6 @@ const ReservePage = () => {
     }
   };
 
-  // const cities = [
-  //   {
-  //     id: 13,
-  //     name: 'Ciudad de Mexico, Mexico',
-  //   },
-  //   {
-  //     id: 14,
-  //     name: 'New York, USA',
-  //   },
-  //   {
-  //     id: 15,
-  //     name: 'Abuja, Nigeria',
-  //   },
-  //   {
-  //     id: 16,
-  //     name: 'São Paulo, Brasil',
-  //   },
-  // ];
-
   return (
     <div className={`${styles.formContainer}`}>
       <h1 className={`${styles.title}`}>Register for an Expert Class</h1>
