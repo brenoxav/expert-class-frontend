@@ -4,7 +4,7 @@ import {
   HashRouter as Router, Switch, Route, Redirect,
 } from 'react-router-dom';
 import axios from 'axios';
-import { loggedInStatus, loginStatus } from './auth/sessionSlice';
+import { loggedInStatus, loginStatus, logoutUser } from './auth/sessionSlice';
 import { isCSRFToken } from './app/getCSRFToken';
 import ClassesPage from './features/classes/ClassesPage'; // eslint-disable-line
 import LandingPage from './features/landingPage/landingPage';
@@ -16,10 +16,11 @@ import RemoveClassPage from './features/removeClass/RemoveClassPage';
 import ClassDetails from './features/ClassDetails/ClassDetails';
 import SignInPage from './features/signInPage/signInPage';
 import SignUpPage from './features/signUpPage/signUpPage';
-// import Session from './auth/Session';
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();
+  const loggedIn = useSelector(loggedInStatus);
 
   useEffect(() => {
     const setSessionCookie = async () => {
@@ -31,23 +32,16 @@ function App() {
     dispatch(loginStatus());
   }, []);
 
-  const loggedIn = useSelector(loggedInStatus);
-  // const history = useHistory();
-
-  // useEffect(() => {
-  //   if (loggedIn) {
-  //     history.push('/classes');
-  //   }
-  // }, [loggedIn]);
-  // These are a global selectors. Every componenet has access to them:
-  // const user = useSelector(currentUser);
-  // const loggedIn = useSelector(loggedInStatus);
+  const handleLogoutClick = () => {
+    dispatch(logoutUser());
+  };
 
   return (
     <div className="App">
       <Router>
         <NavPanel />
       </Router>
+      { loggedIn && <button type="button" className="logOutBtn" onClick={handleLogoutClick}>Logout</button>}
       <div className="app-content">
         <Router>
           <Switch>
