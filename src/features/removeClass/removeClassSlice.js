@@ -19,25 +19,25 @@ export const removeClass = createAsyncThunk(
   },
 );
 
+export const reloadClasses = createAsyncThunk(
+  'classes/reloadClasses', async () => {
+    try {
+      const response = await expertClassAPI.get('/api/v1/courses/');
+      return response;
+    } catch (error) {
+      return error.message;
+    }
+  },
+);
+
 export const removeClassSlice = createSlice({
   name: 'removeClass',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(removeClass.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(removeClass.fulfilled, (state, action) => {
-        if (action.payload.status === 200) {
-          state.status = action.payload.message;
-        } else {
-          state.error = action.payload.message;
-        }
-      })
-      .addCase(removeClass.rejected, (state, action) => {
-        state.error = 'Failed';
-        state.status = action.payload.message;
+      .addCase(reloadClasses.fulfilled, (state, action) => {
+        state.classObj = action.payload.data;
       });
   },
 });
