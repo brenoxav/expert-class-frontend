@@ -59,25 +59,25 @@ export const sessionSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-    .addCase(signUpUser.pending, (state) => {
-      state.status = 'loading';
-    })
-    .addCase(signUpUser.fulfilled, (state, action) => {
-      if (action.payload.status === 'created') {
-        state.status = 'idle';
-        state.user = action.payload.user;
-        state.logged_in = action.payload.logged_in;
-      } else {
-        state.status = 'idle';
-        state.user = {};
-        state.logged_in = false;
-        state.error = 'Please try again.';
-      }
-    })
-    .addCase(signUpUser.rejected, (state) => {
-      state.status = 'rejected';
-      state.error = 'Error login in';
-    })
+      .addCase(signUpUser.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(signUpUser.fulfilled, (state, action) => {
+        if (action.payload.status === 'created') {
+          state.status = 'idle';
+          state.user = action.payload.user;
+          state.logged_in = action.payload.logged_in;
+        } else {
+          state.status = 'idle';
+          state.user = {};
+          state.logged_in = false;
+          state.error = 'Please try again.';
+        }
+      })
+      .addCase(signUpUser.rejected, (state) => {
+        state.status = 'rejected';
+        state.error = 'Error login in';
+      })
       .addCase(loginUser.pending, (state) => {
         state.status = 'loading';
       })
