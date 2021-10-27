@@ -21,71 +21,55 @@ import styles from './Reservations.module.css';
 
   const reservations = [
     {
-      id: 994,
-      user_id: 999,
-      class_id: 999,
-      title: 'Pianno',
+      
+      course: "Computer Programming",
+      user: "Arturo",
       date: '2021-10-11',
       city: 'Tokio, Japan',
     },
     {
-      id: 999,
-      user_id: 999,
-      class_id: 999,
-      title: 'Music',
+      course: "Music",
+      user: "Breno",
       date: '2021-10-11',
       city: 'Yaounde, Cameroon',
     },
     {
-      id: 999,
-      user_id: 996,
-      class_id: 999,
-      title: 'Gymnastic',
+      course: "Web Design",
+      user: "Francis",
       date: '2021-10-11',
       city: 'Tokio, Japan',
     },
     {
-      id: 992,
-      user_id: 999,
-      class_id: 999,
-      title: 'Web development',
+      course: "Gymnatic",
+      user: "Jay",
       date: '2021-10-11',
       city: 'Lagos, Nigeria',
     },
     {
-      id: 999,
-      user_id: 995,
-      class_id: 999,
-      title: 'Computer Science',
+      course: "Fishing",
+      user: "Jay",
       date: '2021-10-11',
       city: 'Tokio, Japan',
     },
     {
-      id: 993,
-      user_id: 999,
-      class_id: 999,
-      title: 'Digital Entreprenaurship',
+      course: "Film making",
+      user: "Jay",
       date: '2021-10-11',
       city: 'Texas, USA',
     },
   ];
 
-  const ReservationsList = reservations.filter((r) => r.user_id === user.user_id).map((r) => (
+  const ReservationsList = reservations.filter((r) => r.user === user.username).map((r) => (
     <div key={r.id} className={styles.reservationItem}>
       <h3 className={styles.item}>
         Title:
         {' '}
-        {r.title}
+        {r.course}
       </h3>
       <p className={styles.item}>
-        Class_ID:
+        Username:
         {' '}
-        {r.class_id}
-      </p>
-      <p className={styles.item}>
-        User_ID:
-        {' '}
-        {r.user_id}
+        {r.user}
       </p>
       <p className={styles.item}>
         Date:
