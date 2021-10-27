@@ -19,12 +19,6 @@ This React/Redux front-end app consumes the Ruby on Rails, API-only, back-end ap
 - React
 - Redux
 
-## Live View
-
-You can preview this front-end app [here](https://expert-class-frontend.netlify.app).
-
-You can access a preview of the back-end API [here](https://expert-class-backend.herokuapp.com).
-
 ## Kanban Board
 
 This project's tasks are described in [this kanban board](https://github.com/StarSheriff2/expert-class/projects/1).
