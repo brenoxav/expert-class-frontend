@@ -67,11 +67,12 @@ export const sessionSlice = createSlice({
           state.status = 'idle';
           state.user = action.payload.user;
           state.logged_in = action.payload.logged_in;
+          state.error = null;
         } else {
           state.status = 'idle';
           state.user = {};
           state.logged_in = false;
-          state.error = 'Please try again.';
+          state.error = action.payload.error;
         }
       })
       .addCase(signUpUser.rejected, (state) => {
@@ -134,5 +135,6 @@ export const sessionSlice = createSlice({
 
 export const currentUser = (state) => state.users.user;
 export const loggedInStatus = (state) => state.users.logged_in;
+export const authErrors = (state) => state.users.error;
 
 export default sessionSlice.reducer;
