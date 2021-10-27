@@ -1,14 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import styles from './signInPage.module.css';
+import { loginUser, loggedInStatus } from '../../auth/sessionSlice';
 
 function SignInPage() {
+  const dispatch = useDispatch();
+  const loggedIn = useSelector(loggedInStatus);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (loggedIn) {
+      history.push('/classes');
+    }
+  }, [loggedIn]);
+
   const [formData, setFormData] = useState({ username: '' });
 
-  const Change = (e) => setFormData({ ...formData, username: e.target.value });
+  const change = (e) => setFormData({ ...formData, username: e.target.value });
 
-  const handleSubmit = () => (
-    alert('A name was submitted: ')
-  );
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    dispatch(loginUser(formData.username));
+  };
 
   return (
     <div className={styles.mainContainer}>
@@ -18,10 +32,9 @@ function SignInPage() {
         <form className={styles.signInForm} onSubmit={handleSubmit}>
           <input
             className={styles.formInput}
-            onChange={Change}
+            onChange={change}
             type="text"
             name="username"
-            id="username"
             value={formData.username}
             placeholder="Please enter your username"
           />

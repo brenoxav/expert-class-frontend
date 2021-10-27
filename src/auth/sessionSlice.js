@@ -9,8 +9,19 @@ const initialState = {
   error: null,
 };
 
+export const signUpUser = createAsyncThunk(
+  'session/signUpUser', async (params, thunkAPI) => {
+    try {
+      const response = await expertClassAPI.post('/api/v1/users', { user: params });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: error.message });
+    }
+  },
+);
+
 export const loginUser = createAsyncThunk(
-  'signInSlice/loginUser', async (username, thunkAPI) => {
+  'session/loginUser', async (username, thunkAPI) => {
     try {
       const response = await expertClassAPI.post('/api/v1/sign_in', { user: { username } });
       return response.data;
@@ -21,7 +32,7 @@ export const loginUser = createAsyncThunk(
 );
 
 export const logoutUser = createAsyncThunk(
-  'signInSlice/logoutUser', async (thunkAPI) => {
+  'session/logoutUser', async (thunkAPI) => {
     try {
       const response = await expertClassAPI.delete('/api/v1/sign_out');
       return response.data;
@@ -32,7 +43,7 @@ export const logoutUser = createAsyncThunk(
 );
 
 export const loginStatus = createAsyncThunk(
-  'signInSlice/loginStatus', async (thunkAPI) => {
+  'session/loginStatus', async (thunkAPI) => {
     try {
       const response = await expertClassAPI.get('/api/v1/signed_in');
       return response.data;
@@ -48,6 +59,25 @@ export const sessionSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+    .addCase(signUpUser.pending, (state) => {
+      state.status = 'loading';
+    })
+    .addCase(signUpUser.fulfilled, (state, action) => {
+      if (action.payload.status === 'created') {
+        state.status = 'idle';
+        state.user = action.payload.user;
+        state.logged_in = action.payload.logged_in;
+      } else {
+        state.status = 'idle';
+        state.user = {};
+        state.logged_in = false;
+        state.error = 'Please try again.';
+      }
+    })
+    .addCase(signUpUser.rejected, (state) => {
+      state.status = 'rejected';
+      state.error = 'Error login in';
+    })
       .addCase(loginUser.pending, (state) => {
         state.status = 'loading';
       })

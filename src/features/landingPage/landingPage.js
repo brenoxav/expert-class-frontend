@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styles from './landingPage.module.css';
+import { logoutUser } from '../../auth/sessionSlice';
 
 export default function LandingPage() {
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const handleClick = (path) => {
     history.push(path);
+  };
+
+  const handleLogoutClick = () => {
+    dispatch(logoutUser());
   };
 
   return (
@@ -25,6 +32,7 @@ export default function LandingPage() {
         <div className={styles.buttonsDiv}>
           <button className={styles.button1} type="button" onClick={() => handleClick('/sign-in')}>SignIn</button>
           <button className={styles.button2} type="button" onClick={() => handleClick('/sign-up')}>SignUp</button>
+          <button type="button" onClick={handleLogoutClick}>Logout</button>
         </div>
       </div>
     </div>
