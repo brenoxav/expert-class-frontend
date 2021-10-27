@@ -3,14 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { loggedInStatus } from '../../auth/sessionSlice';
 import './RemoveClassPage.css';
-import { removeClass } from './removeClassSlice';
-import { fetchClassesData } from '../classes/classesSlice';
+import { reloadClasses, removeClass } from './removeClassSlice';
 
 function RemoveClassPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const loggedIn = useSelector(loggedInStatus);
-  const classes = useSelector((state) => state.classes.classes);
 
   useEffect(() => {
     if (!loggedIn) {
@@ -18,12 +16,15 @@ function RemoveClassPage() {
     }
   }, [loggedIn]);
 
+  const classes = useSelector((state) => state.classesObj.classObj);
+
   useEffect(() => {
-    dispatch(fetchClassesData());
-  }, [classes]);
+    dispatch(reloadClasses());
+  }, []);
 
   const handleClick = (id) => {
     dispatch(removeClass(id));
+    dispatch(reloadClasses());
   };
 
   const classesList = classes.map((c) => (
