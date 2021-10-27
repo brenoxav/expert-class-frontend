@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { fetchClassesData } from './classesSlice';
+import { logoutUser } from '../../auth/sessionSlice';
 import { reloadClasses } from '../removeClass/removeClassSlice';
 import SocialIcons from './socialIcons';
 
@@ -30,8 +31,14 @@ export default function ClassesPage() {
     </NavLink>
   ));
 
+  const handleLogoutClick = () => {
+    dispatch(logoutUser());
+  };
+
   return (
     <div className="classes-container">
+      <button type="button" onClick={handleLogoutClick}>Logout</button>
+
       <h2 className="heading">Classes</h2>
       <Carousel
         plugins={[
