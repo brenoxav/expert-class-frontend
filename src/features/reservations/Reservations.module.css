@@ -6,13 +6,12 @@ body {
   margin-left: 250px;
   width: 70vw;
   max-width: 100%;
-  margin: 1rem auto;
   text-align: center;
 }
 
 .heading {
   padding: 2rem 0;
-  background-color:#97bf0f;
+  background-color: #97bf0f;
   color: white;
 }
 
