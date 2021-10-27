@@ -31,7 +31,6 @@ const AddClassPage = () => {
       });
   };
 
-
   return (
     <>
       <div className="add-class-container">
