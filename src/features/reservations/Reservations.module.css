@@ -4,7 +4,7 @@ body {
 
 .mainContainer {
   margin-left: 250px;
-  width: 1000px;
+  width: 70vw;
   max-width: 100%;
   margin: 1rem auto;
   text-align: center;
@@ -13,6 +13,7 @@ body {
 .heading {
   padding: 2rem 0;
   background-color:#97bf0f;
+  color: white;
 }
 
 .reservationItem {
