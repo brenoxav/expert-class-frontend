@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import { loggedInStatus } from '../../auth/sessionSlice';
 import { fetchClassesData } from './classesSlice';
-import { reloadClasses } from '../removeClass/removeClassSlice';
 import SocialIcons from './socialIcons';
 
 export default function ClassesPage() {
@@ -18,7 +17,6 @@ export default function ClassesPage() {
 
   useEffect(() => {
     dispatch(fetchClassesData());
-    dispatch(reloadClasses());
     if (!loggedIn) {
       history.push('/');
     }
