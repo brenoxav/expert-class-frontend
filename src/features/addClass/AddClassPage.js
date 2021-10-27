@@ -18,6 +18,7 @@ const AddClassPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    event.target.reset();
     const formData = new FormData(event.target);
 
     await axios.post('http://localhost:3001/api/v1/courses',
@@ -39,27 +40,27 @@ const AddClassPage = () => {
           <form onSubmit={handleSubmit} className="add-class-form">
             <div>
               <label htmlFor="title">
-                <input type="text" name="course[title]" className="add-class-title" placeholder="Title" />
+                <input type="text" name="course[title]" className="add-class-title" placeholder="Title" required />
               </label>
             </div>
             <div>
               <label htmlFor="description">
-                <input type="text" name="course[description]" className="class-description" placeholder="Description" />
+                <input type="text" name="course[description]" className="class-description" placeholder="Description" required />
               </label>
             </div>
             <div>
               <label htmlFor="duration">
-                <input type="number" name="course[duration]" className="class-duration" placeholder="Duration" />
+                <input type="number" name="course[duration]" className="class-duration" placeholder="Duration" required />
               </label>
             </div>
             <div>
               <label htmlFor="instructor">
-                <input type="text" name="course[instructor]" className="class-instructor" placeholder="Instructor" />
+                <input type="text" name="course[instructor]" className="class-instructor" placeholder="Instructor" required />
               </label>
             </div>
             <div className="upload-box">
               <span className="instruction">Upload Instructor Image</span>
-              <input type="file" name="course[image]" accept="image/png, image/jpeg" className="instructor-image" placeholder="Add image" />
+              <input type="file" name="course[image]" accept="image/png, image/jpeg" className="instructor-image" placeholder="Add image" required />
             </div>
             <div>
               <input type="submit" value="Upload" className="class-submit" />
