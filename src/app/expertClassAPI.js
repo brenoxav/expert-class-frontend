@@ -5,7 +5,7 @@ const expertClassAPI = axios.create({
   baseURL: 'https://expert-class-backend.herokuapp.com',
   withCredentials: true,
   // headers: {
-  //   'X-CSRF-Token': getCSRFToken(),
+  //   // 'X-CSRF-Token': getCSRFToken(),
   // },
 });
 

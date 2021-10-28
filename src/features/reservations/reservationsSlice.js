@@ -9,9 +9,9 @@ const initialState = {
 };
 
 export const fetchReservations = createAsyncThunk(
-  'reservationsSlice/reservations', async (thunkAPI) => {
+  'reservationsSlice/reservations', async (id, thunkAPI) => {
     try {
-      const response = await expertClassAPI.get('/api/v1/reservations');
+      const response = await expertClassAPI.get('/api/v1/reservations', { params: { user: { user_id: id} } });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
