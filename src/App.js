@@ -25,7 +25,7 @@ function App() {
   useEffect(() => {
     const setSessionCookie = async () => {
       if (!isCSRFToken()) {
-        await axios.get('http://localhost:3001/', { withCredentials: true });
+        await axios.get('https://expert-class-backend.herokuapp.com/', { withCredentials: true });
       }
     };
     setSessionCookie();

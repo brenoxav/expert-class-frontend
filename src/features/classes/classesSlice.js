@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const API_URL = 'http://localhost:3001/api/v1/courses';
+const API_URL = 'https://expert-class-backend.herokuapp.com/api/v1/courses';
 
 const initialState = {
   classes: [],
