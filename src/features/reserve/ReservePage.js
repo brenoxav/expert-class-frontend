@@ -60,7 +60,7 @@ const ReservePage = () => {
     } else {
       setFormMessage({ message: '', display: false });
       await dispatch(reserveCourse(formData));
-      event.target.reset();
+      setFormData(initialFormState);
     }
   };
 
