@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   HashRouter as Router, Switch, Route, Redirect,
 } from 'react-router-dom';
-// import axios from 'axios';
 import { loggedInStatus, loginStatus, logoutUser } from './auth/sessionSlice';
-// import { isCSRFToken } from './app/getCSRFToken';
 import ClassesPage from './features/classes/ClassesPage'; // eslint-disable-line
 import LandingPage from './features/landingPage/landingPage';
 import NavPanel from './features/navPanel/NavPanel';
@@ -23,12 +21,6 @@ function App() {
   const loggedIn = useSelector(loggedInStatus);
 
   useEffect(() => {
-    // const setSessionCookie = async () => {
-    //   if (!isCSRFToken()) {
-    //     await axios.get('http://localhost:3001/', { withCredentials: true });
-    //   }
-    // };
-    // setSessionCookie();
     dispatch(loginStatus());
   }, []);
 

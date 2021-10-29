@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import expertClassAPI from '../../app/expertClassAPI';
+import axios from 'axios';
 
 const initialState = {
   classObj: [],
@@ -11,7 +11,7 @@ const initialState = {
 export const fetchClassDetails = createAsyncThunk(
   'classes/fetchClassDetails', async (id) => {
     try {
-      const response = await expertClassAPI.get(`/api/v1/courses/${id}`);
+      const response = await axios.get(`http://localhost:3001/api/v1/courses/${id}`, { withCredentials: true });
       return response;
     } catch (error) {
       return error.message;

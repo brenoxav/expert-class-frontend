@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
-const API_URL = 'http://localhost:3001/api/v1/courses';
+import axios from 'axios';
 
 const initialState = {
   classes: [],
@@ -10,10 +9,13 @@ const initialState = {
 };
 
 export const fetchClassesData = createAsyncThunk(
-  'classes/fetchClassesData',
-  async () => {
-    const data = await fetch(API_URL);
-    return data.json();
+  'classes/fetchClassesData', async (thunkAPI) => {
+    try {
+      const response = await axios.get('http://localhost:3001/api/v1/courses', { withCredentials: true });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: error.message });
+    }
   },
 );
 
