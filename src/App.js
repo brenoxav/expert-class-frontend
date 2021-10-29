@@ -21,6 +21,7 @@ function App() {
   const dispatch = useDispatch();
   const loggedIn = useSelector(loggedInStatus);
   setSessionCookies();
+
   useEffect(() => {
     if (!checkLoginStatus()) {
       setSessionCookies();
