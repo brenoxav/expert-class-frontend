@@ -45,7 +45,7 @@ export default function ClassesPage() {
 
   return (
     <div className="classes-container">
-      <h2 className="heading">Classes</h2>
+      <h2 className="heading-classes">Classes</h2>
       <Carousel
         plugins={[
           'centered',

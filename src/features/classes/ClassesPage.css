@@ -9,11 +9,12 @@
   margin-left: 240px;
 }
 
-.heading {
+.heading-classes {
   text-align: center;
   margin: 25px auto;
   text-transform: uppercase;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: black;
 }
 
 .carousel-container {
