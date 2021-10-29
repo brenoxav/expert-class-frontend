@@ -14,6 +14,7 @@ import RemoveClassPage from './features/removeClass/RemoveClassPage';
 import ClassDetails from './features/ClassDetails/ClassDetails';
 import SignInPage from './features/signInPage/signInPage';
 import SignUpPage from './features/signUpPage/signUpPage';
+import { checkLoginStatus, setSessionCookies } from './app/getCSRFToken';
 import './App.css';
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
   const loggedIn = useSelector(loggedInStatus);
 
   useEffect(() => {
+    if (!checkLoginStatus()) {
+      setSessionCookies();
+    }
     dispatch(loginStatus());
   }, []);
 
