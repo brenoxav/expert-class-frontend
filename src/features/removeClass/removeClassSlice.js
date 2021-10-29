@@ -12,7 +12,7 @@ const initialState = {
 export const removeClass = createAsyncThunk(
   'classes/removeClass', async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:3001/api/v1/courses/${id}`,
+      const response = await axios.delete(`https://expert-class-backend.herokuapp.com/api/v1/courses/${id}`,
         {
           withCredentials: true,
           headers: {
@@ -29,7 +29,7 @@ export const removeClass = createAsyncThunk(
 export const reloadClasses = createAsyncThunk(
   'classes/reloadClasses', async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/v1/courses/', { withCredentials: true });
+      const response = await axios.get('https://expert-class-backend.herokuapp.com/api/v1/courses/', { withCredentials: true });
       return response;
     } catch (error) {
       return error.message;

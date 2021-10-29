@@ -12,7 +12,7 @@ const initialState = {
 export const reserveCourse = createAsyncThunk(
   'reservePageSlice/reservations', async (formData, thunkAPI) => {
     try {
-      const response = await axios.post('http://localhost:3001/api/v1/reservations', { reservation: formData },
+      const response = await axios.post('https://expert-class-backend.herokuapp.com/api/v1/reservations', { reservation: formData },
         {
           withCredentials: true,
           headers: {
@@ -29,7 +29,7 @@ export const reserveCourse = createAsyncThunk(
 export const fetchCities = createAsyncThunk(
   'reservePageSlice/cities', async (thunkAPI) => {
     try {
-      const response = await axios.get('http://localhost:3001/api/v1/cities', { withCredentials: true });
+      const response = await axios.get('https://expert-class-backend.herokuapp.com/api/v1/cities', { withCredentials: true });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: 'Unable to fetch cities. Please try again.' });

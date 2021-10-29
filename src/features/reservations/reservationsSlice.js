@@ -11,7 +11,7 @@ const initialState = {
 export const fetchReservations = createAsyncThunk(
   'reservationsSlice/reservations', async (thunkAPI) => {
     try {
-      const response = await axios.get('http://localhost:3001/api/v1/reservations', { withCredentials: true });
+      const response = await axios.get('https://expert-class-backend.herokuapp.com/api/v1/reservations', { withCredentials: true });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });

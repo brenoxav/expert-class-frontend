@@ -11,7 +11,7 @@ const initialState = {
 export const fetchClassDetails = createAsyncThunk(
   'classes/fetchClassDetails', async (id) => {
     try {
-      const response = await axios.get(`http://localhost:3001/api/v1/courses/${id}`, { withCredentials: true });
+      const response = await axios.get(`https://expert-class-backend.herokuapp.com/api/v1/courses/${id}`, { withCredentials: true });
       return response;
     } catch (error) {
       return error.message;

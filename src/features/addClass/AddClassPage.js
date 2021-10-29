@@ -20,7 +20,7 @@ const AddClassPage = () => {
     event.preventDefault();
     const formData = new FormData(event.target);
 
-    await axios.post('http://localhost:3001/api/v1/courses',
+    await axios.post('https://expert-class-backend.herokuapp.com/api/v1/courses',
       formData,
       {
         withCredentials: true,

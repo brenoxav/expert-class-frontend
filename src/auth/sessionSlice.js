@@ -13,7 +13,7 @@ const initialState = {
 export const signUpUser = createAsyncThunk(
   'session/signUpUser', async (params, thunkAPI) => {
     try {
-      const response = await axios.post('http://localhost:3001/api/v1/users', { user: params },
+      const response = await axios.post('https://expert-class-backend.herokuapp.com/api/v1/users', { user: params },
         {
           withCredentials: true,
           headers: {
@@ -30,7 +30,7 @@ export const signUpUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   'session/loginUser', async (username, thunkAPI) => {
     try {
-      const response = await axios.post('http://localhost:3001/api/v1/sign_in', { user: { username } },
+      const response = await axios.post('https://expert-class-backend.herokuapp.com/api/v1/sign_in', { user: { username } },
         {
           withCredentials: true,
           headers: {
@@ -47,7 +47,7 @@ export const loginUser = createAsyncThunk(
 export const logoutUser = createAsyncThunk(
   'session/logoutUser', async (thunkAPI) => {
     try {
-      const response = await axios.delete('http://localhost:3001/api/v1/sign_out',
+      const response = await axios.delete('https://expert-class-backend.herokuapp.com/api/v1/sign_out',
         {
           withCredentials: true,
           headers: {
@@ -64,7 +64,7 @@ export const logoutUser = createAsyncThunk(
 export const loginStatus = createAsyncThunk(
   'session/loginStatus', async (thunkAPI) => {
     try {
-      const response = await axios.get('http://localhost:3001/api/v1/signed_in', { withCredentials: true });
+      const response = await axios.get('https://expert-class-backend.herokuapp.com/api/v1/signed_in', { withCredentials: true });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
