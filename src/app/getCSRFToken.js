@@ -9,7 +9,7 @@ export const setSessionCookies = async () => {
       //   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       // },
     },
-    console.log('hello'));
+    console.log('hello')); // eslint-disable-line
     return true;
   } catch (error) {
     return error.message;
