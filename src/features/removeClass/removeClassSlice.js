@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import getCSRFToken from '../../app/getCSRFToken';
+// import getCSRFToken from '../../app/getCSRFToken';
 
 const initialState = {
   classObj: [],
@@ -15,9 +15,9 @@ export const removeClass = createAsyncThunk(
       const response = await axios.delete(`https://expert-class-backend.herokuapp.com/api/v1/courses/${id}`,
         {
           withCredentials: true,
-          headers: {
-            'X-CSRF-Token': getCSRFToken(),
-          },
+          // headers: {
+          //   'X-CSRF-Token': getCSRFToken(),
+          // },
         });
       return response;
     } catch (error) {

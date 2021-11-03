@@ -14,18 +14,18 @@ import RemoveClassPage from './features/removeClass/RemoveClassPage';
 import ClassDetails from './features/ClassDetails/ClassDetails';
 import SignInPage from './features/signInPage/signInPage';
 import SignUpPage from './features/signUpPage/signUpPage';
-import { checkLoginStatus, setSessionCookies } from './app/getCSRFToken';
+// import { checkLoginStatus, setSessionCookies } from './app/getCSRFToken';
 import './App.css';
 
 function App() {
   const dispatch = useDispatch();
   const loggedIn = useSelector(loggedInStatus);
-  setSessionCookies();
+  // setSessionCookies();
 
   useEffect(() => {
-    if (!checkLoginStatus()) {
-      setSessionCookies();
-    }
+    // if (!checkLoginStatus()) {
+    //   setSessionCookies();
+    // }
     dispatch(loginStatus());
   }, []);
 

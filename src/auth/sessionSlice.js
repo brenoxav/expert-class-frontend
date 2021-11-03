@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import getCSRFToken from '../app/getCSRFToken';
+// import getCSRFToken from '../app/getCSRFToken';
 
 const initialState = {
   user: {},
@@ -16,9 +16,9 @@ export const signUpUser = createAsyncThunk(
       const response = await axios.post('https://expert-class-backend.herokuapp.com/api/v1/users', { user: params },
         {
           withCredentials: true,
-          headers: {
-            'X-CSRF-Token': getCSRFToken(),
-          },
+          // headers: {
+          //   'X-CSRF-Token': getCSRFToken(),
+          // },
         });
       return response.data;
     } catch (error) {
@@ -33,9 +33,9 @@ export const loginUser = createAsyncThunk(
       const response = await axios.post('https://expert-class-backend.herokuapp.com/api/v1/sign_in', { user: { username } },
         {
           withCredentials: true,
-          headers: {
-            'X-CSRF-Token': getCSRFToken(),
-          },
+          // headers: {
+          //   'X-CSRF-Token': getCSRFToken(),
+          // },
         });
       return response.data;
     } catch (error) {
@@ -50,9 +50,9 @@ export const logoutUser = createAsyncThunk(
       const response = await axios.delete('https://expert-class-backend.herokuapp.com/api/v1/sign_out',
         {
           withCredentials: true,
-          headers: {
-            'X-CSRF-Token': getCSRFToken(),
-          },
+          // headers: {
+          //   'X-CSRF-Token': getCSRFToken(),
+          // },
         });
       return response.data;
     } catch (error) {
