@@ -9,8 +9,7 @@ export const setSessionCookies = async () => {
       //   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       // },
     },
-    console.log('hello'),
-    );
+    console.log('hello'));
     return true;
   } catch (error) {
     return error.message;
