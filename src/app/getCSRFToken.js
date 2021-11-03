@@ -8,7 +8,9 @@ export const setSessionCookies = async () => {
       //   'Access-Control-Allow-Origin': '*',
       //   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       // },
-    });
+    },
+    console.log('hello'),
+    );
     return true;
   } catch (error) {
     return error.message;
