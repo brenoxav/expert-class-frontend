@@ -13,13 +13,14 @@ const initialState = {
 export const signUpUser = createAsyncThunk(
   'session/signUpUser', async (params, thunkAPI) => {
     try {
-      const response = await axios.post('https://expert-class-backend.herokuapp.com/api/v1/users', { user: params },
-        {
-          withCredentials: true,
-          // headers: {
-          //   'X-CSRF-Token': getCSRFToken(),
-          // },
-        });
+      const response = await axios.post('https://expert-class-backend.herokuapp.com/api/v1/users', { user: params });
+      // {
+      //   withCredentials: true,
+      //   // headers: {
+      //   //   'X-CSRF-Token': getCSRFToken(),
+      //   // },
+      // }
+      // );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
@@ -30,13 +31,14 @@ export const signUpUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   'session/loginUser', async (username, thunkAPI) => {
     try {
-      const response = await axios.post('https://expert-class-backend.herokuapp.com/api/v1/sign_in', { user: { username } },
-        {
-          withCredentials: true,
-          // headers: {
-          //   'X-CSRF-Token': getCSRFToken(),
-          // },
-        });
+      const response = await axios.post('https://expert-class-backend.herokuapp.com/api/v1/sign_in', { user: { username } });
+      // {
+      //   withCredentials: true,
+      //   // headers: {
+      //   //   'X-CSRF-Token': getCSRFToken(),
+      //   // },
+      // }
+      // );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
