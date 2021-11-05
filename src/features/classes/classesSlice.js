@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import expertClassApi from '../../app/expertClassApi';
 
 const initialState = {
   classes: [],
@@ -11,7 +11,7 @@ const initialState = {
 export const fetchClassesData = createAsyncThunk(
   'classes/fetchClassesData', async (thunkAPI) => {
     try {
-      const response = await axios.get('https://expert-class-backend.herokuapp.com/api/v1/courses', { withCredentials: true });
+      const response = await expertClassApi.get('courses');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
