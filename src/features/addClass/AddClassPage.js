@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import getCSRFToken from '../../app/getCSRFToken';
 import { loggedInStatus } from '../../auth/sessionSlice';
 import './AddClassPage.css';
 
@@ -25,7 +24,6 @@ const AddClassPage = () => {
       {
         withCredentials: true,
         headers: {
-          'X-CSRF-Token': getCSRFToken(),
           'content-type': 'multipart/form-data',
         },
       });

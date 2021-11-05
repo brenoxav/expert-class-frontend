@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   HashRouter as Router, Switch, Route, Redirect,
 } from 'react-router-dom';
-import {
-  loggedInStatus, loginStatus, logoutUser, getCSRFToken, isToken,
-} from './auth/sessionSlice';
+import { loggedInStatus, loginStatus, logoutUser } from './auth/sessionSlice';
 import ClassesPage from './features/classes/ClassesPage'; // eslint-disable-line
 import LandingPage from './features/landingPage/landingPage';
 import NavPanel from './features/navPanel/NavPanel';
@@ -16,19 +14,13 @@ import RemoveClassPage from './features/removeClass/RemoveClassPage';
 import ClassDetails from './features/ClassDetails/ClassDetails';
 import SignInPage from './features/signInPage/signInPage';
 import SignUpPage from './features/signUpPage/signUpPage';
-// import { checkLoginStatus, setSessionCookies } from './app/getCSRFToken';
 import './App.css';
 
 function App() {
   const dispatch = useDispatch();
   const loggedIn = useSelector(loggedInStatus);
-  const isCSRF = useSelector(isToken);
-  // setSessionCookies();
 
   useEffect(() => {
-    if (!isCSRF) {
-      dispatch(getCSRFToken());
-    }
     dispatch(loginStatus());
   }, []);
 
