@@ -8,7 +8,34 @@ const initialState = {
   logged_in: false,
   status: 'idle',
   error: null,
+  csrf: null,
 };
+
+export const getCSRFToken = createAsyncThunk(
+  'session/token', async (thunkAPI) => {
+    try {
+      // const response = await axios.post('https://expert-class-backend.herokuapp.com/api/v1/token', { user: params },
+      //   {
+      //     withCredentials: true,
+      //     // headers: {
+      //     //   'X-CSRF-Token': getCSRFToken(),
+      //     // },
+      //   });
+      // return response.data;
+      const response = await (await fetch('https://expert-class-backend.herokuapp.com/api/v1/token', {
+        method: 'GET',
+        credentials: 'include',
+        mode: 'cors',
+        headers: {
+          accept: 'application/json, text/plain, */*', 'content-type': 'application/json',
+        },
+      })).json();
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: error.message });
+    }
+  },
+);
 
 export const signUpUser = createAsyncThunk(
   'session/signUpUser', async (params, thunkAPI) => {
@@ -97,6 +124,25 @@ export const sessionSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(getCSRFToken.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getCSRFToken.fulfilled, (state, action) => {
+        if (action.payload.status === 'created') {
+          state.status = 'idle';
+          state.csrf = unescape(document.cookie.split('=')[1]);
+          state.error = null;
+        } else {
+          state.status = 'idle';
+          state.user = {};
+          state.logged_in = false;
+          state.error = 'Error reaching out server. Please try again';
+        }
+      })
+      .addCase(getCSRFToken.rejected, (state) => {
+        state.status = 'rejected';
+        state.error = 'Error connecting to server. Please try again';
+      })
       .addCase(signUpUser.pending, (state) => {
         state.status = 'loading';
       })
@@ -174,5 +220,6 @@ export const sessionSlice = createSlice({
 export const currentUser = (state) => state.users.user;
 export const loggedInStatus = (state) => state.users.logged_in;
 export const authErrors = (state) => state.users.error;
+export const isToken = (state) => state.users.csrf;
 
 export default sessionSlice.reducer;
