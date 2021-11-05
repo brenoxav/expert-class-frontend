@@ -4,11 +4,11 @@ import {
   HashRouter as Router, Switch, Route, Redirect,
 } from 'react-router-dom';
 import { loggedInStatus, loginStatus, logoutUser } from './auth/sessionSlice';
-import ClassesPage from './features/classes/ClassesPage'; // eslint-disable-line
+import ClassesPage from './features/classes/ClassesPage';
 import LandingPage from './features/landingPage/landingPage';
 import NavPanel from './features/navPanel/NavPanel';
 import ReservePage from './features/reserve/ReservePage';
-import ReservationsPage from './features/reservations/ReservationsPage'; // eslint-disable-line
+import ReservationsPage from './features/reservations/ReservationsPage';
 import AddClassPage from './features/addClass/AddClassPage';
 import RemoveClassPage from './features/removeClass/RemoveClassPage';
 import ClassDetails from './features/ClassDetails/ClassDetails';

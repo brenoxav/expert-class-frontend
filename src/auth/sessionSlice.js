@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-// import getCSRFToken from '../app/getCSRFToken';
 
 const initialState = {
   user: {},
@@ -14,12 +13,7 @@ export const signUpUser = createAsyncThunk(
   'session/signUpUser', async (params, thunkAPI) => {
     try {
       const response = await axios.post('https://expert-class-backend.herokuapp.com/api/v1/users', { user: params },
-        {
-          withCredentials: true,
-          // headers: {
-          //   'X-CSRF-Token': getCSRFToken(),
-          // },
-        });
+        { withCredentials: true });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
@@ -30,24 +24,19 @@ export const signUpUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   'session/loginUser', async (username, thunkAPI) => {
     try {
-      // const response = await axios.post('https://expert-class-backend.herokuapp.com/api/v1/sign_in', { user: { username } },
-      //   {
-      //     withCredentials: true,
-      //     // headers: {
-      //     //   'X-CSRF-Token': getCSRFToken(),
-      //     // },
-      //   });
-      // return response.data;
-      const response = await (await fetch('https://expert-class-backend.herokuapp.com/api/v1/sign_in', {
-        method: 'POST',
-        body: JSON.stringify({ user: { username } }),
-        credentials: 'include',
-        mode: 'cors',
-        headers: {
-          accept: 'application/json, text/plain, */*', 'content-type': 'application/json',
-        },
-      })).json();
-      return response;
+      const response = await axios.post('https://expert-class-backend.herokuapp.com/api/v1/sign_in', { user: { username } },
+        { withCredentials: true });
+      return response.data;
+      // const response = await (await fetch('https://expert-class-backend.herokuapp.com/api/v1/sign_in', {
+      //   method: 'POST',
+      //   body: JSON.stringify({ user: { username } }),
+      //   credentials: 'include',
+      //   mode: 'cors',
+      //   headers: {
+      //     accept: 'application/json, text/plain, */*', 'content-type': 'application/json',
+      //   },
+      // })).json();
+      // return response;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
     }
@@ -58,12 +47,7 @@ export const logoutUser = createAsyncThunk(
   'session/logoutUser', async (thunkAPI) => {
     try {
       const response = await axios.delete('https://expert-class-backend.herokuapp.com/api/v1/sign_out',
-        {
-          withCredentials: true,
-          // headers: {
-          //   'X-CSRF-Token': getCSRFToken(),
-          // },
-        });
+        { withCredentials: true });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
@@ -74,17 +58,17 @@ export const logoutUser = createAsyncThunk(
 export const loginStatus = createAsyncThunk(
   'session/loginStatus', async (thunkAPI) => {
     try {
-      // const response = await axios.get('https://expert-class-backend.herokuapp.com/api/v1/signed_in', { withCredentials: true });
-      // return response.data;
-      const response = await (await fetch('https://expert-class-backend.herokuapp.com/api/v1/signed_in', {
-        method: 'GET',
-        credentials: 'include',
-        mode: 'cors',
-        headers: {
-          accept: 'application/json, text/plain, */*', 'content-type': 'application/json',
-        },
-      })).json();
-      return response;
+      const response = await axios.get('https://expert-class-backend.herokuapp.com/api/v1/signed_in', { withCredentials: true });
+      return response.data;
+      // const response = await (await fetch('https://expert-class-backend.herokuapp.com/api/v1/signed_in', {
+      //   method: 'GET',
+      //   credentials: 'include',
+      //   mode: 'cors',
+      //   headers: {
+      //     accept: 'application/json, text/plain, */*', 'content-type': 'application/json',
+      //   },
+      // })).json();
+      // return response;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
     }
