@@ -64,12 +64,12 @@ export const sessionSlice = createSlice({
       })
       .addCase(signUpUser.fulfilled, (state, action) => {
         if (action.payload.status === 'created') {
-          state.status = 'idle';
+          state.status = 'fulfilled';
           state.user = action.payload.user;
           state.logged_in = action.payload.logged_in;
           state.error = null;
         } else {
-          state.status = 'idle';
+          state.status = 'fulfilled';
           state.user = {};
           state.logged_in = false;
           state.error = action.payload.error;
@@ -84,11 +84,11 @@ export const sessionSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         if (action.payload.status === 'created') {
-          state.status = 'idle';
+          state.status = 'fulfilled';
           state.user = action.payload.user;
           state.logged_in = action.payload.logged_in;
         } else {
-          state.status = 'idle';
+          state.status = 'fulfilled';
           state.user = {};
           state.logged_in = false;
           state.error = 'Username does not exist. Please try again.';
@@ -103,11 +103,11 @@ export const sessionSlice = createSlice({
       })
       .addCase(loginStatus.fulfilled, (state, action) => {
         if (action.payload.logged_in) {
-          state.status = 'idle';
+          state.status = 'fulfilled';
           state.user = action.payload.user;
           state.logged_in = action.payload.logged_in;
         } else {
-          state.status = 'idle';
+          state.status = 'fulfilled';
           state.user = {};
           state.logged_in = action.payload.logged_in;
         }
@@ -121,7 +121,7 @@ export const sessionSlice = createSlice({
       })
       .addCase(logoutUser.fulfilled, (state, action) => {
         if (action.payload.logged_out) {
-          state.status = 'idle';
+          state.status = 'fulfilled';
           state.user = {};
           state.logged_in = !action.payload.logged_out;
         }
@@ -135,6 +135,7 @@ export const sessionSlice = createSlice({
 
 export const currentUser = (state) => state.users.user;
 export const loggedInStatus = (state) => state.users.logged_in;
+export const status = (state) => state.users.status;
 export const authErrors = (state) => state.users.error;
 
 export default sessionSlice.reducer;

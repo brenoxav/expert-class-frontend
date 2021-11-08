@@ -4,7 +4,7 @@ import Carousel, { slidesToShowPlugin, autoplayPlugin } from '@brainhubeu/react-
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import { loggedInStatus } from '../../auth/sessionSlice';
+// import { loggedInStatus } from '../../auth/sessionSlice';
 import { fetchClassesData } from './classesSlice';
 import { reloadClasses } from '../removeClass/removeClassSlice';
 import SocialIcons from './socialIcons';
@@ -13,22 +13,22 @@ export default function ClassesPage() {
   const dispatch = useDispatch();
 
   const classes = useSelector((state) => state.classes.classes);
-  const history = useHistory();
-  const loggedIn = useSelector(loggedInStatus);
+  // const history = useHistory();
+  // const loggedIn = useSelector(loggedInStatus);
 
   useEffect(() => {
     dispatch(fetchClassesData());
     dispatch(reloadClasses());
-    if (!loggedIn) {
-      history.push('/');
-    }
+    // if (!loggedIn) {
+    //   history.push('/');
+    // }
   }, []);
 
-  useEffect(() => {
-    if (!loggedIn) {
-      history.push('/');
-    }
-  }, [loggedIn]);
+  // useEffect(() => {
+  //   if (!loggedIn) {
+  //     history.push('/');
+  //   }
+  // }, [loggedIn]);
 
   const classesList = classes.map((c) => (
     <NavLink to={`/class/${c.id}`} key={c.id} className="classes-item">

@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { loggedInStatus } from '../../auth/sessionSlice';
+// import { useHistory } from 'react-router-dom';
+// import { loggedInStatus } from '../../auth/sessionSlice';
 import './RemoveClassPage.css';
 import { reloadClasses, removeClass } from './removeClassSlice';
 
 function RemoveClassPage() {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const loggedIn = useSelector(loggedInStatus);
+  // const history = useHistory();
+  // const loggedIn = useSelector(loggedInStatus);
 
-  useEffect(() => {
-    if (!loggedIn) {
-      history.push('/');
-    }
-  }, [loggedIn]);
+  // useEffect(() => {
+  //   if (!loggedIn) {
+  //     history.push('/');
+  //   }
+  // }, [loggedIn]);
 
   const classes = useSelector((state) => state.classesObj.classObj);
 
