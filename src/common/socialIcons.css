@@ -1,0 +1,21 @@
+.socialBtns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.socialIconCircle {
+  width: 26px;
+  height: 26px;
+  padding: 4px;
+  margin: 0 5px;
+  border: 2px solid lightgreen;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.socialIcon {
+  color: lightgreen;
+  fill: lightgreen;
+}

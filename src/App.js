@@ -23,7 +23,9 @@ function App() {
   const sessionStatus = useSelector(status);
 
   useEffect(() => {
-    dispatch(loginStatus());
+    if (sessionStatus === 'idle') {
+      dispatch(loginStatus());
+    }
   }, []);
 
   return (

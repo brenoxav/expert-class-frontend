@@ -22,18 +22,24 @@ export const fetchClassesData = createAsyncThunk(
 export const classesSlice = createSlice({
   name: 'classes',
   initialState,
-  reducers: {
-    getClassById: (state, action) => state.classes.filter((c) => c.id === action.payload),
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(fetchClassesData.pending, (state) => {
+        state.status = 'loading';
+      })
       .addCase(fetchClassesData.fulfilled, (state, action) => {
-        state.classes = action.payload; // eslint-disable-line
+        state.status = 'fulfilled';
+        state.classes = action.payload;
+      })
+      .addCase(fetchClassesData.rejected, (state) => {
+        state.status = 'rejected';
+        state.error = 'Error fetching data.';
       });
   },
 });
 
-export const { getClassById } = classesSlice.actions;
 export const currentClasses = (state) => state.classes.classes;
+export const classesStateStatus = (state) => state.classes.status;
 
 export default classesSlice.reducer;
