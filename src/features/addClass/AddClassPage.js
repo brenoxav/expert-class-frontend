@@ -1,20 +1,8 @@
-import React, { useEffect } from 'react';
-// import { useSelector } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
+import React from 'react';
 import expertClassApi from '../../app/expertClassApi';
-// import { loggedInStatus } from '../../auth/sessionSlice';
 import './AddClassPage.css';
 
 const AddClassPage = () => {
-  // const history = useHistory();
-  // const loggedIn = useSelector(loggedInStatus);
-
-  // useEffect(() => {
-  //   if (!loggedIn) {
-  //     history.push('/');
-  //   }
-  // }, [loggedIn]);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);

@@ -1,24 +1,16 @@
 import './NavPanel.css';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
-import { loggedInStatus, logoutUser } from '../../auth/sessionSlice';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { NavLink, useHistory } from 'react-router-dom';
+import { logoutUser } from '../../auth/sessionSlice';
 
 function NavPanel() {
   const dispatch = useDispatch();
   const history = useHistory();
-  // const loggedIn = useSelector(loggedInStatus);
-
-  // useEffect(() => {
-  //   if (!loggedIn) {
-  //     history.push("/");
-  //   }
-  // }, [loggedIn]);
 
   const handleLogoutClick = () => {
     dispatch(logoutUser());
-    history.push("/");
+    history.replace('/');
   };
 
   return (

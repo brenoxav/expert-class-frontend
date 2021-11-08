@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useLocation, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styles from './signInPage.module.css';
 import { loginUser, loggedInStatus, authErrors } from '../../auth/sessionSlice';
 import SpeechBubble from '../../common/speechBubble';
@@ -9,37 +9,7 @@ function SignInPage() {
   const dispatch = useDispatch();
   const loggedIn = useSelector(loggedInStatus);
   const history = useHistory();
-  // const sessionStatus = useSelector(status);
-
-
-  // const { state } = useLocation();
-
-
-
-
-
-  // console.log('from location? ', from);
-
-
-  // const [fromPath, setFromPath] = useState('/classes');
-
-
-
-  // if (state) setLocation(state.from);
-
   const error = useSelector(authErrors);
-
-
-
-  // useEffect(() => {
-  //   if (loggedIn) {
-  //     // console.log('thsi is the state from UseLocation: ', state?.from)
-  //     history.replace(from);
-  //     // if (redirectToReferrer === true) {
-  //     //   return <Redirect to={state?.from || '/classes'} />
-  //     // }
-  //   }
-  // }, [loggedIn]);
 
   const [formData, setFormData] = useState({ username: '' });
   const [formMessage, setFormMessage] = useState({ message: error, display: false });
@@ -54,13 +24,7 @@ function SignInPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // console.log('this is the state location from useLocation: ', state?.from.pathname)
-    // if (state?.from.pathname) {
-    //   setLocation(state?.from.pathname);
-    // }
-    // console.log('new location? ', location);
     dispatch(loginUser(formData.username));
-    // setFromPath(from);
   };
 
   if (loggedIn) {

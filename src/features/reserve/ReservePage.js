@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
 import styles from './ReservePage.module.scss';
-import { currentUser, loggedInStatus } from '../../auth/sessionSlice';
+import { currentUser } from '../../auth/sessionSlice';
 import { reserveCourse, currentCities, fetchCities } from './reservePageSlice';
 import { currentClasses, fetchClassesData } from '../classes/classesSlice';
 import Dropdown from './dropdown';
@@ -10,21 +9,15 @@ import SpeechBubble from '../../common/speechBubble';
 
 const ReservePage = () => {
   const dispatch = useDispatch();
-
-  // const history = useHistory();
   const user = useSelector(currentUser);
   const classes = useSelector(currentClasses);
   const cities = useSelector(currentCities);
-  // const loggedIn = useSelector(loggedInStatus);
+
   const [formMessage, setFormMessage] = useState({ message: '', display: false });
 
   useEffect(() => {
-    // if (!loggedIn) {
-    //   history.push('/');
-    // } else {
     dispatch(fetchClassesData());
     dispatch(fetchCities());
-    // }
   }, []);
 
   const initialFormState = {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  HashRouter as Router, Switch, Route, Redirect, Routes
+  HashRouter as Router, Switch, Route,
 } from 'react-router-dom';
 import { loggedInStatus, loginStatus, status } from './auth/sessionSlice';
 import ClassesPage from './features/classes/ClassesPage';
@@ -27,13 +27,14 @@ function App() {
   }, []);
 
   return (
-    (sessionStatus === 'fulfilled') &&
+    (sessionStatus === 'fulfilled')
+    && (
     <Router>
       <div className="App">
         { loggedIn && <NavPanel />}
 
         <Switch>
-
+          <Route exact path="/" component={LandingPage} />
           <PrivateRoute path="/classes" component={ClassesPage} />
           <PrivateRoute path="/class/:id" component={ClassDetails} />
           <PrivateRoute path="/reserve" component={ReservePage} />
@@ -42,10 +43,11 @@ function App() {
           <PrivateRoute path="/remove-class" component={RemoveClassPage} />
           <Route path="/sign-in" component={SignInPage} />
           <Route path="/sign-up" component={SignUpPage} />
-          <Route path="/" component={LandingPage} />
+          <Route component={LandingPage} />
         </Switch>
       </div>
     </Router>
+    )
   );
 }
 
