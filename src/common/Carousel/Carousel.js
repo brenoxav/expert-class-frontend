@@ -13,16 +13,8 @@ import './Swiper.css';
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 export default function Carousel({ classes }) {
-  // const history = useHistory();
-
-  // const handleClick = (id) => {
-  //   (<Redirect to={{ pathname: `/class/${id}`}} />)
-
-  //   // history.push(`/class/${id}`)
-  // };
-
   const classesList = classes.map((c) => (
-    <SwiperSlide key={c.id} className={styles.swiperSlide}>
+    <SwiperSlide key={c.id} className={(classes.length >= 3) ? `${styles.swiperSlide}` : `${styles.swiperSlide} ${styles.swiperSlideSm}`}>
       <NavLink
         to={`/class/${c.id}`}
         className={styles.swiperCard}
@@ -39,29 +31,47 @@ export default function Carousel({ classes }) {
     </SwiperSlide>
   ));
 
-  return (
-    <>
+  const swiper = (totalClasses) => {
+    if (totalClasses >= 3) {
+      return (
+        <Swiper
+          id="swiper-container"
+          slidesPerView={3}
+          spaceBetween={30}
+          loop
+          loopFillGroupWithBlank
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: true,
+            waitForTransition: true,
+          }}
+          speed={1000}
+          pagination={{
+            clickable: true,
+          }}
+          navigation
+          className={styles.swiper}
+        >
+          {classesList}
+        </Swiper>
+      );
+    }
+    return (
       <Swiper
         id="swiper-container"
         slidesPerView={3}
         spaceBetween={30}
-        // slidesPerGroup={}
-        loop
-        loopFillGroupWithBlank
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: true,
-          waitForTransition: true,
-        }}
-        speed={1000}
-        pagination={{
-          clickable: true,
-        }}
-        navigation
+        centerInsufficientSlides
         className={styles.swiper}
       >
         {classesList}
       </Swiper>
+    );
+  };
+
+  return (
+    <>
+      {swiper(classes.length)}
     </>
   );
 }

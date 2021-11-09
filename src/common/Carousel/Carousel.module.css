@@ -23,6 +23,10 @@
   align-items: center;
 }
 
+.swiperSlideSm {
+  max-width: 500px;
+}
+
 .swiperCard {
   padding: 1rem 0;
   display: flex;
