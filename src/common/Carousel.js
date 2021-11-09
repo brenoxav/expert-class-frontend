@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 import SocialIcons from './socialIcons';
@@ -15,11 +16,16 @@ export default function Carousel({ classes }) {
   const history = useHistory();
 
   const handleClick = (id) => history.push(`/class/${id}`);
-  console.log('classes: ', classes);
 
   const classesList = classes.map((c) => (
     <SwiperSlide key={c.id} className={styles.swiperSlide}>
-      <div className={styles.swiperCard} onClick={() => handleClick(c.id)}>
+      <div
+        role="button"
+        tabIndex={0}
+        className={styles.swiperCard}
+        onClick={() => handleClick(c.id)}
+        onKeyDown={() => handleClick(c.id)}
+      >
         <div className={styles.swiperImgContainer}>
           <img className={styles.swiperImg} src={c.course_image_url} alt="course instructor" />
         </div>
@@ -58,3 +64,9 @@ export default function Carousel({ classes }) {
     </>
   );
 }
+
+Carousel.propTypes = {
+  classes: PropTypes.arrayOf(PropTypes.shape({
+    Object,
+  })).isRequired,
+};
