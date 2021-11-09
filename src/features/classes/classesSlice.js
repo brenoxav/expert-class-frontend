@@ -19,6 +19,23 @@ export const fetchClassesData = createAsyncThunk(
   },
 );
 
+export const addClass = createAsyncThunk(
+  'classes/addClass', async (formData, thunkAPI) => {
+    try {
+      const response = await expertClassApi.post('courses',
+        formData,
+        {
+          headers: {
+            'content-type': 'multipart/form-data',
+          },
+        });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: error.message });
+    }
+  },
+);
+
 export const classesSlice = createSlice({
   name: 'classes',
   initialState,
@@ -35,6 +52,20 @@ export const classesSlice = createSlice({
       .addCase(fetchClassesData.rejected, (state) => {
         state.status = 'rejected';
         state.error = 'Error fetching data.';
+      })
+      .addCase(addClass.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(addClass.fulfilled, (state, action) => {
+        if (action.payload.status === 'created') {
+          state.status = 'fulfilled';
+        }
+        state.status = 'failed';
+        state.error = 'Error creating class. Please try again.';
+      })
+      .addCase(addClass.rejected, (state) => {
+        state.status = 'rejected';
+        state.error = 'Error creating class. Please try again.';
       });
   },
 });

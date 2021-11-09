@@ -1,20 +1,15 @@
 import React from 'react';
-import expertClassApi from '../../app/expertClassApi';
+import { useDispatch } from 'react-redux';
+import { addClass } from '../classes/classesSlice';
 import './AddClassPage.css';
 
 const AddClassPage = () => {
+  const dispatch = useDispatch();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-
-    await expertClassApi.post('courses',
-      formData,
-      {
-        headers: {
-          'content-type': 'multipart/form-data',
-        },
-      });
-
+    dispatch(addClass(formData));
     event.target.reset();
   };
 

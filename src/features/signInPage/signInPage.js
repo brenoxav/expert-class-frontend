@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation, Redirect } from 'react-router-dom';
+import { unwrapResult } from '@reduxjs/toolkit';
 import styles from './signInPage.module.css';
 import { loginUser, loggedInStatus, authErrors } from '../../auth/sessionSlice';
 import SpeechBubble from '../../common/speechBubble';
@@ -10,9 +11,15 @@ function SignInPage() {
   const loggedIn = useSelector(loggedInStatus);
   const history = useHistory();
   const error = useSelector(authErrors);
+  const { state } = useLocation();
+  const redirectPath = state?.from || 'classes';
 
   const [formData, setFormData] = useState({ username: '' });
   const [formMessage, setFormMessage] = useState({ message: error, display: false });
+
+  if (loggedIn) {
+    return (<Redirect to="classes" />);
+  }
 
   useEffect(() => {
     if (error) {
@@ -24,12 +31,16 @@ function SignInPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(loginUser(formData.username));
+    try {
+      const resultAction = await dispatch(loginUser(formData.username));
+      const originalPromiseResult = unwrapResult(resultAction);
+      if (originalPromiseResult.status === 'created') {
+        history.replace(redirectPath);
+      }
+    } catch (rejectedValueOrSerializedError) {
+      setFormMessage({ message: 'There was an error loggin in. Please try again in a moment.', display: true });
+    }
   };
-
-  if (loggedIn) {
-    history.replace('classes');
-  }
 
   return (
     <div className={styles.mainContainer}>
