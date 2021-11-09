@@ -65,17 +65,16 @@ export const classesSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(addClass.fulfilled, (state, action) => {
-        // if (action.payload.status === 'created') {
-        //   state.status = 'fulfilled';
-        // }
-        // state.status = 'failed';
-        // state.error = 'Error creating class. Please try again.';
         if (action.payload.status === 400) {
           state.status = 'failed';
           state.error = 'Error creating class. Please try again.';
+        } else if (action.payload.status === 'created') {
+          state.status = 'fulfilled';
+          state.error = 'Error fetching data.';
+        } else {
+          state.status = 'fulfilled';
+          state.classes = action.payload;
         }
-        state.status = 'fulfilled';
-        state.classes = action.payload;
       })
       .addCase(addClass.rejected, (state) => {
         state.status = 'rejected';
