@@ -12,7 +12,7 @@ export const fetchClassDetails = createAsyncThunk(
   'classes/fetchClassDetails', async (id) => {
     try {
       const response = await expertClassApi.get(`courses/${id}`);
-      return response;
+      return response.data;
     } catch (error) {
       return error.message;
     }
@@ -29,13 +29,8 @@ export const classDetailsSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchClassDetails.fulfilled, (state, action) => {
-        if (action.payload.statusText === 'OK') {
-          state.status = 'idle';
-          state.classObj = action.payload.data;
-        } else {
-          state.status = 'idle';
-          state.error = 'Request failed';
-        }
+        state.status = 'fulfilled';
+        state.classObj = action.payload;
       })
       .addCase(fetchClassDetails.rejected, (state) => {
         state.status = 'rejected';

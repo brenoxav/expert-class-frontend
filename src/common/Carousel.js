@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 import SocialIcons from './socialIcons';
@@ -13,18 +13,19 @@ import './Swiper.css';
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 export default function Carousel({ classes }) {
-  const history = useHistory();
+  // const history = useHistory();
 
-  const handleClick = (id) => history.push(`/class/${id}`);
+  // const handleClick = (id) => {
+  //   (<Redirect to={{ pathname: `/class/${id}`}} />)
+
+  //   // history.push(`/class/${id}`)
+  // };
 
   const classesList = classes.map((c) => (
     <SwiperSlide key={c.id} className={styles.swiperSlide}>
-      <div
-        role="button"
-        tabIndex={0}
+      <NavLink
+        to={`/class/${c.id}`}
         className={styles.swiperCard}
-        onClick={() => handleClick(c.id)}
-        onKeyDown={() => handleClick(c.id)}
       >
         <div className={styles.swiperImgContainer}>
           <img className={styles.swiperImg} src={c.course_image_url} alt="course instructor" />
@@ -34,7 +35,7 @@ export default function Carousel({ classes }) {
           <p className={styles.instructor}>{c.instructor}</p>
           <SocialIcons />
         </div>
-      </div>
+      </NavLink>
     </SwiperSlide>
   ));
 
