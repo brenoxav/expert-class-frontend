@@ -15,7 +15,6 @@ import ClassDetails from './features/ClassDetails/ClassDetails';
 import SignInPage from './features/signInPage/signInPage';
 import SignUpPage from './features/signUpPage/signUpPage';
 import PrivateRoute from './features/PrivateRoute/PrivateRoute';
-import './App.css';
 
 function App() {
   const dispatch = useDispatch();
