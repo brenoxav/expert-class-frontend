@@ -1,33 +1,57 @@
 import React from 'react';
-import { Carousel as CarouselComponent } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { NavLink } from 'react-router-dom';
+import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 import SocialIcons from './socialIcons';
 import styles from './Carousel.module.css';
+import 'swiper/swiper.scss';
+import 'swiper/modules/navigation/navigation.scss';
+import 'swiper/modules/pagination/pagination.scss';
+import './Swiper.css';
+
+SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 export default function Carousel({ classes }) {
+  console.log('classes: ', classes);
+  // <div to={`/class/${c.id}`} key={c.id} className={styles.item}>
   const classesList = classes.map((c) => (
-    <NavLink to={`/class/${c.id}`} key={c.id} className={styles.item}>
-      <div className={styles.imageContainer}>
-        <img className="image" src={c.course_image_url} alt="course" />
+    <SwiperSlide key={c.id} className={styles.swiperSlide}>
+      <div className={styles.swiperCard}>
+        <div className={styles.swiperImgContainer}>
+          <img className={styles.swiperImg} src={c.course_image_url} alt="course instructor" />
+        </div>
+        <div className={styles.textContainer}>
+          <h3 className={styles.title}>{c.title}</h3>
+          <p className={styles.instructor}>{c.instructor}</p>
+          <SocialIcons />
+        </div>
       </div>
-      <div className={styles.textContainer}>
-        <h3 className={styles.title}>{c.title}</h3>
-        <p className={styles.instructor}>{c.instructor}</p>
-        <SocialIcons />
-      </div>
-    </NavLink>
+    </SwiperSlide>
   ));
 
   return (
-    <div className="carousel-wrapper">
-        <CarouselComponent
-        autoPlay centerMode showStatus showIndicators
-        infiniteLoop useKeyboardArrows stopOnHover swipeable
-        centerSlidePercentage={33} showThumbs={false}
-        >
-          {classesList}
-        </CarouselComponent>
-    </div>
+    <>
+      <Swiper
+        id="swiper-container"
+        slidesPerView={3}
+        spaceBetween={30}
+        // slidesPerGroup={}
+        loop
+        loopFillGroupWithBlank
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: true,
+          waitForTransition: true,
+        }}
+        speed={1000}
+        pagination={{
+          clickable: true,
+        }}
+        navigation
+        className={styles.swiper}
+      >
+        {classesList}
+      </Swiper>
+    </>
   );
 }

@@ -1,25 +1,52 @@
-.item {
-  /* width: 300px; */
-  border-radius: 15px;
-  background-color: #97bf0f;
-  color: #fff;
+.swiper {
+  width: 100%;
+  height: 600px;
 }
 
-.textContainer,
-.image-container {
-  margin: 0 auto;
+.swiperSlide {
+  background-color: #97bf0f;
+  color: #fff;
   text-align: center;
+  font-size: 18px;
+  border-radius: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiperCard{
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.swiperImgContainer {
+  width: 85%;
+}
+
+.swiperImg {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .textContainer {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
 }
-
-/* .image {
-  margin: 0 auto;
-  width: 100%;
-  height: 300px;
-} */
 
 .title {
   text-transform: uppercase;
