@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import getCSRFToken from '../../app/getCSRFToken';
+import expertClassApi from '../../app/expertClassApi';
 
 const initialState = {
   classObj: [],
@@ -12,13 +11,7 @@ const initialState = {
 export const removeClass = createAsyncThunk(
   'classes/removeClass', async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:3001/api/v1/courses/${id}`,
-        {
-          withCredentials: true,
-          headers: {
-            'X-CSRF-Token': getCSRFToken(),
-          },
-        });
+      const response = await expertClassApi.delete(`courses/${id}`);
       return response;
     } catch (error) {
       return error.message;
@@ -29,7 +22,7 @@ export const removeClass = createAsyncThunk(
 export const reloadClasses = createAsyncThunk(
   'classes/reloadClasses', async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/v1/courses/', { withCredentials: true });
+      const response = await expertClassApi.get('courses');
       return response;
     } catch (error) {
       return error.message;

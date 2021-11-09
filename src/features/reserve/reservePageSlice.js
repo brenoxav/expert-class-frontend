@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-import getCSRFToken from '../../app/getCSRFToken';
+import expertClassApi from '../../app/expertClassApi';
 
 const initialState = {
   status: 'idle',
@@ -12,13 +11,7 @@ const initialState = {
 export const reserveCourse = createAsyncThunk(
   'reservePageSlice/reservations', async (formData, thunkAPI) => {
     try {
-      const response = await axios.post('http://localhost:3001/api/v1/reservations', { reservation: formData },
-        {
-          withCredentials: true,
-          headers: {
-            'X-CSRF-Token': getCSRFToken(),
-          },
-        });
+      const response = await expertClassApi.post('reservations', { reservation: formData });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: 'Unable to make a reservation. Please try again.' });
@@ -29,7 +22,7 @@ export const reserveCourse = createAsyncThunk(
 export const fetchCities = createAsyncThunk(
   'reservePageSlice/cities', async (thunkAPI) => {
     try {
-      const response = await axios.get('http://localhost:3001/api/v1/cities', { withCredentials: true });
+      const response = await expertClassApi.get('cities');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: 'Unable to fetch cities. Please try again.' });

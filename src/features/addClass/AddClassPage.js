@@ -1,31 +1,16 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios';
-import getCSRFToken from '../../app/getCSRFToken';
-import { loggedInStatus } from '../../auth/sessionSlice';
+import React from 'react';
+import expertClassApi from '../../app/expertClassApi';
 import './AddClassPage.css';
 
 const AddClassPage = () => {
-  const history = useHistory();
-  const loggedIn = useSelector(loggedInStatus);
-
-  useEffect(() => {
-    if (!loggedIn) {
-      history.push('/');
-    }
-  }, [loggedIn]);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
 
-    await axios.post('http://localhost:3001/api/v1/courses',
+    await expertClassApi.post('courses',
       formData,
       {
-        withCredentials: true,
         headers: {
-          'X-CSRF-Token': getCSRFToken(),
           'content-type': 'multipart/form-data',
         },
       });

@@ -6,6 +6,7 @@ import './ClassDetails.css';
 
 function ClassDetails() {
   const { id } = useParams();
+
   const dispatch = useDispatch();
   const c = useSelector((state) => state.classDetails.classObj);
 

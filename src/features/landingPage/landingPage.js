@@ -1,13 +1,20 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styles from './landingPage.module.css';
+import { loggedInStatus } from '../../auth/sessionSlice';
 
 export default function LandingPage() {
+  const loggedIn = useSelector(loggedInStatus);
   const history = useHistory();
 
   const handleClick = (path) => {
     history.push(path);
   };
+
+  if (loggedIn) {
+    history.replace('classes');
+  }
 
   return (
     <div className={styles.mainContainer}>

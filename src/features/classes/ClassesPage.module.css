@@ -1,0 +1,15 @@
+* {
+  text-decoration: none;
+}
+
+.classesContainer {
+  padding: 20px;
+  margin-left: 240px;
+}
+
+.heading {
+  text-align: center;
+  margin: 25px auto;
+  text-transform: uppercase;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

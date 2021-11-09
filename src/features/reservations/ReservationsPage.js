@@ -1,22 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import styles from './Reservations.module.css';
 import { fetchReservations, userReservations } from './reservationsSlice';
-import { loggedInStatus } from '../../auth/sessionSlice';
 
 export default function ReservationsPage() {
   const dispatch = useDispatch();
-  const history = useHistory();
   const reservations = useSelector(userReservations);
-  const loggedIn = useSelector(loggedInStatus);
 
   useEffect(() => {
-    if (!loggedIn) {
-      history.push('/');
-    } else {
-      dispatch(fetchReservations());
-    }
+    dispatch(fetchReservations());
   }, []);
 
   const ReservationsList = reservations.map((r) => (

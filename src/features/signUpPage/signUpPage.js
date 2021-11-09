@@ -11,12 +11,6 @@ function SignUpPage() {
   const loggedIn = useSelector(loggedInStatus);
   const error = useSelector(authErrors);
 
-  useEffect(() => {
-    if (loggedIn) {
-      history.push('/classes');
-    }
-  }, [loggedIn]);
-
   const [formData, setFormData] = useState({ username: '', name: '' });
   const [formMessage, setFormMessage] = useState({ message: error, display: false });
 
@@ -38,6 +32,10 @@ function SignUpPage() {
     event.preventDefault();
     dispatch(signUpUser(formData));
   };
+
+  if (loggedIn) {
+    history.replace('classes');
+  }
 
   return (
     <div className={styles.mainContainer}>

@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-import getCSRFToken from '../app/getCSRFToken';
+import expertClassApi from '../app/expertClassApi';
 
 const initialState = {
   user: {},
@@ -13,13 +12,7 @@ const initialState = {
 export const signUpUser = createAsyncThunk(
   'session/signUpUser', async (params, thunkAPI) => {
     try {
-      const response = await axios.post('http://localhost:3001/api/v1/users', { user: params },
-        {
-          withCredentials: true,
-          headers: {
-            'X-CSRF-Token': getCSRFToken(),
-          },
-        });
+      const response = await expertClassApi.post('users', { user: params });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
@@ -30,13 +23,7 @@ export const signUpUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   'session/loginUser', async (username, thunkAPI) => {
     try {
-      const response = await axios.post('http://localhost:3001/api/v1/sign_in', { user: { username } },
-        {
-          withCredentials: true,
-          headers: {
-            'X-CSRF-Token': getCSRFToken(),
-          },
-        });
+      const response = await expertClassApi.post('sign_in', { user: { username } });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
@@ -47,13 +34,7 @@ export const loginUser = createAsyncThunk(
 export const logoutUser = createAsyncThunk(
   'session/logoutUser', async (thunkAPI) => {
     try {
-      const response = await axios.delete('http://localhost:3001/api/v1/sign_out',
-        {
-          withCredentials: true,
-          headers: {
-            'X-CSRF-Token': getCSRFToken(),
-          },
-        });
+      const response = await expertClassApi.delete('sign_out');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
@@ -64,7 +45,7 @@ export const logoutUser = createAsyncThunk(
 export const loginStatus = createAsyncThunk(
   'session/loginStatus', async (thunkAPI) => {
     try {
-      const response = await axios.get('http://localhost:3001/api/v1/signed_in', { withCredentials: true });
+      const response = await expertClassApi.get('signed_in');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
@@ -83,12 +64,12 @@ export const sessionSlice = createSlice({
       })
       .addCase(signUpUser.fulfilled, (state, action) => {
         if (action.payload.status === 'created') {
-          state.status = 'idle';
+          state.status = 'fulfilled';
           state.user = action.payload.user;
           state.logged_in = action.payload.logged_in;
           state.error = null;
         } else {
-          state.status = 'idle';
+          state.status = 'fulfilled';
           state.user = {};
           state.logged_in = false;
           state.error = action.payload.error;
@@ -103,11 +84,11 @@ export const sessionSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         if (action.payload.status === 'created') {
-          state.status = 'idle';
+          state.status = 'fulfilled';
           state.user = action.payload.user;
           state.logged_in = action.payload.logged_in;
         } else {
-          state.status = 'idle';
+          state.status = 'fulfilled';
           state.user = {};
           state.logged_in = false;
           state.error = 'Username does not exist. Please try again.';
@@ -122,11 +103,11 @@ export const sessionSlice = createSlice({
       })
       .addCase(loginStatus.fulfilled, (state, action) => {
         if (action.payload.logged_in) {
-          state.status = 'idle';
+          state.status = 'fulfilled';
           state.user = action.payload.user;
           state.logged_in = action.payload.logged_in;
         } else {
-          state.status = 'idle';
+          state.status = 'fulfilled';
           state.user = {};
           state.logged_in = action.payload.logged_in;
         }
@@ -140,7 +121,7 @@ export const sessionSlice = createSlice({
       })
       .addCase(logoutUser.fulfilled, (state, action) => {
         if (action.payload.logged_out) {
-          state.status = 'idle';
+          state.status = 'fulfilled';
           state.user = {};
           state.logged_in = !action.payload.logged_out;
         }
@@ -154,6 +135,7 @@ export const sessionSlice = createSlice({
 
 export const currentUser = (state) => state.users.user;
 export const loggedInStatus = (state) => state.users.logged_in;
+export const status = (state) => state.users.status;
 export const authErrors = (state) => state.users.error;
 
 export default sessionSlice.reducer;
