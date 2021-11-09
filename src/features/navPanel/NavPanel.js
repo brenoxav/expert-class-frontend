@@ -2,15 +2,19 @@ import './NavPanel.css';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
+import { unwrapResult } from '@reduxjs/toolkit';
 import { logoutUser } from '../../auth/sessionSlice';
 
 function NavPanel() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleLogoutClick = () => {
-    dispatch(logoutUser());
-    history.replace('/');
+  const handleLogoutClick = async () => {
+    const resultAction = await dispatch(logoutUser());
+    const originalPromiseResult = unwrapResult(resultAction);
+    if (originalPromiseResult.logged_out) {
+      history.replace('/');
+    }
   };
 
   return (
