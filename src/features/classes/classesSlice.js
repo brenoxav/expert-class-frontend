@@ -20,18 +20,26 @@ export const fetchClassesData = createAsyncThunk(
 );
 
 export const addClass = createAsyncThunk(
-  'classes/addClass', async (formData, thunkAPI) => {
+  'classes/addClass', async (formData, { rejectWithValue }) => {
     try {
-      const response = await expertClassApi.post('courses',
+      let response = await expertClassApi.post('courses',
         formData,
         {
           headers: {
             'content-type': 'multipart/form-data',
           },
         });
+      if (response.data.status === 'created') {
+        try {
+          response = await expertClassApi.get('courses');
+          return response.data;
+        } catch (error) {
+          return rejectWithValue({ error: error.message });
+        }
+      }
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue({ error: error.message });
+      return rejectWithValue({ error: error.message });
     }
   },
 );
@@ -57,11 +65,17 @@ export const classesSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(addClass.fulfilled, (state, action) => {
-        if (action.payload.status === 'created') {
-          state.status = 'fulfilled';
+        // if (action.payload.status === 'created') {
+        //   state.status = 'fulfilled';
+        // }
+        // state.status = 'failed';
+        // state.error = 'Error creating class. Please try again.';
+        if (action.payload.status === 400) {
+          state.status = 'failed';
+          state.error = 'Error creating class. Please try again.';
         }
-        state.status = 'failed';
-        state.error = 'Error creating class. Please try again.';
+        state.status = 'fulfilled';
+        state.classes = action.payload;
       })
       .addCase(addClass.rejected, (state) => {
         state.status = 'rejected';
