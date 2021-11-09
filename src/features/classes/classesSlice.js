@@ -85,5 +85,6 @@ export const classesSlice = createSlice({
 
 export const currentClasses = (state) => state.classes.classes;
 export const classesStateStatus = (state) => state.classes.status;
+export const classesErrorMessage = (state) => state.classes.error;
 
 export default classesSlice.reducer;
