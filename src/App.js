@@ -4,17 +4,17 @@ import {
   HashRouter as Router, Switch, Route,
 } from 'react-router-dom';
 import { loggedInStatus, loginStatus, status } from './auth/sessionSlice';
-import ClassesPage from './features/classes/ClassesPage';
-import LandingPage from './features/landingPage/landingPage';
-import NavPanel from './features/navPanel/NavPanel';
-import ReservePage from './features/reserve/ReservePage';
-import ReservationsPage from './features/reservations/ReservationsPage';
-import AddClassPage from './features/addClass/AddClassPage';
-import RemoveClassPage from './features/removeClass/RemoveClassPage';
-import ClassDetails from './features/ClassDetails/ClassDetails';
-import SignInPage from './features/signInPage/signInPage';
-import SignUpPage from './features/signUpPage/signUpPage';
-import PrivateRoute from './features/PrivateRoute/PrivateRoute';
+import ClassesPage from './pages/classesPage/classesPage';
+import LandingPage from './pages/landingPage/landingPage';
+import NavPanel from './components/navPanel/navPanel';
+import ReservePage from './pages/reservePage/reservePage';
+import ReservationsPage from './pages/reservationsPage/reservationsPage';
+import AddClassPage from './pages/addClassPage/addClassPage';
+import RemoveClassPage from './pages/removeClassPage/removeClassPage';
+import ClassDetails from './pages/classDetailsPage/classDetailsPage';
+import SignInPage from './pages/signInPage/signInPage';
+import SignUpPage from './pages/signUpPage/signUpPage';
+import PrivateRoute from './components/privateRoute/privateRoute';
 
 function App() {
   const dispatch = useDispatch();

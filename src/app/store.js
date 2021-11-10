@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
-import classesReducer from '../features/classes/classesSlice';
-import reservationsReducer from '../features/reservations/reservationsSlice';
+import classesReducer from '../pages/classesPage/classesPageSlice';
+import reservationsReducer from '../pages/reservationsPage/reservationsPageSlice';
 import sessionReducer from '../auth/sessionSlice';
-import citiesReducer from '../features/reserve/CitiesSlice';
-import classDetailsReducer from '../features/ClassDetails/classDetailsSlice';
+import citiesReducer from '../pages/reservePage/citiesSlice';
+import classDetailsReducer from '../pages/classDetailsPage/classDetailsPageSlice';
 
 const store = configureStore({
   reducer: {

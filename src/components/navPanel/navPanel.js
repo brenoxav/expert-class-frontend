@@ -1,4 +1,4 @@
-import './NavPanel.css';
+import './navPanel.css';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
