@@ -44,6 +44,25 @@ export const addClass = createAsyncThunk(
   },
 );
 
+export const removeClass = createAsyncThunk(
+  'classes/removeClass', async (id, { rejectWithValue }) => {
+    try {
+      let response = await expertClassApi.delete(`courses/${id}`);
+      if (response.data.status === 200) {
+        try {
+          response = await expertClassApi.get('courses');
+          return response.data;
+        } catch (error) {
+          return rejectWithValue({ error: error.message });
+        }
+      }
+      return response.data;
+    } catch (error) {
+      return rejectWithValue({ error: error.message });
+    }
+  },
+);
+
 export const classesSlice = createSlice({
   name: 'classes',
   initialState,
@@ -79,6 +98,25 @@ export const classesSlice = createSlice({
       .addCase(addClass.rejected, (state) => {
         state.status = 'rejected';
         state.error = 'Error creating class. Please try again.';
+      })
+      .addCase(removeClass.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(removeClass.fulfilled, (state, action) => {
+        if (action.payload.status === 400) {
+          state.status = 'failed';
+          state.error = action.payload.message;
+        } else if (action.payload.status === 200) {
+          state.status = 'fulfilled';
+          state.error = 'Error fetching data.';
+        } else {
+          state.status = 'fulfilled';
+          state.classes = action.payload;
+        }
+      })
+      .addCase(removeClass.rejected, (state) => {
+        state.status = 'rejected';
+        state.error = 'Error connecting with server. Please try again.';
       });
   },
 });

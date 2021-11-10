@@ -1,19 +1,24 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './RemoveClassPage.css';
-import { reloadClasses, removeClass } from './removeClassSlice';
+import {
+  currentClasses, classesStateStatus, classesErrorMessage, removeClass, fetchClassesData,
+} from '../classes/classesSlice';
 
 function RemoveClassPage() {
   const dispatch = useDispatch();
-  const classes = useSelector((state) => state.classesObj.classObj);
+  const classes = useSelector(currentClasses);
+  const fetchStatus = useSelector(classesStateStatus);
+  const errorMessage = useSelector(classesErrorMessage);
 
   useEffect(() => {
-    dispatch(reloadClasses());
+    if (fetchStatus === 'idle' || errorMessage === 'Error fetching data.') {
+      dispatch(fetchClassesData());
+    }
   }, []);
 
   const handleClick = (id) => {
     dispatch(removeClass(id));
-    dispatch(reloadClasses());
   };
 
   const classesList = classes.map((c) => (
