@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './ReservePage.module.scss';
 import { currentUser } from '../../auth/sessionSlice';
-import { reserveCourse, currentCities, fetchCities } from './reservePageSlice';
-import { currentClasses, fetchClassesData } from '../classes/classesSlice';
+import { reserveCourse, fetchReservations, reservationsState } from '../reservations/reservationsSlice';
+import { fetchCities, citiesState } from './CitiesSlice';
+import { currentClasses, fetchClassesData, classesStateStatus } from '../classes/classesSlice';
 import Dropdown from './dropdown';
 import SpeechBubble from '../../common/speechBubble';
 
@@ -11,13 +12,23 @@ const ReservePage = () => {
   const dispatch = useDispatch();
   const user = useSelector(currentUser);
   const classes = useSelector(currentClasses);
-  const cities = useSelector(currentCities);
+  const classesStatus = useSelector(classesStateStatus);
+  const { cities } = useSelector(citiesState);
+  const { status: citiesStatus } = useSelector(citiesState);
+  const { status: reservationsStatus } = useSelector(reservationsState);
 
   const [formMessage, setFormMessage] = useState({ message: '', display: false });
 
   useEffect(() => {
-    dispatch(fetchClassesData());
-    dispatch(fetchCities());
+    if (reservationsStatus === 'idle') {
+      dispatch(fetchReservations());
+    }
+    if (classesStatus === 'idle') {
+      dispatch(fetchClassesData());
+    }
+    if (citiesStatus === 'idle') {
+      dispatch(fetchCities());
+    }
   }, []);
 
   const initialFormState = {
