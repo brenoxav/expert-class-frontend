@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import styles from './signUpPage.module.css';
 import { signUpUser, loggedInStatus, authErrors } from '../../auth/sessionSlice';
 import SpeechBubble from '../../common/speechBubble/speechBubble';
 
 function SignUpPage() {
   const dispatch = useDispatch();
-  const history = useHistory();
   const loggedIn = useSelector(loggedInStatus);
   const error = useSelector(authErrors);
 
   const [formData, setFormData] = useState({ username: '', name: '' });
   const [formMessage, setFormMessage] = useState({ message: error, display: false });
+
+  if (loggedIn) {
+    return (<Redirect to="classes" />);
+  }
 
   useEffect(() => {
     if (error) {
@@ -32,10 +35,6 @@ function SignUpPage() {
     event.preventDefault();
     dispatch(signUpUser(formData));
   };
-
-  if (loggedIn) {
-    history.replace('classes');
-  }
 
   return (
     <div className={styles.mainContainer}>
