@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(180deg, rgba(151, 191, 15, 0.7), rgba(151, 191, 15, 0.7)), url(../images/expertClass02.jpg);
+  background: linear-gradient(180deg, rgba(151, 191, 15, 0.7), rgba(151, 191, 15, 0.7)), url(../../assets/images/expertClass02.jpg);
   background-repeat: no-repeat, repeat;
   background-size: cover;
   height: 100vh;

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Carousel from '../../common/Carousel/Carousel';
 import {
   fetchClassesData, currentClasses, classesStateStatus, classesErrorMessage,
-} from './classesSlice';
-import styles from './ClassesPage.module.css';
+} from './classesPageSlice';
+import styles from './classesPage.module.css';
 
 const ClassesPage = () => {
   const dispatch = useDispatch();

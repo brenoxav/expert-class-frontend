@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styles from './signUpPage.module.css';
 import { signUpUser, loggedInStatus, authErrors } from '../../auth/sessionSlice';
-import SpeechBubble from '../../common/speechBubble';
+import SpeechBubble from '../../common/speechBubble/speechBubble';
 
 function SignUpPage() {
   const dispatch = useDispatch();

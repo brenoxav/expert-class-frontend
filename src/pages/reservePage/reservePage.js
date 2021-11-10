@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './ReservePage.module.scss';
+import styles from './reservePage.module.scss';
 import { currentUser } from '../../auth/sessionSlice';
-import { reserveCourse, fetchReservations, reservationsState } from '../reservations/reservationsSlice';
-import { fetchCities, citiesState } from './CitiesSlice';
-import { currentClasses, fetchClassesData, classesStateStatus } from '../classes/classesSlice';
-import Dropdown from './dropdown';
-import SpeechBubble from '../../common/speechBubble';
+import { reserveCourse, fetchReservations, reservationsState } from '../reservationsPage/reservationsPageSlice';
+import { fetchCities, citiesState } from './citiesSlice';
+import { currentClasses, fetchClassesData, classesStateStatus } from '../classesPage/classesPageSlice';
+import Dropdown from '../../components/dropdown/dropdown';
+import SpeechBubble from '../../common/speechBubble/speechBubble';
 
 const ReservePage = () => {
   const dispatch = useDispatch();

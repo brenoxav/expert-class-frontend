@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { fetchClassDetails } from './classDetailsSlice';
-import './ClassDetails.css';
+import { fetchClassDetails } from './classDetailsPageSlice';
+import './classDetailsPage.css';
 
 function ClassDetails() {
   const { id } = useParams();

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addClass } from '../classes/classesSlice';
-import './AddClassPage.css';
+import { addClass } from '../classesPage/classesPageSlice';
+import './addClassPage.css';
 
 const AddClassPage = () => {
   const dispatch = useDispatch();
