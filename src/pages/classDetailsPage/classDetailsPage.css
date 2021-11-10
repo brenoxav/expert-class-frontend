@@ -1,0 +1,56 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.details-container {
+  display: flex;
+  width: 1050px;
+  height: 100vh;
+  margin-left: 250px;
+}
+
+.details-col-1 {
+  width: 75%;
+  padding: 15px;
+}
+
+.details-col-1 img {
+  width: 100%;
+  height: 100%;
+}
+
+.details-col-2 {
+  width: 25%;
+  margin: 0 10px;
+}
+
+.details-col-2 .title {
+  padding: 15px 0;
+}
+
+.details-col-2 h4 {
+  padding: 15px;
+  border: 1px solid #eee;
+}
+
+.desc-table h4 {
+  display: flex;
+  align-items: center;
+}
+
+.desc-table span {
+  margin: 10px;
+}
+
+.details-col-2 h4:nth-child(even) {
+  background-color: #eee;
+}
+
+.class-title {
+  text-transform: uppercase;
+}
+
+.class-instructor {
+  margin: 2px 0;
+}
