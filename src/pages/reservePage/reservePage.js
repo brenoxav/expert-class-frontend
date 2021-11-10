@@ -16,6 +16,7 @@ const ReservePage = () => {
   const { cities } = useSelector(citiesState);
   const { status: citiesStatus } = useSelector(citiesState);
   const { status: reservationsStatus } = useSelector(reservationsState);
+  const intialDdState = { course_id: false, city_id: false };
 
   const [formMessage, setFormMessage] = useState({ message: '', display: false });
 
@@ -40,10 +41,33 @@ const ReservePage = () => {
 
   const [formData, setFormData] = useState(initialFormState);
 
+  const [open, setOpen] = useState(intialDdState);
+
+  const toggleDropdownMenu = (keyName) => {
+    const newState = {};
+    newState[keyName] = !open[keyName];
+    setOpen((open) => ({ ...open, ...newState }));
+  };
+
   const handleFormChange = (key, id) => {
     const selection = {};
     selection[key] = id;
     setFormData((form) => ({ ...form, ...selection }));
+  };
+
+  const handleOutsideClick = (event) => {
+    const parentCourseId = document.querySelector('#course_id');
+    const parentCityId = document.querySelector('#city_id');
+    if (!parentCourseId.contains(event.target)) {
+      if (open.course_id) {
+        toggleDropdownMenu('course_id');
+      }
+    }
+    if (!parentCityId.contains(event.target)) {
+      if (open.city_id) {
+        toggleDropdownMenu('city_id');
+      }
+    }
   };
 
   const dateHandler = (event) => {
@@ -69,7 +93,7 @@ const ReservePage = () => {
   };
 
   return (
-    <div className={`${styles.formContainer}`}>
+    <div className={`${styles.formContainer}`} onClickCapture={handleOutsideClick}>
       <h1 className={`${styles.title}`}>Register for an Expert Class</h1>
       <p className={`${styles.para}`}>
         Register for an expert class with are world-reknown experts.
@@ -78,23 +102,24 @@ const ReservePage = () => {
       </p>
       <form onSubmit={formSubmitHandler} className={`${styles.form}`}>
         { formMessage.display && <SpeechBubble message={formMessage.message} />}
-
         <Dropdown
           valueName="title"
           keyName="course_id"
           items={classes}
           title="Choose a Course"
           handleFormChange={handleFormChange}
+          toggleDropdownMenu={toggleDropdownMenu}
+          open={open}
         />
-
         <Dropdown
           valueName="name"
           keyName="city_id"
           items={cities}
           title="Choose a City"
           handleFormChange={handleFormChange}
+          toggleDropdownMenu={toggleDropdownMenu}
+          open={open}
         />
-
         <input type="date" onChange={dateHandler} />
         <input type="submit" value="Register" className={`${styles.submitBtn}`} />
       </form>
