@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Carousel from '../../common/Carousel/Carousel';
-import { fetchClassesData, currentClasses, classesStateStatus } from './classesSlice';
+import {
+  fetchClassesData, currentClasses, classesStateStatus, classesErrorMessage,
+} from './classesSlice';
 import styles from './ClassesPage.module.css';
 
 const ClassesPage = () => {
   const dispatch = useDispatch();
   const classes = useSelector(currentClasses);
   const fetchStatus = useSelector(classesStateStatus);
+  const errorMessage = useSelector(classesErrorMessage);
 
   useEffect(() => {
-    if (fetchStatus === 'idle') {
+    if (fetchStatus === 'idle' || errorMessage === 'Error fetching data.') {
       dispatch(fetchClassesData());
     }
   }, []);
