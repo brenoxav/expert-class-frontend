@@ -50,7 +50,7 @@ function Dropdown({
       {open && (
         <ul className={styles.ddList}>
           {items.map((item) => (
-            <li className={styles.ddList} key={item.id}>
+            <li key={item.id}>
               <button type="button" onClick={() => handleOnClick(item)}>
                 <span>{item[valueName]}</span>
                 <span>{isItemInSelection(item) && 'Selected'}</span>
