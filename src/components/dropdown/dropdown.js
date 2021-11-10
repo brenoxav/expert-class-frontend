@@ -4,9 +4,8 @@ import styles from './dropdown.module.scss';
 
 function Dropdown({
   title, items = [], handleFormChange, valueName,
-  keyName,
+  keyName, toggleDropdownMenu, open,
 }) {
-  const [open, setOpen] = useState(false);
   const [selection, setSelection] = useState();
   const [dropdownTitle, setDropdownTitle] = useState(title);
 
@@ -17,11 +16,9 @@ function Dropdown({
     }
   }, [selection]);
 
-  const toggle = () => setOpen(!open);
-
   const handleOnClick = (item) => {
     setSelection(item);
-    toggle(!open);
+    toggleDropdownMenu(keyName);
   };
 
   const isItemInSelection = (item) => {
@@ -32,26 +29,26 @@ function Dropdown({
   };
 
   return (
-    <div className={styles.ddWrapper}>
+    <div id={keyName} className={styles.ddWrapper}>
       <div
         tabIndex={0}
         className={styles.ddHeader}
         role="button"
-        onKeyPress={() => toggle(!open)}
-        onClick={() => toggle(!open)}
+        onKeyPress={() => toggleDropdownMenu(keyName)}
+        onClick={() => toggleDropdownMenu(keyName)}
       >
         <div className={styles.ddHeader_title}>
           <p className={styles.ddHeader_title__bold}>{dropdownTitle}</p>
         </div>
         <div className={styles.ddHeader_icon}>
-          <p>{open ? <i className="far fa-caret-square-up" /> : <i className="far fa-caret-square-down" />}</p>
+          <p>{open[keyName] ? <i className="far fa-caret-square-up" /> : <i className="far fa-caret-square-down" />}</p>
         </div>
       </div>
-      {open && (
+      {open[keyName] && (
         <ul className={styles.ddList}>
           {items.map((item) => (
             <li key={item.id}>
-              <button type="button" onClick={() => handleOnClick(item)}>
+              <button id={`${keyName}-btn`} type="button" onClick={() => handleOnClick(item)}>
                 <span>{item[valueName]}</span>
                 <span>{isItemInSelection(item) && 'Selected'}</span>
               </button>
@@ -71,6 +68,11 @@ Dropdown.propTypes = {
   handleFormChange: PropTypes.func.isRequired,
   valueName: PropTypes.string.isRequired,
   keyName: PropTypes.string.isRequired,
+  toggleDropdownMenu: PropTypes.func.isRequired,
+  open: PropTypes.shape({
+    course_id: PropTypes.bool.isRequired,
+    city_id: PropTypes.bool.isRequired,
+  }).isRequired,
 };
 
 export default Dropdown;
