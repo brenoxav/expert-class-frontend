@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Reservations.module.css';
-import { fetchReservations, userReservations } from './reservationsSlice';
+import { fetchReservations, userReservations, reservationsState } from './reservationsSlice';
 
 export default function ReservationsPage() {
   const dispatch = useDispatch();
   const reservations = useSelector(userReservations);
+  const { status: reservationsStatus } = useSelector(reservationsState);
 
   useEffect(() => {
-    dispatch(fetchReservations());
+    if (reservationsStatus === 'idle') {
+      dispatch(fetchReservations());
+    }
   }, []);
 
   const ReservationsList = reservations.map((r) => (
