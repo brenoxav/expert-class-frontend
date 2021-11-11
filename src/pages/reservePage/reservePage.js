@@ -17,9 +17,6 @@ const ReservePage = () => {
   const { cities } = useSelector(citiesState);
   const { status: citiesStatus } = useSelector(citiesState);
   const { status: reservationsStatus } = useSelector(reservationsState);
-  const intialDdState = { course_id: false, city_id: false };
-
-  const [formMessage, setFormMessage] = useState({ message: '', display: false, type: null });
 
   useEffect(() => {
     if (reservationsStatus === 'idle') {
@@ -39,10 +36,20 @@ const ReservePage = () => {
     city_id: null,
     date: null,
   };
+  const initialFormMessage = { message: '', display: false, type: null };
+  const intialDdState = { course_id: false, city_id: false };
 
+  const [formMessage, setFormMessage] = useState(initialFormMessage);
   const [formData, setFormData] = useState(initialFormState);
-
   const [open, setOpen] = useState(intialDdState);
+
+  const flashMessageTimeout = () => setTimeout(() => setFormMessage(initialFormMessage), 4000);
+
+  useEffect(() => {
+    if (formMessage.display) {
+      flashMessageTimeout();
+    }
+  }, [formMessage]);
 
   const toggleDropdownMenu = (keyName) => {
     const newState = {};
@@ -113,7 +120,7 @@ const ReservePage = () => {
       </p>
       <form onSubmit={formSubmitHandler} className={`${styles.form}`}>
         { formMessage.display
-          && <FlashMessage message={formMessage.message} type={formMessage.type} />}
+        && <FlashMessage message={formMessage.message} type={formMessage.type} />}
 
         <Dropdown
           valueName="title"
