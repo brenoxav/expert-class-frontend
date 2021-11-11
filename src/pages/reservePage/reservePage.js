@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { unwrapResult } from '@reduxjs/toolkit';
 import styles from './reservePage.module.scss';
 import { currentUser } from '../../auth/sessionSlice';
 import { reserveCourse, fetchReservations, reservationsState } from '../reservationsPage/reservationsPageSlice';
 import { fetchCities, citiesState } from './citiesSlice';
 import { currentClasses, fetchClassesData, classesStateStatus } from '../classesPage/classesPageSlice';
 import Dropdown from '../../components/dropdown/dropdown';
-import SpeechBubble from '../../common/speechBubble/speechBubble';
+import SpeechBubble from '../../components/speechBubble/speechBubble';
 
 const ReservePage = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const ReservePage = () => {
   const { status: reservationsStatus } = useSelector(reservationsState);
   const intialDdState = { course_id: false, city_id: false };
 
-  const [formMessage, setFormMessage] = useState({ message: '', display: false });
+  const [formMessage, setFormMessage] = useState({ message: '', display: false, type: null });
 
   useEffect(() => {
     if (reservationsStatus === 'idle') {
@@ -82,13 +83,23 @@ const ReservePage = () => {
       emptyField = emptyField.replace(/_[a-zA-Z]*/, '');
       const message = `Please select a ${emptyField}.`;
 
-      setFormMessage({ message, display: true });
+      setFormMessage({ message, display: true, type: 'alert' });
     } else if (new Date(formData.date) < new Date()) {
-      setFormMessage({ message: 'Please select a valid date.', display: true });
+      setFormMessage({ message: 'Please select a valid date.', display: true, type: 'alert' });
     } else {
-      setFormMessage({ message: '', display: false });
-      await dispatch(reserveCourse(formData));
-      setFormData(initialFormState);
+      try {
+        const resultAction = await dispatch(reserveCourse(formData));
+        const originalPromiseResult = unwrapResult(resultAction);
+        const { status, message } = originalPromiseResult;
+        if (status === 200) {
+          setFormMessage({ message, display: true, type: 'success' });
+          setFormData(initialFormState);
+        } else {
+          setFormMessage({ message, display: true, type: 'alert' });
+        }
+      } catch (rejectedValueOrSerializedError) {
+        setFormMessage({ message: 'There was a problem connecting with the server. Please try again in a moment', display: true, type: 'alert' });
+      }
     }
   };
 
@@ -101,7 +112,9 @@ const ReservePage = () => {
         breakdancing to sculpting. Sign up today!
       </p>
       <form onSubmit={formSubmitHandler} className={`${styles.form}`}>
-        { formMessage.display && <SpeechBubble message={formMessage.message} />}
+        { formMessage.display
+          && <SpeechBubble message={formMessage.message} type={formMessage.type} />}
+
         <Dropdown
           valueName="title"
           keyName="course_id"

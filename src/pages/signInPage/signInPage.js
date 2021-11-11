@@ -4,7 +4,7 @@ import { useHistory, useLocation, Redirect } from 'react-router-dom';
 import { unwrapResult } from '@reduxjs/toolkit';
 import styles from './signInPage.module.css';
 import { loginUser, loggedInStatus, authErrors } from '../../auth/sessionSlice';
-import SpeechBubble from '../../common/speechBubble/speechBubble';
+import SpeechBubble from '../../components/speechBubble/speechBubble';
 
 function SignInPage() {
   const dispatch = useDispatch();
