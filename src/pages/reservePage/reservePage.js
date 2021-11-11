@@ -42,6 +42,7 @@ const ReservePage = () => {
   const [formMessage, setFormMessage] = useState(initialFormMessage);
   const [formData, setFormData] = useState(initialFormState);
   const [open, setOpen] = useState(intialDdState);
+  const [resetForm, setResetForm] = useState(false);
 
   const flashMessageTimeout = () => setTimeout(() => setFormMessage(initialFormMessage), 4000);
 
@@ -83,6 +84,22 @@ const ReservePage = () => {
     setFormData((form) => ({ ...form, date }));
   };
 
+  const resetDate = () => {
+    const dateInput = document.getElementById('datePicker');
+    dateInput.value = '';
+
+    // prevent error on older browsers (aka IE8)
+    if (dateInput.type === 'date') {
+      dateInput.type = 'text';
+      dateInput.type = 'date';
+    }
+  };
+
+  const toggleResetForm = () => {
+    setResetForm(!resetForm);
+    resetDate();
+  };
+
   const formSubmitHandler = async (event) => {
     event.preventDefault();
     let emptyField = Object.keys(formData).find((key) => !formData[key]);
@@ -101,6 +118,7 @@ const ReservePage = () => {
         if (status === 200) {
           setFormMessage({ message, display: true, type: 'success' });
           setFormData(initialFormState);
+          toggleResetForm();
         } else {
           setFormMessage({ message, display: true, type: 'alert' });
         }
@@ -130,6 +148,8 @@ const ReservePage = () => {
           handleFormChange={handleFormChange}
           toggleDropdownMenu={toggleDropdownMenu}
           open={open}
+          reset={resetForm}
+          toggleResetForm={toggleResetForm}
         />
         <Dropdown
           valueName="name"
@@ -139,8 +159,10 @@ const ReservePage = () => {
           handleFormChange={handleFormChange}
           toggleDropdownMenu={toggleDropdownMenu}
           open={open}
+          reset={resetForm}
+          toggleResetForm={toggleResetForm}
         />
-        <input type="date" onChange={dateHandler} />
+        <input id="datePicker" type="date" onChange={dateHandler} />
         <input type="submit" value="Register" className={`${styles.submitBtn}`} />
       </form>
     </div>
