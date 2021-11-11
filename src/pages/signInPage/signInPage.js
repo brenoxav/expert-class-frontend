@@ -4,7 +4,7 @@ import { useHistory, useLocation, Redirect } from 'react-router-dom';
 import { unwrapResult } from '@reduxjs/toolkit';
 import styles from './signInPage.module.css';
 import { loginUser, loggedInStatus, authErrors } from '../../auth/sessionSlice';
-import SpeechBubble from '../../components/speechBubble/speechBubble';
+import FlashMessage from '../../components/flashMessage/flashMessage';
 
 function SignInPage() {
   const dispatch = useDispatch();
@@ -44,7 +44,7 @@ function SignInPage() {
 
   return (
     <div className={styles.mainContainer}>
-      { formMessage.display && <SpeechBubble message={formMessage.message} /> }
+      { formMessage.display && <FlashMessage message={formMessage.message} /> }
 
       <div className={styles.innerContainer}>
         <h2 className={styles.title}>Sign In</h2>

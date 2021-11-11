@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import styles from './signUpPage.module.css';
 import { signUpUser, loggedInStatus, authErrors } from '../../auth/sessionSlice';
-import SpeechBubble from '../../components/speechBubble/speechBubble';
+import FlashMessage from '../../components/flashMessage/flashMessage';
 
 function SignUpPage() {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ function SignUpPage() {
 
   return (
     <div className={styles.mainContainer}>
-      { formMessage.display && <SpeechBubble message={formMessage.message} /> }
+      { formMessage.display && <FlashMessage message={formMessage.message} /> }
 
       <div className={styles.innerContainer}>
         <h2 className={styles.title}>Sign Up</h2>

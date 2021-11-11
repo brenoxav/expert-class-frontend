@@ -7,7 +7,7 @@ import { reserveCourse, fetchReservations, reservationsState } from '../reservat
 import { fetchCities, citiesState } from './citiesSlice';
 import { currentClasses, fetchClassesData, classesStateStatus } from '../classesPage/classesPageSlice';
 import Dropdown from '../../components/dropdown/dropdown';
-import SpeechBubble from '../../components/speechBubble/speechBubble';
+import FlashMessage from '../../components/flashMessage/flashMessage';
 
 const ReservePage = () => {
   const dispatch = useDispatch();
@@ -113,7 +113,7 @@ const ReservePage = () => {
       </p>
       <form onSubmit={formSubmitHandler} className={`${styles.form}`}>
         { formMessage.display
-          && <SpeechBubble message={formMessage.message} type={formMessage.type} />}
+          && <FlashMessage message={formMessage.message} type={formMessage.type} />}
 
         <Dropdown
           valueName="title"

@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
-import styles from './speechBubble.module.scss';
+import styles from './flashMessage.module.scss';
 
-const SpeechBubble = ({ message, type }) => (
+const FlashMessage = ({ message, type }) => (
   <div className={[styles.speech, styles[type]].join(' ')}>
     {message}
   </div>
 );
 
-SpeechBubble.propTypes = {
+FlashMessage.propTypes = {
   message: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
 };
 
-export default SpeechBubble;
+export default FlashMessage;
