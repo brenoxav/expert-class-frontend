@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import styles from './dropdown.module.scss';
 
 function Dropdown({
-  title, items = [], handleFormChange, valueName,
-  keyName, toggleDropdownMenu, open,
+  title, items, handleFormChange, valueName,
+  keyName, toggleDropdownMenu, open, reset, toggleResetForm,
 }) {
-  const [selection, setSelection] = useState();
+  const [selection, setSelection] = useState('');
   const [dropdownTitle, setDropdownTitle] = useState(title);
 
   useEffect(() => {
@@ -15,6 +15,14 @@ function Dropdown({
       setDropdownTitle(selection[valueName]);
     }
   }, [selection]);
+
+  useEffect(() => {
+    if (reset) {
+      setSelection('');
+      setDropdownTitle(title);
+      toggleResetForm();
+    }
+  }, [reset]);
 
   const handleOnClick = (item) => {
     setSelection(item);
@@ -73,6 +81,8 @@ Dropdown.propTypes = {
     course_id: PropTypes.bool.isRequired,
     city_id: PropTypes.bool.isRequired,
   }).isRequired,
+  reset: PropTypes.bool.isRequired,
+  toggleResetForm: PropTypes.func.isRequired,
 };
 
 export default Dropdown;

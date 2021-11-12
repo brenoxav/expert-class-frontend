@@ -3,7 +3,6 @@
   font-size: 1.1em;
   color: #fff;
   position: absolute;
-  background: #a53d38;
   padding: 20px;
   top: 0;
   left: 0;
@@ -11,8 +10,10 @@
   text-align: center;
 }
 
-.speech::after {
-  position: absolute;
-  content: '';
-  border: 20px solid transparent;
+.alert {
+  background-color: #a53d38;
+}
+
+.success {
+  background-color: green;
 }

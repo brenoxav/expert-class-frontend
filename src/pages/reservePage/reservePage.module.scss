@@ -36,6 +36,11 @@
   padding: 0 50px;
 }
 
+.inputWrapper {
+  position: relative;
+  margin-bottom: 40px;
+}
+
 input[type=date] {
   position: relative;
   background-color: #97bf0f;
@@ -46,7 +51,6 @@ input[type=date] {
   box-shadow: 0 0.125rem rgba(0, 0, 0, 0.075);
   width: 300px;
   font-size: 16px;
-  margin-bottom: 40px;
   display: flex;
   justify-content: flex-end;
 }

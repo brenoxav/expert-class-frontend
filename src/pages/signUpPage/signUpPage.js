@@ -1,25 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
+import { unwrapResult } from '@reduxjs/toolkit';
 import styles from './signUpPage.module.css';
 import { signUpUser, loggedInStatus, authErrors } from '../../auth/sessionSlice';
-import SpeechBubble from '../../common/speechBubble/speechBubble';
+import FlashMessage from '../../components/flashMessage/flashMessage';
 
 function SignUpPage() {
   const dispatch = useDispatch();
   const loggedIn = useSelector(loggedInStatus);
   const error = useSelector(authErrors);
+  const history = useHistory();
+  const initialFormData = { username: '', name: '' };
+  const initialFormMessage = { message: '', display: false, type: null };
 
-  const [formData, setFormData] = useState({ username: '', name: '' });
-  const [formMessage, setFormMessage] = useState({ message: error, display: false });
+  const [formData, setFormData] = useState(initialFormData);
+  const [formMessage, setFormMessage] = useState(initialFormMessage);
 
   if (loggedIn) {
     return (<Redirect to="classes" />);
   }
 
+  const flashMessageTimeout = () => setTimeout(() => setFormMessage(initialFormMessage), 4000);
+
   useEffect(() => {
     if (error) {
-      setFormMessage({ message: error, display: true });
+      setFormMessage({ message: error, display: true, type: 'alert' });
+      flashMessageTimeout();
     }
   }, [error]);
 
@@ -31,14 +38,23 @@ function SignUpPage() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(signUpUser(formData));
+    try {
+      const resultAction = await dispatch(signUpUser(formData));
+      const originalPromiseResult = unwrapResult(resultAction);
+      if (originalPromiseResult.status === 'created') {
+        history.replace('classes');
+      }
+    } catch (rejectedValueOrSerializedError) {
+      history.replace('/');
+    }
   };
 
   return (
     <div className={styles.mainContainer}>
-      { formMessage.display && <SpeechBubble message={formMessage.message} /> }
+      { formMessage.display
+      && <FlashMessage message={formMessage.message} type={formMessage.type} /> }
 
       <div className={styles.innerContainer}>
         <h2 className={styles.title}>Sign Up</h2>

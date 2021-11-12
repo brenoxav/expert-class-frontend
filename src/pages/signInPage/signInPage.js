@@ -4,26 +4,30 @@ import { useHistory, useLocation, Redirect } from 'react-router-dom';
 import { unwrapResult } from '@reduxjs/toolkit';
 import styles from './signInPage.module.css';
 import { loginUser, loggedInStatus, authErrors } from '../../auth/sessionSlice';
-import SpeechBubble from '../../common/speechBubble/speechBubble';
+import FlashMessage from '../../components/flashMessage/flashMessage';
 
 function SignInPage() {
   const dispatch = useDispatch();
   const loggedIn = useSelector(loggedInStatus);
-  const history = useHistory();
   const error = useSelector(authErrors);
+  const history = useHistory();
   const { state } = useLocation();
   const redirectPath = state?.from || 'classes';
+  const initialFormMessage = { message: '', display: false, type: null };
 
   const [formData, setFormData] = useState({ username: '' });
-  const [formMessage, setFormMessage] = useState({ message: error, display: false });
+  const [formMessage, setFormMessage] = useState(initialFormMessage);
 
   if (loggedIn) {
     return (<Redirect to="classes" />);
   }
 
+  const flashMessageTimeout = () => setTimeout(() => setFormMessage(initialFormMessage), 4000);
+
   useEffect(() => {
     if (error) {
-      setFormMessage({ message: error, display: true });
+      setFormMessage({ message: error, display: true, type: 'alert' });
+      flashMessageTimeout();
     }
   }, [error]);
 
@@ -38,13 +42,14 @@ function SignInPage() {
         history.replace(redirectPath);
       }
     } catch (rejectedValueOrSerializedError) {
-      setFormMessage({ message: 'There was an error loggin in. Please try again in a moment.', display: true });
+      history.replace('/');
     }
   };
 
   return (
     <div className={styles.mainContainer}>
-      { formMessage.display && <SpeechBubble message={formMessage.message} /> }
+      { formMessage.display
+      && <FlashMessage message={formMessage.message} type={formMessage.type} /> }
 
       <div className={styles.innerContainer}>
         <h2 className={styles.title}>Sign In</h2>
