@@ -6,7 +6,7 @@ function Dropdown({
   title, items, handleFormChange, valueName,
   keyName, toggleDropdownMenu, open, reset, toggleResetForm,
 }) {
-  const [selection, setSelection] = useState(null);
+  const [selection, setSelection] = useState('');
   const [dropdownTitle, setDropdownTitle] = useState(title);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ function Dropdown({
 
   useEffect(() => {
     if (reset) {
-      setSelection(null);
+      setSelection('');
       setDropdownTitle(title);
       toggleResetForm();
     }

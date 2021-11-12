@@ -8,6 +8,7 @@ import { fetchCities, citiesState } from './citiesSlice';
 import { currentClasses, fetchClassesData, classesStateStatus } from '../classesPage/classesPageSlice';
 import Dropdown from '../../components/dropdown/dropdown';
 import FlashMessage from '../../components/flashMessage/flashMessage';
+import FormValidation from '../../components/formValidation/formValidation';
 
 const ReservePage = () => {
   const dispatch = useDispatch();
@@ -37,20 +38,28 @@ const ReservePage = () => {
     date: null,
   };
   const initialFormMessage = { message: '', display: false, type: null };
+  const initialValidationMessage = { message: '', display: false, id: null };
   const intialDdState = { course_id: false, city_id: false };
 
   const [formMessage, setFormMessage] = useState(initialFormMessage);
+  const [validationMessage, setValidationMessage] = useState(initialValidationMessage);
   const [formData, setFormData] = useState(initialFormState);
   const [open, setOpen] = useState(intialDdState);
   const [resetForm, setResetForm] = useState(false);
 
   const flashMessageTimeout = () => setTimeout(() => setFormMessage(initialFormMessage), 4000);
+  const formValidationTimeout = () => {
+    setTimeout(() => setValidationMessage(initialValidationMessage), 3000);
+  };
 
   useEffect(() => {
     if (formMessage.display) {
       flashMessageTimeout();
     }
-  }, [formMessage]);
+    if (validationMessage.display) {
+      formValidationTimeout();
+    }
+  }, [formMessage, validationMessage]);
 
   const toggleDropdownMenu = (keyName) => {
     const newState = {};
@@ -84,32 +93,20 @@ const ReservePage = () => {
     setFormData((form) => ({ ...form, date }));
   };
 
-  const resetDate = () => {
-    const dateInput = document.getElementById('datePicker');
-    dateInput.value = '';
-
-    // prevent error on older browsers (aka IE8)
-    if (dateInput.type === 'date') {
-      dateInput.type = 'text';
-      dateInput.type = 'date';
-    }
-  };
-
   const toggleResetForm = () => {
     setResetForm(!resetForm);
-    resetDate();
   };
 
   const formSubmitHandler = async (event) => {
     event.preventDefault();
-    let emptyField = Object.keys(formData).find((key) => !formData[key]);
+    const emptyField = Object.keys(formData).find((key) => !formData[key]);
     if (emptyField) {
-      emptyField = emptyField.replace(/_[a-zA-Z]*/, '');
-      const message = `Please select a ${emptyField}.`;
+      const field = emptyField.replace(/_[a-zA-Z]*/, '');
+      const message = `Please select a ${field}.`;
 
-      setFormMessage({ message, display: true, type: 'alert' });
+      setValidationMessage({ message, display: true, id: emptyField });
     } else if (new Date(formData.date) < new Date()) {
-      setFormMessage({ message: 'Please select a valid date.', display: true, type: 'alert' });
+      setValidationMessage({ message: 'Please select a valid date.', display: true, id: 'date' });
     } else {
       try {
         const resultAction = await dispatch(reserveCourse(formData));
@@ -119,6 +116,7 @@ const ReservePage = () => {
           setFormMessage({ message, display: true, type: 'success' });
           setFormData(initialFormState);
           toggleResetForm();
+          event.target.reset();
         } else {
           setFormMessage({ message, display: true, type: 'alert' });
         }
@@ -140,29 +138,46 @@ const ReservePage = () => {
         { formMessage.display
         && <FlashMessage message={formMessage.message} type={formMessage.type} />}
 
-        <Dropdown
-          valueName="title"
-          keyName="course_id"
-          items={classes}
-          title="Choose a Course"
-          handleFormChange={handleFormChange}
-          toggleDropdownMenu={toggleDropdownMenu}
-          open={open}
-          reset={resetForm}
-          toggleResetForm={toggleResetForm}
-        />
-        <Dropdown
-          valueName="name"
-          keyName="city_id"
-          items={cities}
-          title="Choose a City"
-          handleFormChange={handleFormChange}
-          toggleDropdownMenu={toggleDropdownMenu}
-          open={open}
-          reset={resetForm}
-          toggleResetForm={toggleResetForm}
-        />
-        <input id="datePicker" type="date" onChange={dateHandler} />
+        <div className={styles.inputWrapper}>
+          <Dropdown
+            valueName="title"
+            keyName="course_id"
+            items={classes}
+            title="Choose a Course"
+            handleFormChange={handleFormChange}
+            toggleDropdownMenu={toggleDropdownMenu}
+            open={open}
+            reset={resetForm}
+            toggleResetForm={toggleResetForm}
+            validationMessage={validationMessage}
+          />
+          { validationMessage.display && validationMessage.id === 'course_id'
+            && <FormValidation message={validationMessage.message} />}
+        </div>
+
+        <div className={styles.inputWrapper}>
+          <Dropdown
+            valueName="name"
+            keyName="city_id"
+            items={cities}
+            title="Choose a City"
+            handleFormChange={handleFormChange}
+            toggleDropdownMenu={toggleDropdownMenu}
+            open={open}
+            reset={resetForm}
+            toggleResetForm={toggleResetForm}
+            validationMessage={validationMessage}
+          />
+          { validationMessage.display && validationMessage.id === 'city_id'
+            && <FormValidation message={validationMessage.message} />}
+        </div>
+
+        <div className={styles.inputWrapper}>
+          <input id="datePicker" type="date" onChange={dateHandler} />
+          { validationMessage.display && validationMessage.id === 'date'
+          && <FormValidation message={validationMessage.message} />}
+        </div>
+
         <input type="submit" value="Register" className={`${styles.submitBtn}`} />
       </form>
     </div>
