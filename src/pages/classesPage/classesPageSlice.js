@@ -39,15 +39,7 @@ export const addClass = createAsyncThunk(
 export const removeClass = createAsyncThunk(
   'classes/removeClass', async (id, { rejectWithValue }) => {
     try {
-      let response = await expertClassApi.delete(`courses/${id}`);
-      // if (response.data.status === 200) {
-      //   try {
-      //     response = await expertClassApi.get('courses');
-      //     return response.data;
-      //   } catch (error) {
-      //     return rejectWithValue({ error: error.message });
-      //   }
-      // }
+      const response = await expertClassApi.delete(`courses/${id}`);
       return response.data;
     } catch (error) {
       return rejectWithValue({ error: error.message });

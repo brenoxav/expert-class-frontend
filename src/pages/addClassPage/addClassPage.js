@@ -84,7 +84,7 @@ const AddClassPage = () => {
   return (
     <>
       <div className="add-class-container">
-      { formMessage.display
+        { formMessage.display
           && <FlashMessage message={formMessage.message} type={formMessage.type} />}
 
         <div className="main-container">
