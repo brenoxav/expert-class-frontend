@@ -10,12 +10,6 @@
   text-align: center;
 }
 
-.speech::after {
-  position: absolute;
-  content: '';
-  border: 20px solid transparent;
-}
-
 .alert {
   background-color: #a53d38;
 }
