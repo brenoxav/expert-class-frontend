@@ -15,6 +15,7 @@ import ClassDetails from './pages/classDetailsPage/classDetailsPage';
 import SignInPage from './pages/signInPage/signInPage';
 import SignUpPage from './pages/signUpPage/signUpPage';
 import PrivateRoute from './components/privateRoute/privateRoute';
+import LoadAnimation from './components/loadAnimation/loadAnimation';
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,14 @@ function App() {
       dispatch(loginStatus());
     }
   }, []);
+
+  if (sessionStatus === 'loading') {
+    return (
+      <section className="spinner-container">
+        <LoadAnimation />
+      </section>
+    );
+  }
 
   return (
     (sessionStatus === 'fulfilled')
