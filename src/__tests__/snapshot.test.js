@@ -1,7 +1,7 @@
 import React from 'react';
 import TestRenderer from 'react-test-renderer';
 import { act, render } from '@testing-library/react';
-import { Provider, useSelector  } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import ReactRouter from 'react-router';
 import {
   HashRouter as Router, Switch, Route,
@@ -18,9 +18,9 @@ import ReservationsPage from '../pages/reservationsPage/reservationsPage';
 import AddClassPage from '../pages/addClassPage/addClassPage';
 import RemoveClassPage from '../pages/removeClassPage/removeClassPage';
 
-jest.mock("react-redux", () => ({
-  ...jest.requireActual("react-redux"),
-  useSelector: jest.fn()
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
+  useSelector: jest.fn(),
 }));
 
 describe('App', () => {
@@ -70,50 +70,47 @@ describe('SignUp Page', () => {
 });
 
 describe('Classes Page', () => {
-
   beforeEach(() => {
     const mockAppState = {
       classes: {
         classes: [
           {
-            course_image_url: "https://res.cloudinary.com/hhh6cnm2e/image/upload/11ijaidwrn9s7s5gogab9j6wsmnz.jpeg",
+            course_image_url: 'https://res.cloudinary.com/hhh6cnm2e/image/upload/11ijaidwrn9s7s5gogab9j6wsmnz.jpeg',
 
-            created_at: "2021-11-11T04:20:38.165Z",
+            created_at: '2021-11-11T04:20:38.165Z',
 
-            description: "Learn how to draft professional essays",
+            description: 'Learn how to draft professional essays',
 
             duration: 4,
 
             id: 19,
 
-            instructor: "Jeremy Campbell",
+            instructor: 'Jeremy Campbell',
 
-            title: "English Composition",
+            title: 'English Composition',
 
-            updated_at: "2021-11-11T04:20:38.181Z",
-          }
+            updated_at: '2021-11-11T04:20:38.181Z',
+          },
         ],
-        status: "fulfilled",
-        error: null
+        status: 'fulfilled',
+        error: null,
       },
 
       users: {
         user: {
           id: 39,
-          username: "arturo_coder",
-          name: "Arturo",
-          created_at: "2021-11-05T23:43:07.938Z",
-          updated_at: "2021-11-05T23:43:07.938Z"
+          username: 'arturo_coder',
+          name: 'Arturo',
+          created_at: '2021-11-05T23:43:07.938Z',
+          updated_at: '2021-11-05T23:43:07.938Z',
         },
         logged_in: true,
-        status: "fulfilled",
-        error: null
+        status: 'fulfilled',
+        error: null,
       },
-    }
+    };
 
-    useSelector.mockImplementation(callback => {
-      return callback(mockAppState);
-    });
+    useSelector.mockImplementation((callback) => callback(mockAppState));
 
     TestRenderer.create(
       <Provider store={store}>
@@ -141,48 +138,46 @@ describe('Class Details Page', () => {
       classes: {
         classes: [
           {
-            course_image_url: "https://res.cloudinary.com/hhh6cnm2e/image/upload/11ijaidwrn9s7s5gogab9j6wsmnz.jpeg",
+            course_image_url: 'https://res.cloudinary.com/hhh6cnm2e/image/upload/11ijaidwrn9s7s5gogab9j6wsmnz.jpeg',
 
-            created_at: "2021-11-11T04:20:38.165Z",
+            created_at: '2021-11-11T04:20:38.165Z',
 
-            description: "Learn how to draft professional essays",
+            description: 'Learn how to draft professional essays',
 
             duration: 4,
 
             id: 19,
 
-            instructor: "Jeremy Campbell",
+            instructor: 'Jeremy Campbell',
 
-            title: "English Composition",
+            title: 'English Composition',
 
-            updated_at: "2021-11-11T04:20:38.181Z",
-          }
+            updated_at: '2021-11-11T04:20:38.181Z',
+          },
         ],
-        status: "fulfilled",
-        error: null
+        status: 'fulfilled',
+        error: null,
       },
       classDetails: {
         classObj: [],
         error: null,
-        status: "idle"
+        status: 'idle',
       },
       users: {
         user: {
           id: 39,
-          username: "arturo_coder",
-          name: "Arturo",
-          created_at: "2021-11-05T23:43:07.938Z",
-          updated_at: "2021-11-05T23:43:07.938Z"
+          username: 'arturo_coder',
+          name: 'Arturo',
+          created_at: '2021-11-05T23:43:07.938Z',
+          updated_at: '2021-11-05T23:43:07.938Z',
         },
         logged_in: true,
-        status: "fulfilled",
-        error: null
+        status: 'fulfilled',
+        error: null,
       },
-    }
+    };
 
-    useSelector.mockImplementation(callback => {
-      return callback(mockAppState);
-    });
+    useSelector.mockImplementation((callback) => callback(mockAppState));
 
     TestRenderer.create(
       <Provider store={store}>
@@ -246,4 +241,3 @@ describe('Class Details Page', () => {
 //     expect(page).toMatchSnapshot();
 //   });
 // });
-
