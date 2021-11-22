@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RemoveClassPage Renders the page 1`] = `
+<div
+  className="remove-class-container"
+>
+  <div
+    className="heading"
+  >
+    Remove Class
+  </div>
+  <table
+    className="reservations-table"
+  >
+    <thead>
+      <tr>
+        <th>
+          Title
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Instructor
+        </th>
+        <th>
+          Duration
+        </th>
+        <th>
+          Action
+        </th>
+      </tr>
+    </thead>
+    <tbody />
+  </table>
+</div>
+`;
