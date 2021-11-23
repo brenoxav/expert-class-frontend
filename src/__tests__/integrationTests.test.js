@@ -7,8 +7,6 @@ import App from '../App';
 afterEach(cleanup);
 
 describe('App', () => {
-  afterEach(cleanup);
-
   test('Shows loading animation while waiting for API response', () => {
     const { getByTestId } = render(<App />);
     expect(getByTestId('spinnerSpan').textContent).toBe('Loading...');
