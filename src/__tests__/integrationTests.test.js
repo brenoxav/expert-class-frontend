@@ -124,12 +124,12 @@ describe('App', () => {
       </HashRouter>, { initialState: { users: { ...customState.users } } },
     );
 
+    expect(await findByText('English Composition')).toBeInTheDocument();
+    expect(await findByText('Jeremy Campbell')).toBeInTheDocument();
+
     // Landing Page elements should not be here
     const landingPageText = await queryByText('OUR EXPERT CLASSES');
     expect(landingPageText).not.toBeInTheDocument();
-
-    expect(await findByText('English Composition')).toBeInTheDocument();
-    expect(await findByText('Jeremy Campbell')).toBeInTheDocument();
   });
 
   test('When user signs in he is taken to previously visited page', async () => {
