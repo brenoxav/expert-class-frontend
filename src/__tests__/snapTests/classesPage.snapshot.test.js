@@ -6,8 +6,8 @@ import ClassesPage from '../../pages/classesPage/classesPage';
 afterEach(cleanup);
 
 describe('Classes Page', () => {
-  test('Renders the page', () => {
-    const app = renderWithRedux(<ClassesPage />).toJSON();
+  test('Renders the page', async () => {
+    const app = await renderWithRedux(<ClassesPage />).toJSON();
     expect(app).toMatchSnapshot();
   });
 });

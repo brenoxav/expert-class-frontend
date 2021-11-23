@@ -29,7 +29,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!ui-core)/\" --env=jsdom",
-    "watch": "react-scripts test --watch",
+    "watch": "react-scripts test --watch --transformIgnorePatterns \"node_modules/(?!ui-core)/\" --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

@@ -18,14 +18,15 @@ const mockApiResponses = {
     },
   },
   signedIn: {
-    logged_in: true,
+    /* logged_in: true,
     user: {
       id: 39,
       username: 'john_doe',
       name: 'john',
       created_at: '2020-11-05T23:43:07.938Z',
       updated_at: '2020-11-05T23:43:07.938Z',
-    },
+    }, */
+    status: 401,
   },
   classes: [
     {
@@ -47,6 +48,32 @@ const mockApiResponses = {
       created_at: '2021-11-11T14:20:44.084Z',
       updated_at: '2021-11-11T14:20:44.097Z',
       course_image_url: './images/fakeExpertPic2.jpeg',
+    },
+  ],
+  cities: [
+    {
+      id: 33,
+      name: 'Ciudad de Mexico, Mexico',
+      created_at: '2021-11-05T23:43:07.943Z',
+      updated_at: '2021-11-05T23:43:07.943Z',
+    },
+    {
+      id: 34,
+      name: 'New York, USA',
+      created_at: '2021-11-05T23:43:07.953Z',
+      updated_at: '2021-11-05T23:43:07.953Z',
+    },
+    {
+      id: 35,
+      name: 'Abuja, Nigeria',
+      created_at: '2021-11-05T23:43:07.959Z',
+      updated_at: '2021-11-05T23:43:07.959Z',
+    },
+    {
+      id: 36,
+      name: 'São Paulo, Brasil',
+      created_at: '2021-11-05T23:43:07.965Z',
+      updated_at: '2021-11-05T23:43:07.965Z',
     },
   ],
 };
@@ -279,6 +306,10 @@ const handlers = [
   rest.get(`${baseURL}courses`, (req, res, ctx) => res(
     ctx.status(200),
     ctx.json(mockApiResponses.classes),
+  )),
+  rest.get(`${baseURL}cities`, (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json(mockApiResponses.cities),
   )),
   /* rest.get(countriesUrl, (req, res, ctx) => res(
     ctx.status(200),
