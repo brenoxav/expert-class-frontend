@@ -13,8 +13,6 @@ function SignInPage() {
   const history = useHistory();
   const location = useLocation();
   const redirectPath = location.state?.from || 'classes';
-  // const location = useLocation();
-  console.log(location);
   const initialFormMessage = { message: '', display: false, type: null };
 
   const [formData, setFormData] = useState({ username: '' });
