@@ -66,7 +66,7 @@ describe('App', () => {
     expect(await findByText('Jeremy Campbell')).toBeInTheDocument();
   });
 
-  test('When user logsout he is taken to Landing Page', async () => {
+  test('When user logs out he is taken to Landing Page', async () => {
     jest.spyOn(ReactRouter, 'useLocation').mockReturnValue({
       pathname: '/sign-in',
       search: '',

@@ -81,7 +81,7 @@ const mockApiResponses = {
   ],
   reservations: [
     {
-      user: 'Arturo',
+      user: 'john',
       course: 'Singing',
       city: 'New York, USA',
       date: '2021-11-13',
@@ -90,7 +90,7 @@ const mockApiResponses = {
       updated_at: '2021-11-11T14:21:26.409Z',
     },
     {
-      user: 'Arturo',
+      user: 'john',
       course: 'Yoga',
       city: 'New York, USA',
       date: '2021-11-14',
@@ -99,8 +99,8 @@ const mockApiResponses = {
       updated_at: '2021-11-12T16:04:34.791Z',
     },
     {
-      user: 'Arturo',
-      course: 'Yoga',
+      user: 'john',
+      course: 'Photography',
       city: 'Abuja, Nigeria',
       date: '2021-11-20',
       id: 41,
