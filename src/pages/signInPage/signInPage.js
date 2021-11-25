@@ -11,8 +11,8 @@ function SignInPage() {
   const loggedIn = useSelector(loggedInStatus);
   const error = useSelector(authErrors);
   const history = useHistory();
-  const { state } = useLocation();
-  const redirectPath = state?.from || 'classes';
+  const location = useLocation();
+  const redirectPath = location.state?.from || 'classes';
   const initialFormMessage = { message: '', display: false, type: null };
 
   const [formData, setFormData] = useState({ username: '' });

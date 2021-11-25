@@ -4,6 +4,8 @@ import { render as rtlRender } from '@testing-library/react';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import TestRenderer from 'react-test-renderer';
+import thunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
 import classesReducer from '../pages/classesPage/classesPageSlice';
 import reservationsReducer from '../pages/reservationsPage/reservationsPageSlice';
 import sessionReducer from '../auth/sessionSlice';
@@ -25,7 +27,27 @@ const rootReducer = (state, action) => {
   return appReducer(state, action);
 };
 
-function render(ui,
+const render = (
+  ui,
+  {
+    initialState,
+    store = createStore(
+      rootReducer,
+      initialState,
+      applyMiddleware(thunk),
+    ),
+    ...renderOptions
+  } = {},
+) => {
+  const Wrapper = ({ children }) => (
+    <Provider store={store}>{children}</Provider>
+  );
+
+  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
+};
+
+const renderWithRedux = (
+  component,
   {
     initialState,
     store = configureStore({
@@ -33,22 +55,8 @@ function render(ui,
       middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
       initialState,
     }),
-    ...renderOptions
-  } = {}) {
-  function Wrapper({ children }) {
-    return <Provider store={store}>{children}</Provider>;
-  }
-  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
-}
-
-const renderWithRedux = (component,
-  {
-    initialState, store = configureStore({
-      reducer: rootReducer,
-      middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
-      initialState,
-    }),
-  } = {}) => ({
+  } = {},
+) => ({
   ...TestRenderer.create(<Provider store={store}>{component}</Provider>),
 });
 
