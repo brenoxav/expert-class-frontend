@@ -2,9 +2,6 @@ import { rest } from 'msw';
 
 const baseURL = 'https://expert-class-backend.herokuapp.com/api/v1/';
 
-// const gniUrl = 'http://api.worldbank.org/v2/country/all/indicator/NY.GNP.PCAP.CD';
-// const baseURL = 'http://api.worldbank.org/v2/country/all/indicator/NY.GNP.PCAP.CD?format=json&per_page=300&mrnev=1';
-
 const mockApiResponses = {
   signIn: {
     status: 'created',
