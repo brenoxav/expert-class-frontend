@@ -145,7 +145,8 @@ describe('Reserve Page', () => {
 
     const dateInput = getByTestId('datePicker');
     expect(dateInput).toBeInTheDocument();
-    expect(dateInput.value).toBe(new Date(Date.now() + (3600 * 1000 * 24)).toISOString().substr(0, 10));
+    expect(dateInput.value)
+      .toBe(new Date(Date.now() + (3600 * 1000 * 24)).toISOString().substr(0, 10));
   });
 
   test('If a date is set to today or any day in the past, a validation message appears', async () => {
@@ -179,7 +180,7 @@ describe('Reserve Page', () => {
     fireEvent.click(citySelection);
     expect(getByText('New York, USA')).toBeInTheDocument();
 
-    // Select today
+    // Select today as the date
     const dateInput = getByTestId('datePicker');
     expect(dateInput).toBeInTheDocument();
     let courseDate = new Date(Date.now());
@@ -190,6 +191,17 @@ describe('Reserve Page', () => {
     // Expect to See Validation Message for Date
     fireEvent.submit(registerBtn);
     const validationMessage = getByTestId('formValidation');
+    expect(validationMessage).toBeInTheDocument();
+    expect(validationMessage.textContent).toBe('Please select a valid date.');
+
+    // Select two days before today as the date
+    courseDate = new Date(Date.now() - (3600 * 1000 * 24) * 2);
+    courseDate = courseDate.toISOString().substr(0, 10);
+    fireEvent.change(dateInput, { target: { value: courseDate } });
+    expect(dateInput).toHaveValue(courseDate);
+
+    // Expect to See Validation Message for Date
+    fireEvent.submit(registerBtn);
     expect(validationMessage).toBeInTheDocument();
     expect(validationMessage.textContent).toBe('Please select a valid date.');
   });
