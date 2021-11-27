@@ -31,11 +31,17 @@ const ReservePage = () => {
     }
   }, []);
 
+  const getNextDay = () => {
+    let date = new Date(Date.now() + (3600 * 1000 * 24));
+    date = date.toISOString().substr(0, 10);
+    return date;
+  };
+
   const initialFormState = {
     user_id: user.id,
     course_id: null,
     city_id: null,
-    date: null,
+    date: getNextDay(),
   };
   const initialFormMessage = { message: '', display: false, type: null };
   const initialValidationMessage = { message: '', display: false, id: null };
@@ -176,7 +182,13 @@ const ReservePage = () => {
         </div>
 
         <div className={styles.inputWrapper}>
-          <input id="datePicker" type="date" data-testid="datePicker" onChange={dateHandler} />
+          <input
+            id="datePicker"
+            type="date"
+            data-testid="datePicker"
+            onChange={dateHandler}
+            value={formData.date}
+          />
           { validationMessage.display && validationMessage.id === 'date'
           && <FormValidation message={validationMessage.message} />}
         </div>
