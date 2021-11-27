@@ -116,7 +116,6 @@ const ReservePage = () => {
           setFormMessage({ message, display: true, type: 'success' });
           setFormData(initialFormState);
           toggleResetForm();
-          event.target.reset();
         } else {
           setFormMessage({ message, display: true, type: 'alert' });
         }
@@ -127,6 +126,10 @@ const ReservePage = () => {
   };
 
   return (
+    (reservationsStatus === 'fulfilled'
+      && classesStatus === 'fulfilled'
+      && citiesStatus === 'fulfilled')
+    && (
     <div className={`${styles.formContainer}`} onClickCapture={handleOutsideClick}>
       <h1 className={`${styles.title}`}>Register for an Expert Class</h1>
       <p className={`${styles.para}`}>
@@ -136,7 +139,7 @@ const ReservePage = () => {
       </p>
       <form onSubmit={formSubmitHandler} className={`${styles.form}`}>
         { formMessage.display
-        && <FlashMessage message={formMessage.message} type={formMessage.type} />}
+        && <FlashMessage data-testid="flashMessage" message={formMessage.message} type={formMessage.type} />}
 
         <div className={styles.inputWrapper}>
           <Dropdown
@@ -173,7 +176,7 @@ const ReservePage = () => {
         </div>
 
         <div className={styles.inputWrapper}>
-          <input id="datePicker" type="date" onChange={dateHandler} />
+          <input id="datePicker" type="date" data-testid="datePicker" onChange={dateHandler} />
           { validationMessage.display && validationMessage.id === 'date'
           && <FormValidation message={validationMessage.message} />}
         </div>
@@ -181,6 +184,7 @@ const ReservePage = () => {
         <input type="submit" value="Register" className={`${styles.submitBtn}`} />
       </form>
     </div>
+    )
   );
 };
 
