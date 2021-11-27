@@ -84,9 +84,7 @@ describe('Reserve Page', () => {
 
     // Expect to See Confirmation Message after submitting form successfully
     fireEvent.submit(registerBtn);
-
-    await waitFor(() => expect(getByRole('button', { name: /Register/i })).toBeInTheDocument());
-    const successMsg = getByTestId('flashMessage');
+    const successMsg = await waitFor(() => getByTestId('flashMessage'));
     expect(successMsg).toBeInTheDocument();
     expect(successMsg.textContent).toBe('Reservation created successfully');
   });
