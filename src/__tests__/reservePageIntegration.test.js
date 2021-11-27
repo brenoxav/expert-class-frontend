@@ -91,4 +91,3 @@ describe('Reserve Page', () => {
     expect(successMsg.textContent).toBe('Reservation created successfully');
   });
 });
-// Reservation created successfully
