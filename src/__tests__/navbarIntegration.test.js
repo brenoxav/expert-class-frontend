@@ -46,6 +46,7 @@ describe('NavPanel', () => {
     expect(navLinks).toHaveLength(5);
     fireEvent.click(navLinks[0]);
     expect(await findByText('English Composition')).toBeInTheDocument();
+    expect(await findByText('Singing')).toBeInTheDocument();
     fireEvent.click(navLinks[1]);
     expect(await findByText('Register for an Expert Class')).toBeInTheDocument();
     expect(getByRole('button', { name: /Register/i })).toBeInTheDocument();

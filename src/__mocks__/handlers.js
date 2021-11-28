@@ -1,9 +1,7 @@
+/* eslint-disable camelcase */
 import { rest } from 'msw';
 
 const baseURL = 'https://expert-class-backend.herokuapp.com/api/v1/';
-
-// const gniUrl = 'http://api.worldbank.org/v2/country/all/indicator/NY.GNP.PCAP.CD';
-// const baseURL = 'http://api.worldbank.org/v2/country/all/indicator/NY.GNP.PCAP.CD?format=json&per_page=300&mrnev=1';
 
 const mockApiResponses = {
   signIn: {
@@ -18,14 +16,6 @@ const mockApiResponses = {
     },
   },
   signedIn: {
-    /* logged_in: true,
-    user: {
-      id: 39,
-      username: 'john_doe',
-      name: 'john',
-      created_at: '2020-11-05T23:43:07.938Z',
-      updated_at: '2020-11-05T23:43:07.938Z',
-    }, */
     logged_in: false,
   },
   logout: {
@@ -108,6 +98,21 @@ const mockApiResponses = {
       updated_at: '2021-11-14T21:31:05.624Z',
     },
   ],
+  reserveCourse(date) {
+    return {
+      reservation: {
+        user: 'john',
+        course: 'English Composition',
+        city: 'New York, USA',
+        date,
+        id: 47,
+        created_at: new Date(Date.now() + (3600 * 1000 * 24)).toISOString().substr(0, 10),
+        updated_at: new Date(Date.now() + (3600 * 1000 * 24)).toISOString().substr(0, 10),
+      },
+      message: 'Reservation created successfully',
+      status: 200,
+    };
+  },
 };
 
 const handlers = [
@@ -135,10 +140,15 @@ const handlers = [
     ctx.status(200),
     ctx.json(mockApiResponses.reservations),
   )),
-  /* rest.get(countriesUrl, (req, res, ctx) => res(
-    ctx.status(200),
-    ctx.json(countriesMockJsonResponse),
-  )), */
+  rest.post(`${baseURL}reservations`, (req, res, ctx) => {
+    const { reservation } = req.body;
+    const { date } = reservation;
+
+    return res(
+      ctx.status(200),
+      ctx.json(mockApiResponses.reserveCourse(date)),
+    );
+  }),
 ];
 
 export default handlers;
