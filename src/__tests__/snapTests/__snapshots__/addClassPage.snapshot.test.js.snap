@@ -106,7 +106,7 @@ exports[`AddClassPage Renders the page 1`] = `
         <input
           className="class-submit"
           type="submit"
-          value="Upload"
+          value="Add"
         />
       </div>
     </form>

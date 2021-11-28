@@ -126,7 +126,7 @@ const AddClassPage = () => {
                 && <FormValidation message={validationMessage.message} />}
             </div>
             <div>
-              <input type="submit" value="Upload" className="class-submit" />
+              <input type="submit" value="Add" className="class-submit" />
             </div>
           </form>
         </div>
