@@ -55,7 +55,7 @@ describe('NavPanel', () => {
     fireEvent.click(navLinks[3]);
     const addClassInputs = (getAllByRole('textbox'));
     expect(addClassInputs).toHaveLength(3);
-    expect(getByRole('button', { name: /Upload/i })).toBeInTheDocument();
+    expect(getByRole('button', { name: /Add/i })).toBeInTheDocument();
     fireEvent.click(navLinks[4]);
     const removeButtons = (getAllByTestId('removeBtn'));
     expect(removeButtons).toHaveLength(2);

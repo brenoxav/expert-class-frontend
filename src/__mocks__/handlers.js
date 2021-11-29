@@ -69,6 +69,20 @@ const mockApiResponses = {
       updated_at: '2021-11-05T23:43:07.965Z',
     },
   ],
+  addClass: {
+    message: 'Course successfully created',
+    status: 'created',
+    course: {
+      id: 22,
+      title: 'Landscaping',
+      description: 'Learn about the latest techniques and trends in this ever evolving field.',
+      instructor: 'Andrés Segovia',
+      duration: 5,
+      created_at: new Date(Date.now()).toISOString().substr(0, 10),
+      updated_at: new Date(Date.now()).toISOString().substr(0, 10),
+      course_image_url: 'https://res.cloudinary.com/starsheriff/image/upload/fake_image.jpeg',
+    },
+  },
   reservations: [
     {
       user: 'john',
@@ -131,6 +145,10 @@ const handlers = [
   rest.get(`${baseURL}courses`, (req, res, ctx) => res(
     ctx.status(200),
     ctx.json(mockApiResponses.classes),
+  )),
+  rest.post(`${baseURL}courses`, (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json(mockApiResponses.addClass),
   )),
   rest.get(`${baseURL}cities`, (req, res, ctx) => res(
     ctx.status(200),

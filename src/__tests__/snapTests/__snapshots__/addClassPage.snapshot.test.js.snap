@@ -14,6 +14,7 @@ exports[`AddClassPage Renders the page 1`] = `
     </h2>
     <form
       className="add-class-form"
+      data-testid="add-class-form"
       onSubmit={[Function]}
     >
       <div
@@ -95,6 +96,7 @@ exports[`AddClassPage Renders the page 1`] = `
         <input
           accept="image/png, image/jpeg"
           className="instructor-image"
+          data-testid="imageInput"
           id="image"
           name="course[image]"
           onChange={[Function]}
@@ -106,7 +108,7 @@ exports[`AddClassPage Renders the page 1`] = `
         <input
           className="class-submit"
           type="submit"
-          value="Upload"
+          value="Add"
         />
       </div>
     </form>
