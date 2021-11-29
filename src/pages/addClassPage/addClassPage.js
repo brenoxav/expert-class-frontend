@@ -24,7 +24,7 @@ const AddClassPage = () => {
     description: '',
     duration: '',
     instructor: '',
-    image: '',
+    image: null,
   };
   const initialFormMessage = { message: '', display: false, type: null };
   const initialValidationMessage = { message: '', display: false, id: null };
@@ -51,7 +51,7 @@ const AddClassPage = () => {
     const { id, value } = e.target;
     setInputs({
       ...inputs,
-      [id]: value,
+      [id]: (id === 'image' && true) || (value),
     });
   };
 
@@ -85,11 +85,11 @@ const AddClassPage = () => {
     <>
       <div className="add-class-container">
         { formMessage.display
-          && <FlashMessage message={formMessage.message} type={formMessage.type} />}
+          && <FlashMessage data-testid="flashMessage" message={formMessage.message} type={formMessage.type} />}
 
         <div className="main-container">
           <h2 className="heading">Add Class</h2>
-          <form onSubmit={handleSubmit} className="add-class-form">
+          <form onSubmit={handleSubmit} data-testid="add-class-form" className="add-class-form">
 
             <div className="inputWrapper">
               <label htmlFor="title">
@@ -121,7 +121,7 @@ const AddClassPage = () => {
             </div>
             <div className="upload-box inputWrapper">
               <span className="instruction">Upload Instructor Image</span>
-              <input id="image" onChange={handleChange} type="file" name="course[image]" accept="image/png, image/jpeg" className="instructor-image" placeholder="Add image" />
+              <input id="image" data-testid="imageInput" onChange={handleChange} type="file" name="course[image]" accept="image/png, image/jpeg" className="instructor-image" placeholder="Add image" />
               { validationMessage.display && validationMessage.id === 'image'
                 && <FormValidation message={validationMessage.message} />}
             </div>

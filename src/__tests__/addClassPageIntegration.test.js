@@ -33,178 +33,157 @@ describe('Add Class Page', () => {
     );
   });
 
-  xtest('Has a submit button for the form', async () => {
+  test('Has a submit button for the form', async () => {
     const { getByRole } = renderedComponent;
 
-    await waitFor(() => expect(getByRole('button', { name: /Register/i })).toBeInTheDocument());
+    await waitFor(() => expect(getByRole('button', { name: /Add/i })).toBeInTheDocument());
   });
 
-  xtest('Get confirmation message when successfully registering for a class', async () => {
+  test('Get confirmation message when successfully adding for a class', async () => {
     const {
-      getByText, getByRole, getByTestId, queryByText,
+      getByRole, getByTestId, getByPlaceholderText,
     } = renderedComponent;
 
-    let registerBtn;
+    let addBtn;
 
-    // Expect Register Button
+    // Expect Add Button
     await waitFor(() => {
-      registerBtn = getByRole('button', { name: /Register/i });
+      addBtn = getByRole('button', { name: /Add/i });
     });
 
-    expect(registerBtn).toBeInTheDocument();
+    expect(addBtn).toBeInTheDocument();
 
-    // Expect to See Courses dropdown button
-    const chooseCourseDd = getByText('Choose a Course');
-    expect(chooseCourseDd).toBeInTheDocument();
-    fireEvent.click(chooseCourseDd);
+    // Expect to See Title input
+    const titleInput = getByPlaceholderText('Title');
+    expect(titleInput).toBeInTheDocument();
+    fireEvent.change(titleInput, { target: { value: 'Landscaping' } });
+    expect(titleInput).toHaveValue('Landscaping');
 
-    const courseSelection = getByText('English Composition');
-    fireEvent.click(courseSelection);
-    expect(getByText('English Composition')).toBeInTheDocument();
-    const nonSelectedCourse = queryByText('Singing');
-    expect(nonSelectedCourse).not.toBeInTheDocument();
+    // Expect to See Description input
+    const descriptionInput = getByPlaceholderText('Description');
+    expect(descriptionInput).toBeInTheDocument();
+    fireEvent.change(descriptionInput, { target: { value: 'Learn about the latest techniques and trends in this ever evolving field.' } });
+    expect(descriptionInput).toHaveValue('Learn about the latest techniques and trends in this ever evolving field.');
 
-    // Expect to See Cities dropdown button
-    const chooseCityDd = getByText('Choose a City');
-    expect(chooseCityDd).toBeInTheDocument();
-    fireEvent.click(chooseCityDd);
-    const citySelection = getByText('New York, USA');
-    fireEvent.click(citySelection);
-    expect(getByText('New York, USA')).toBeInTheDocument();
-    const nonSelectedCity = queryByText('Abuja, Nigeria');
-    expect(nonSelectedCity).not.toBeInTheDocument();
+    // Expect to See Duration input
+    const durationInput = getByPlaceholderText('Duration');
+    expect(durationInput).toBeInTheDocument();
+    fireEvent.change(durationInput, { target: { value: 5 } });
+    expect(durationInput).toHaveValue(5);
 
-    // Expect to See Date input
-    const dateInput = getByTestId('datePicker');
-    expect(dateInput).toBeInTheDocument();
-    let courseDate = new Date(Date.now() + (3600 * 1000 * 24) * 6);
-    courseDate = courseDate.toISOString().substr(0, 10);
-    fireEvent.change(dateInput, { target: { value: courseDate } });
-    expect(dateInput).toHaveValue(courseDate);
+    // Expect to See Instructor input
+    const instructorInput = getByPlaceholderText('Instructor');
+    expect(instructorInput).toBeInTheDocument();
+    fireEvent.change(instructorInput, { target: { value: 'Andrés Segovia' } });
+    expect(instructorInput).toHaveValue('Andrés Segovia');
+
+    // Expect to See Image input
+    const fileInput = getByTestId('imageInput');
+    expect(fileInput).toBeInTheDocument();
+    const file = new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' });
+
+    // Expect file to be uploaded to input
+    fireEvent.change(fileInput, { target: { files: file } });
+    expect(fileInput.files).toStrictEqual(file);
+    expect(fileInput.files.name).toBe('chucknorris.png');
 
     // Expect to See Confirmation Message after submitting form successfully
-    fireEvent.submit(registerBtn);
+    fireEvent.click(addBtn);
     const successMsg = await waitFor(() => getByTestId('flashMessage'));
     expect(successMsg).toBeInTheDocument();
-    expect(successMsg.textContent).toBe('Reservation created successfully');
+    expect(successMsg.textContent).toBe('Course successfully created');
   });
 
-  xtest('See validation message when there\'s an empty field in the form', async () => {
+  test('See validation message when there\'s an empty field in the form', async () => {
     const {
-      getByText, getByRole, getByTestId,
+      getByRole, queryByText, getByPlaceholderText,
     } = renderedComponent;
 
-    let registerBtn;
+    let addBtn;
 
     // Expect Register Button
     await waitFor(() => {
-      registerBtn = getByRole('button', { name: /Register/i });
+      addBtn = getByRole('button', { name: /Add/i });
     });
 
-    expect(registerBtn).toBeInTheDocument();
+    expect(addBtn).toBeInTheDocument();
 
-    // Leave Courses selection empty
+    // Expect to See Title input
+    const titleInput = getByPlaceholderText('Title');
+    expect(titleInput).toBeInTheDocument();
+    fireEvent.change(titleInput, { target: { value: 'Landscaping' } });
+    expect(titleInput).toHaveValue('Landscaping');
 
-    expect(getByText('Choose a Course')).toBeInTheDocument();
+    // Expect to See Description input
+    const descriptionInput = getByPlaceholderText('Description');
+    expect(descriptionInput).toBeInTheDocument();
+    fireEvent.change(descriptionInput, { target: { value: 'Learn about the latest techniques and trends in this ever evolving field.' } });
+    expect(descriptionInput).toHaveValue('Learn about the latest techniques and trends in this ever evolving field.');
 
-    // Expect to See Cities dropdown button
-    const chooseCityDd = getByText('Choose a City');
-    expect(chooseCityDd).toBeInTheDocument();
-    fireEvent.click(chooseCityDd);
-    const citySelection = getByText('New York, USA');
-    fireEvent.click(citySelection);
-    expect(getByText('New York, USA')).toBeInTheDocument();
-
-    // Expect to See Date input
-    const dateInput = getByTestId('datePicker');
-    expect(dateInput).toBeInTheDocument();
-    let courseDate = new Date(Date.now() + (3600 * 1000 * 24) * 6);
-    courseDate = courseDate.toISOString().substr(0, 10);
-    fireEvent.change(dateInput, { target: { value: courseDate } });
-    expect(dateInput).toHaveValue(courseDate);
+    // Expect to See Duration input
+    const durationInput = getByPlaceholderText('Duration');
+    expect(durationInput).toBeInTheDocument();
 
     // Expect to See Validation Message
-    fireEvent.submit(registerBtn);
-    const validationMessage = getByTestId('formValidation');
-    expect(validationMessage).toBeInTheDocument();
-    expect(validationMessage.textContent).toBe('Please select a course.');
+    fireEvent.submit(addBtn);
+    expect(queryByText('Please fill out this field.')).toBeInTheDocument();
   });
 
-  xtest('Date input default value is the next day from current day', async () => {
+  test('See validation message when there\'s an empty field for the image upload field', async () => {
     const {
-      getByRole, getByTestId,
+      getByRole, getByTestId, queryByText, getByPlaceholderText,
     } = renderedComponent;
 
-    let registerBtn;
-
-    await waitFor(() => {
-      registerBtn = getByRole('button', { name: /Register/i });
-    });
-
-    expect(registerBtn).toBeInTheDocument();
-
-    const dateInput = getByTestId('datePicker');
-    expect(dateInput).toBeInTheDocument();
-    expect(dateInput.value)
-      .toBe(new Date(Date.now() + (3600 * 1000 * 24)).toISOString().substr(0, 10));
-  });
-
-  xtest('If a date is set to today or any day in the past, a validation message appears', async () => {
-    const {
-      getByRole, getByTestId, getByText,
-    } = renderedComponent;
-
-    let registerBtn;
+    let addBtn;
 
     // Expect Register Button
     await waitFor(() => {
-      registerBtn = getByRole('button', { name: /Register/i });
+      addBtn = getByRole('button', { name: /Add/i });
     });
 
-    expect(registerBtn).toBeInTheDocument();
+    expect(addBtn).toBeInTheDocument();
 
-    // Expect to See Courses dropdown button
-    const chooseCourseDd = getByText('Choose a Course');
-    expect(chooseCourseDd).toBeInTheDocument();
-    fireEvent.click(chooseCourseDd);
+    // Expect to See Title input
+    const titleInput = getByPlaceholderText('Title');
+    expect(titleInput).toBeInTheDocument();
+    fireEvent.change(titleInput, { target: { value: 'Landscaping' } });
+    expect(titleInput).toHaveValue('Landscaping');
 
-    const courseSelection = getByText('English Composition');
-    fireEvent.click(courseSelection);
-    expect(getByText('English Composition')).toBeInTheDocument();
+    // Expect to See Description input
+    const descriptionInput = getByPlaceholderText('Description');
+    expect(descriptionInput).toBeInTheDocument();
+    fireEvent.change(descriptionInput, { target: { value: 'Learn about the latest techniques and trends in this ever evolving field.' } });
+    expect(descriptionInput).toHaveValue('Learn about the latest techniques and trends in this ever evolving field.');
 
-    // Expect to See Cities dropdown button
-    const chooseCityDd = getByText('Choose a City');
-    expect(chooseCityDd).toBeInTheDocument();
-    fireEvent.click(chooseCityDd);
-    const citySelection = getByText('New York, USA');
-    fireEvent.click(citySelection);
-    expect(getByText('New York, USA')).toBeInTheDocument();
+    // Expect to See Duration input
+    const durationInput = getByPlaceholderText('Duration');
+    expect(durationInput).toBeInTheDocument();
+    fireEvent.change(durationInput, { target: { value: 5 } });
+    expect(durationInput).toHaveValue(5);
 
-    // Select today as the date
-    const dateInput = getByTestId('datePicker');
-    expect(dateInput).toBeInTheDocument();
-    let courseDate = new Date(Date.now());
-    courseDate = courseDate.toISOString().substr(0, 10);
-    fireEvent.change(dateInput, { target: { value: courseDate } });
-    expect(dateInput).toHaveValue(courseDate);
+    // Expect to See Instructor input
+    const instructorInput = getByPlaceholderText('Instructor');
+    expect(instructorInput).toBeInTheDocument();
+    fireEvent.change(instructorInput, { target: { value: 'Andrés Segovia' } });
+    expect(instructorInput).toHaveValue('Andrés Segovia');
 
-    // Expect to See Validation Message for Date
-    fireEvent.submit(registerBtn);
-    const validationMessage = getByTestId('formValidation');
-    expect(validationMessage).toBeInTheDocument();
-    expect(validationMessage.textContent).toBe('Please select a valid date.');
+    // Expect to See Image input
+    const fileInput = getByTestId('imageInput');
+    expect(fileInput).toBeInTheDocument();
+    const file = new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' });
 
-    // Select two days before today as the date
-    courseDate = new Date(Date.now() - (3600 * 1000 * 24) * 2);
-    courseDate = courseDate.toISOString().substr(0, 10);
-    fireEvent.change(dateInput, { target: { value: courseDate } });
-    expect(dateInput).toHaveValue(courseDate);
+    // Expect to See Validation Message
+    fireEvent.submit(addBtn);
+    expect(queryByText('Please upload a picture of the instructor.')).toBeInTheDocument();
 
-    // Expect to See Validation Message for Date
-    fireEvent.submit(registerBtn);
-    expect(validationMessage).toBeInTheDocument();
-    expect(validationMessage.textContent).toBe('Please select a valid date.');
+    fireEvent.change(fileInput, { target: { files: file } });
+    expect(fileInput.files).toStrictEqual(file);
+    expect(fileInput.files.name).toBe('chucknorris.png');
+
+    // Expect to See Confirmation Message after submitting form successfully
+    fireEvent.click(addBtn);
+    const successMsg = await waitFor(() => getByTestId('flashMessage'));
+    expect(successMsg).toBeInTheDocument();
+    expect(successMsg.textContent).toBe('Course successfully created');
   });
 });
-
-// params.require(:course).permit(:title, :description, :instructor, :duration, :image)
