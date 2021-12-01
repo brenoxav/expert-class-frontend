@@ -22,7 +22,7 @@ function RemoveClassPage() {
   };
 
   const classesList = classes.map((c) => (
-    <tr key={c.id} className="class-item">
+    <tr data-testid="classItem" key={c.id} className="class-item">
       <td>{c.title}</td>
       <td>{c.description}</td>
       <td>{c.instructor}</td>

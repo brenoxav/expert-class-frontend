@@ -150,6 +150,21 @@ const handlers = [
     ctx.status(200),
     ctx.json(mockApiResponses.addClass),
   )),
+  rest.delete(`${baseURL}courses/:id`, (req, res, ctx) => {
+    const { id } = req.params;
+    const deletedClass = mockApiResponses.classes.filter((c) => c.id === Number(id));
+
+    return res(
+      ctx.status(200),
+      ctx.json(
+        {
+          course: deletedClass[0],
+          message: 'Course successfully deleted',
+          status: 200,
+        },
+      ),
+    );
+  }),
   rest.get(`${baseURL}cities`, (req, res, ctx) => res(
     ctx.status(200),
     ctx.json(mockApiResponses.cities),
