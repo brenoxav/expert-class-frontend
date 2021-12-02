@@ -1,4 +1,4 @@
-import usersSlice, { signUpUser, loginUser, logoutUser } from '../../auth/sessionSlice';
+import sessionReducer, { signUpUser, loginUser, logoutUser } from '../../auth/sessionSlice';
 
 const initialState = {
   user: {},
@@ -9,7 +9,7 @@ const initialState = {
 
 describe('usersReducer', () => {
   test('should return the initial state', () => {
-    expect(usersSlice(undefined, {})).toEqual(initialState);
+    expect(sessionReducer(undefined, {})).toEqual(initialState);
   });
 
   describe('signUpUser action', () => {
@@ -26,7 +26,7 @@ describe('usersReducer', () => {
         },
       };
 
-      expect(usersSlice(initialState, signUpUser.fulfilled(payload))).toEqual(
+      expect(sessionReducer(initialState, signUpUser.fulfilled(payload))).toEqual(
         {
           user: {
             id: 41,
@@ -48,7 +48,7 @@ describe('usersReducer', () => {
         error: 'This username already exists. Please Choose another one.',
       };
 
-      expect(usersSlice(initialState, signUpUser.fulfilled(payload))).toEqual(
+      expect(sessionReducer(initialState, signUpUser.fulfilled(payload))).toEqual(
         {
           user: {},
           logged_in: false,
@@ -73,7 +73,7 @@ describe('usersReducer', () => {
         },
       };
 
-      expect(usersSlice(initialState, loginUser.fulfilled(payload))).toEqual(
+      expect(sessionReducer(initialState, loginUser.fulfilled(payload))).toEqual(
         {
           user: {
             id: 1,
@@ -94,7 +94,7 @@ describe('usersReducer', () => {
         status: 401,
       };
 
-      expect(usersSlice(initialState, loginUser.fulfilled(payload))).toEqual(
+      expect(sessionReducer(initialState, loginUser.fulfilled(payload))).toEqual(
         {
           user: {},
           logged_in: false,
@@ -111,7 +111,7 @@ describe('usersReducer', () => {
         logged_out: true,
       };
 
-      expect(usersSlice(initialState, logoutUser.fulfilled(payload))).toEqual(
+      expect(sessionReducer(initialState, logoutUser.fulfilled(payload))).toEqual(
         {
           user: {},
           logged_in: false,
