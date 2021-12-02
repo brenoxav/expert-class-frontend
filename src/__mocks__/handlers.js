@@ -4,6 +4,17 @@ import { rest } from 'msw';
 const baseURL = 'https://expert-class-backend.herokuapp.com/api/v1/';
 
 const mockApiResponses = {
+  signUp: {
+    status: 'created',
+    logged_in: true,
+    user: {
+      id: 41,
+      username: 'Goku',
+      name: 'Kakarot',
+      created_at: '2021-12-02T04:07:08.069Z',
+      updated_at: '2021-12-02T04:07:08.069Z',
+    },
+  },
   signIn: {
     status: 'created',
     logged_in: true,
@@ -130,6 +141,10 @@ const mockApiResponses = {
 };
 
 const handlers = [
+  rest.post(`${baseURL}users`, (req, res, ctx) => res(
+    ctx.status(200),
+    ctx.json(mockApiResponses.signUp),
+  )),
   rest.get(`${baseURL}signed_in`, (req, res, ctx) => res(
     ctx.status(200),
     ctx.json(mockApiResponses.signedIn),
