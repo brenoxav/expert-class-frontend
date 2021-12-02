@@ -102,7 +102,7 @@ describe('classesReducer', () => {
     test('should handle payload from unsuccessful request', () => {
       const payload = {
         message: 'Unable to create course',
-        status: 400
+        status: 400,
       };
 
       expect(classesReducer(previousState, addClass.fulfilled(payload))).toEqual(
@@ -149,7 +149,7 @@ describe('classesReducer', () => {
       const payload = {
         course: deletedClass,
         message: 'Course successfully deleted',
-        status: 200
+        status: 200,
       };
 
       expect(classesReducer(previousState, removeClass.fulfilled(payload))).toEqual(
@@ -164,7 +164,7 @@ describe('classesReducer', () => {
     test('should handle payload from unsuccessful request', () => {
       const payload = {
         message: 'Unable to delete course',
-        status: 400
+        status: 400,
       };
 
       expect(classesReducer(previousState, removeClass.fulfilled(payload))).toEqual(
