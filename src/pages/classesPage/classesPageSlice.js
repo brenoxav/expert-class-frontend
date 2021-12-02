@@ -68,8 +68,13 @@ export const classesSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(addClass.fulfilled, (state, action) => {
-        state.status = 'fulfilled';
-        state.classes.push(action.payload.course);
+        if (action.payload.status === 'created') {
+          state.status = 'fulfilled';
+          state.classes.push(action.payload.course);
+        } else {
+          state.status = 'fulfilled';
+          state.error = action.payload.message;
+        }
       })
       .addCase(addClass.rejected, (state) => {
         state.status = 'rejected';
