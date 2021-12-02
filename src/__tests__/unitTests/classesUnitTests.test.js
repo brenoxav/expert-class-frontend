@@ -1,4 +1,4 @@
-import classesReducer, { fetchClassesData, addClass } from '../../pages/classesPage/classesPageSlice';
+import classesReducer, { fetchClassesData, addClass, removeClass } from '../../pages/classesPage/classesPageSlice';
 
 const initialState = {
   classes: [],
@@ -115,18 +115,77 @@ describe('classesReducer', () => {
     });
   });
 
-  describe('logoutUser action', () => {
-    xtest('should handle payload from successful request', () => {
+  describe('removeClass action', () => {
+    const previousState = {
+      classes: [
+        {
+          id: 19,
+          title: 'English Composition',
+          description: 'Learn how to draft professional essays',
+          instructor: 'Jeremy Campbell',
+          duration: 4,
+          created_at: '2021-11-11T04:20:38.165Z',
+          updated_at: '2021-11-11T04:20:38.181Z',
+          course_image_url: './images/fakeExpertPic1.jpeg',
+        },
+        {
+          id: 21,
+          title: 'Singing',
+          description: 'Learn to sing',
+          instructor: 'Jackie',
+          duration: 5,
+          created_at: '2021-11-11T14:20:44.084Z',
+          updated_at: '2021-11-11T14:20:44.097Z',
+          course_image_url: './images/fakeExpertPic2.jpeg',
+        },
+      ],
+      status: 'fulfilled',
+      error: null,
+    };
+
+    test('should handle payload from successful request', () => {
+      const deletedClass = previousState.classes.filter((c) => c.id === 21)[0];
+
       const payload = {
-        logged_out: true,
+        course: deletedClass,
+        message: 'Course successfully deleted',
+        status: 200
       };
 
-      expect(classesReducer(initialState, logoutUser.fulfilled(payload))).toEqual(
+      expect(classesReducer(previousState, removeClass.fulfilled(payload))).toEqual(
         {
-          user: {},
-          logged_in: false,
+          classes: previousState.classes.filter((c) => c.id !== payload.course.id),
           status: 'fulfilled',
           error: null,
+        },
+      );
+    });
+
+    test('should handle payload from unsuccessful request', () => {
+      const payload = {
+        message: 'Unable to delete course',
+        status: 400
+      };
+
+      expect(classesReducer(previousState, removeClass.fulfilled(payload))).toEqual(
+        {
+          classes: previousState.classes,
+          status: 'fulfilled',
+          error: payload.message,
+        },
+      );
+    });
+
+    test('should handle a bad request response', () => {
+      const payload = {
+        message: 'Couldn\'t find Course with \'id\'=11',
+      };
+
+      expect(classesReducer(previousState, removeClass.rejected(payload))).toEqual(
+        {
+          classes: previousState.classes,
+          status: 'rejected',
+          error: 'Error connecting with server. Please try again.',
         },
       );
     });
