@@ -48,7 +48,7 @@ describe('reservationsReducer', () => {
           reservations: payload,
           status: 'fulfilled',
           error: null,
-        }
+        },
       );
     });
   });
@@ -115,7 +115,7 @@ describe('reservationsReducer', () => {
     test('should handle payload from unsuccessful request', () => {
       const payload = {
         message: 'Create reservation failed',
-        status: 400
+        status: 400,
       };
 
       expect(reservationsReducer(previousState, reserveCourse.fulfilled(payload))).toEqual(
