@@ -55,66 +55,72 @@ describe('reservationsReducer', () => {
 
   describe('ReserveCourse action', () => {
     const previousState = {
-      classes: [
+      reservations: [
         {
-          id: 19,
-          title: 'English Composition',
-          description: 'Learn how to draft professional essays',
-          instructor: 'Jeremy Campbell',
-          duration: 4,
-          created_at: '2021-11-11T04:20:38.165Z',
-          updated_at: '2021-11-11T04:20:38.181Z',
-          course_image_url: './images/fakeExpertPic1.jpeg',
+          user: 'john',
+          course: 'Singing',
+          city: 'New York, USA',
+          date: '2021-11-13',
+          id: 36,
+          created_at: '2021-11-11T14:21:26.409Z',
+          updated_at: '2021-11-11T14:21:26.409Z',
         },
         {
-          id: 21,
-          title: 'Singing',
-          description: 'Learn to sing',
-          instructor: 'Jackie',
-          duration: 5,
-          created_at: '2021-11-11T14:20:44.084Z',
-          updated_at: '2021-11-11T14:20:44.097Z',
-          course_image_url: './images/fakeExpertPic2.jpeg',
+          user: 'john',
+          course: 'Yoga',
+          city: 'New York, USA',
+          date: '2021-11-14',
+          id: 37,
+          created_at: '2021-11-12T16:04:34.791Z',
+          updated_at: '2021-11-12T16:04:34.791Z',
+        },
+        {
+          user: 'john',
+          course: 'Photography',
+          city: 'Abuja, Nigeria',
+          date: '2021-11-20',
+          id: 41,
+          created_at: '2021-11-14T21:31:05.624Z',
+          updated_at: '2021-11-14T21:31:05.624Z',
         },
       ],
       status: 'fulfilled',
       error: null,
     };
 
-    xtest('should handle payload from successful request', () => {
+    test('should handle payload from successful request', () => {
       const payload = {
-        message: 'Course successfully created',
-        status: 'created',
-        course: {
-          id: 22,
-          title: 'Landscaping',
-          description: 'Learn about the latest techniques and trends in this ever evolving field.',
-          instructor: 'Andrés Segovia',
-          duration: 5,
-          created_at: new Date(Date.now()).toISOString().substr(0, 10),
-          updated_at: new Date(Date.now()).toISOString().substr(0, 10),
-          course_image_url: 'https://res.cloudinary.com/starsheriff/image/upload/fake_image.jpeg',
+        reservation: {
+          user: 'john',
+          course: 'English Composition',
+          city: 'New York, USA',
+          date: '2021-11-14',
+          id: 47,
+          created_at: '2021-11-12T16:04:34.791Z',
+          updated_at: '2021-11-12T16:04:34.791Z',
         },
+        message: 'Reservation created successfully',
+        status: 200,
       };
 
-      expect(reservationsReducer(previousState, addClass.fulfilled(payload))).toEqual(
+      expect(reservationsReducer(previousState, reserveCourse.fulfilled(payload))).toEqual(
         {
-          classes: [...previousState.classes, payload.course],
           status: 'fulfilled',
+          reservations: [...previousState.reservations, payload.reservation],
           error: null,
         },
       );
     });
 
-    xtest('should handle payload from unsuccessful request', () => {
+    test('should handle payload from unsuccessful request', () => {
       const payload = {
-        message: 'Unable to create course',
-        status: 400,
+        message: 'Create reservation failed',
+        status: 400
       };
 
-      expect(reservationsReducer(previousState, addClass.fulfilled(payload))).toEqual(
+      expect(reservationsReducer(previousState, reserveCourse.fulfilled(payload))).toEqual(
         {
-          classes: previousState.classes,
+          reservations: previousState.reservations,
           status: 'fulfilled',
           error: payload.message,
         },
