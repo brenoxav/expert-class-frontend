@@ -6,12 +6,12 @@ const initialState = {
   cities: [],
 };
 
-describe('classesReducer', () => {
+describe('citiesReducer', () => {
   test('should return the initial state', () => {
     expect(citiesReducer(undefined, {})).toEqual(initialState);
   });
 
-  describe('fetchClassesData action', () => {
+  describe('fetchCities action', () => {
     test('should handle payload from successful request', () => {
       const payload = [
         {
