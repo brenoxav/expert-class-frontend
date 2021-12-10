@@ -1,16 +1,6 @@
 @import '../../styles/abstracts/variables';
 @import '../../styles/abstracts/fonts';
 
-.mainContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(180deg, $dark-green-full, $extra-dark-green), url(../../assets/images/expertClass02.jpg);
-  background-repeat: no-repeat, repeat;
-  background-size: cover;
-  height: 100vh;
-}
-
 .innerContainer {
   display: flex;
   flex-direction: column;

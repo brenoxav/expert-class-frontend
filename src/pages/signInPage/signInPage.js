@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, Redirect } from 'react-router-dom';
 import { unwrapResult } from '@reduxjs/toolkit';
-import styles from './signInPage.module.css';
+import styles from './signInPage.module.scss';
 import { loginUser, loggedInStatus, authErrors } from '../../auth/sessionSlice';
 import FlashMessage from '../../components/flashMessage/flashMessage';
 
@@ -47,7 +47,7 @@ function SignInPage() {
   };
 
   return (
-    <div className={styles.mainContainer}>
+    <div className="main-container">
       { formMessage.display
       && <FlashMessage message={formMessage.message} type={formMessage.type} /> }
 
@@ -64,7 +64,7 @@ function SignInPage() {
             placeholder="Please enter your username"
             required
           />
-          <input className={styles.formSubmit} type="submit" value="Sign in" />
+          <input className="button-white" type="submit" value="Sign in" />
         </form>
       </div>
     </div>

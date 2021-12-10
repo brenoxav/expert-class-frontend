@@ -46,7 +46,8 @@ a:hover {
 
 /* Buttons */
 
-button {
+button,
+input[type="submit"] {
   margin: 2rem;
   font-size: 1.8rem;
   padding: 1.6rem 7rem;
@@ -75,6 +76,18 @@ button {
 .button-white:hover {
   color: $white;
   background-color: $dark-green;
+}
+
+/* Page Container */
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, $dark-green-full, $extra-dark-green), url(../../assets/images/expertClass02.jpg);
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  height: 100vh;
 }
 
 /* Loading Animaion */

@@ -17,7 +17,7 @@ export default function LandingPage() {
   }
 
   return (
-    <div className={styles.mainContainer}>
+    <div className="main-container">
       <div className={styles.innerContainer}>
         <h1 className={styles.pageTitle}>OUR EXPERT CLASSES</h1>
         <p className={styles.caption}>

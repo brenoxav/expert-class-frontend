@@ -2,7 +2,7 @@
 
 exports[`SignIn Page Renders the page 1`] = `
 <div
-  className="mainContainer"
+  className="main-container"
 >
   <div
     className="innerContainer"
@@ -26,7 +26,7 @@ exports[`SignIn Page Renders the page 1`] = `
         value=""
       />
       <input
-        className="formSubmit"
+        className="button-white"
         type="submit"
         value="Sign in"
       />
