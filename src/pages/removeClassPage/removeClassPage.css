@@ -49,6 +49,11 @@
   color: #97bf0f;
 }
 
+.class-item {
+  padding: 1rem;
+  border: 1px solid greenyellow;
+}
+
 .remove_btn {
   background-color: transparent;
   border: 0;

@@ -1,8 +1,11 @@
+@import '../../styles/abstracts/variables';
+@import '../../styles/abstracts/fonts';
+
 .mainContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(180deg, rgba(151, 191, 15, 0.7), rgba(151, 191, 15, 0.7)), url(../../assets/images/expertClass02.jpg);
+  background: linear-gradient(180deg, $dark-green-full, $extra-dark-green), url(../../assets/images/expertClass02.jpg);
   background-repeat: no-repeat, repeat;
   background-size: cover;
   height: 100vh;
@@ -13,57 +16,25 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: $desktop-full-width;
+  padding: 0 10rem;
 }
 
 .pageTitle {
   color: white;
+  font-family: $secondary-font;
 }
 
 .caption {
   color: white;
-  font-size: 1.4rem;
   text-align: center;
-  font-weight: 400;
-  line-height: 1.2;
   padding: 1rem 2.5rem;
 }
 
 .buttonsDiv {
+  margin-top: 3rem;
   display: flex;
   flex-direction: row;
-}
-
-.button1,
-.button2 {
-  margin: 2rem;
-  height: 3rem;
-  width: 12rem;
-  font-size: 1.5rem;
-  border-radius: 50px;
-  border: 2px solid white;
-  font-weight: 500;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  cursor: pointer;
-}
-
-.button1 {
-  color: white;
-  background-color: rgba(151, 191, 15, 0.7);
-}
-
-.button2 {
-  background-color: white;
-  color: rgba(151, 191, 15, 1);
-}
-
-.button1:hover {
-  background-color: white;
-  color: rgba(151, 191, 15, 1);
-}
-
-.button2:hover {
-  color: white;
-  background-color: rgba(151, 191, 15, 0.7);
 }
 
 .signInForm {
@@ -100,13 +71,8 @@
   width: 9rem;
   font-size: 1.5rem;
   font-weight: 500;
-  color: rgba(151, 191, 15, 1);
+  color: $dark-green-full;
   border-radius: 50px;
   border: 2px solid white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.class-item {
-  padding: 1rem;
-  border: 1px solid greenyellow;
 }

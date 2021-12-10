@@ -32,6 +32,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   height: 100vh;
+  line-height: 1.4;
 }
 
 a,
@@ -43,13 +44,38 @@ a:hover {
   color: inherit;
 }
 
-// button {
-//   border: none;
-//   cursor: pointer;
-//   color: $white;
-//   border-radius: 4px;
-//   background-color: transparent;
-// }
+/* Buttons */
+
+button {
+  margin: 2rem;
+  font-size: 1.8rem;
+  padding: 1.6rem 7rem;
+  border-radius: 50px;
+  border: 1.4px solid $light-green;
+  font-weight: 500;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+}
+
+.button-green {
+  color: $light-green;
+  background-color: $dark-green;
+}
+
+.button-white {
+  background-color: $white;
+  color: $dark-green-full;
+}
+
+.button-green:hover {
+  background-color: $white;
+  color: $dark-green-full;
+}
+
+.button-white:hover {
+  color: $white;
+  background-color: $dark-green;
+}
 
 /* Loading Animaion */
 
