@@ -47,7 +47,7 @@ function SignInPage() {
   };
 
   return (
-    <div className="main-container">
+    <div className="page-container">
       { formMessage.display
       && <FlashMessage message={formMessage.message} type={formMessage.type} /> }
 
@@ -56,7 +56,6 @@ function SignInPage() {
 
         <form className={styles.signInForm} onSubmit={handleSubmit}>
           <input
-            className={styles.formInput}
             onChange={change}
             type="text"
             name="username"
