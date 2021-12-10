@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
 import { unwrapResult } from '@reduxjs/toolkit';
-import styles from './signUpPage.module.css';
+import styles from './signUpPage.module.scss';
 import { signUpUser, loggedInStatus, authErrors } from '../../auth/sessionSlice';
 import FlashMessage from '../../components/flashMessage/flashMessage';
 
@@ -52,7 +52,7 @@ function SignUpPage() {
   };
 
   return (
-    <div className={styles.mainContainer}>
+    <div className="page-container">
       { formMessage.display
       && <FlashMessage message={formMessage.message} type={formMessage.type} /> }
 
@@ -62,7 +62,7 @@ function SignUpPage() {
         <form className={styles.signInForm} onSubmit={handleSubmit}>
           <input className={styles.formInput} onChange={handleChange} value={formData.username} type="text" name="username" id="username" placeholder="Please enter your username" minLength="6" maxLength="20" required />
           <input className={styles.nameInput} onChange={handleChange} value={formData.name} type="text" name="name" id="name" placeholder="Please enter your name" maxLength="24" required />
-          <input className={styles.formSubmit} type="submit" value="Sign up" />
+          <input className="button-white" type="submit" value="Sign up" />
         </form>
       </div>
     </div>

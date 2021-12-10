@@ -96,6 +96,10 @@ input[type="text"]::placeholder {
   text-align: center;
 }
 
+input[type="text"]:focus::placeholder {
+  text-align: left;
+}
+
 /* Page Container */
 
 .page-container {
