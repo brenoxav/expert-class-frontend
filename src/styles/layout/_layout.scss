@@ -40,14 +40,13 @@ a:visited,
 a:active,
 a:hover {
   text-decoration: none;
-  font: inherit;
-  color: inherit;
 }
 
 /* Buttons */
 
 button,
-input[type="submit"] {
+input[type="submit"],
+input[type="button"] {
   border-radius: 50px;
   cursor: pointer;
   font-weight: 500;
@@ -56,6 +55,7 @@ input[type="submit"] {
 
 button,
 input[type="submit"],
+input[type="button"],
 input[type="text"] {
   margin: 2rem;
   font-size: 1.8rem;
