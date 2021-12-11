@@ -1,0 +1,28 @@
+@import '../../styles/abstracts/variables';
+
+.socialBtns {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.socialIconCircle {
+  width: 1.4rem;
+  height: 1.4rem;
+  padding: 1rem;
+  margin: 0 5px;
+  border: 2px solid $white;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+}
+
+.socialIcon {
+  color: $white;
+  fill: $white;
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  top: calc(50% - (1.4rem / 2));
+  left: calc(50% - (1.4rem / 2));
+}
