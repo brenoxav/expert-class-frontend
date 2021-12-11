@@ -27,9 +27,6 @@ export default function Carousel({ classes }) {
           url(${c.course_image_url}) center center/cover no-repeat content-box, rgb(153, 140, 140)`,
         }}
       >
-        {/* <div className={styles.swiperImgContainer}>
-          <img className={styles.swiperImg} src={c.course_image_url} alt="course instructor" />
-        </div> */}
         <div className={styles.textContainer}>
           <h3 className={styles.title}>{c.title}</h3>
           <p className={styles.instructor}>{c.instructor}</p>
@@ -46,13 +43,13 @@ export default function Carousel({ classes }) {
           id="swiper-container"
           slidesPerView={3}
           spaceBetween={30}
-          // loop
-          // loopFillGroupWithBlank
-          // autoplay={{
-          //   delay: 3000,
-          //   disableOnInteraction: true,
-          //   waitForTransition: true,
-          // }}
+          loop
+          loopFillGroupWithBlank
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: true,
+            waitForTransition: true,
+          }}
           speed={1000}
           pagination={{
             clickable: true,
