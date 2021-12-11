@@ -22,8 +22,9 @@ export default function Carousel({ classes }) {
         to={`/class/${c.id}`}
         className={styles.swiperCard}
         style={{
-          background: `linear-gradient(to top, rgba(0, 0, 0, 1)  5%, transparent),
-          linear-gradient(to right bottom, rgba(151, 191, 15, 0.2) 10%, transparent),
+          background: `linear-gradient(to top, rgba(0, 0, 0, 1) 13%, transparent 40%),
+          linear-gradient(to right bottom, rgba(255, 180, 0, 0.7) 5%, transparent 60%),
+          linear-gradient(to right bottom, rgba(151, 191, 15, 1) 5%, transparent 10%),
           url(${c.course_image_url}) center center/cover no-repeat content-box, rgb(153, 140, 140)`,
         }}
       >
