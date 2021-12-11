@@ -9,25 +9,22 @@
   border-right: 2px solid #eee;
 }
 
-.nav-link,
-.active-nav-link {
+.nav-link {
   width: 100%;
-  padding: 1rem;
   text-transform: uppercase;
   text-decoration: none;
   font-weight: 600;
-}
-
-.nav-link {
   color: $black;
   font-size: 1.8rem;
+  padding: 1rem 1rem 1rem 2rem;
 }
 
 .nav-link:hover {
   background-color: $light-green;
 }
 
-.active-nav-link {
+.active-nav-link,
+.active-nav-link:hover {
   color: $white;
   background-color: $dark-green-full;
 }

@@ -4,7 +4,7 @@ import Carousel from '../../common/Carousel/Carousel';
 import {
   fetchClassesData, currentClasses, classesStateStatus, classesErrorMessage,
 } from './classesPageSlice';
-import styles from './classesPage.module.css';
+import styles from './classesPage.module.scss';
 
 const ClassesPage = () => {
   const dispatch = useDispatch();
