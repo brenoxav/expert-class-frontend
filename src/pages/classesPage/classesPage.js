@@ -21,7 +21,7 @@ const ClassesPage = () => {
   return (
     (fetchStatus === 'fulfilled')
     && (
-    <div className={styles.classesContainer}>
+    <div className={`${styles.classesContainer} private-page-container`}>
       <h2 className={styles.heading}>Classes</h2>
       <Carousel classes={classes} />
     </div>

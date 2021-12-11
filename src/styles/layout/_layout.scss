@@ -112,6 +112,12 @@ input[type="text"]:focus::placeholder {
   height: 100vh;
 }
 
+.private-page-container {
+  height: 100vh;
+  padding: 20px;
+  margin-left: var(--nav-panel-width);
+}
+
 /* Loading Animaion */
 
 .spinner-container {
