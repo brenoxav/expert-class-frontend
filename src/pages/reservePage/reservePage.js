@@ -136,8 +136,8 @@ const ReservePage = () => {
       && classesStatus === 'fulfilled'
       && citiesStatus === 'fulfilled')
     && (
-    <div className={`${styles.formContainer}`} onClickCapture={handleOutsideClick}>
-      <h1 className={`${styles.title}`}>Register for an Expert Class</h1>
+    <div className={`${styles.formContainer} private-page-container`} onClickCapture={handleOutsideClick}>
+      <h2 className={`${styles.title}`}>Register for an Expert Class</h2>
       <p className={`${styles.para}`}>
         Register for an expert class with are world-reknown experts.
         We have classes for different topics, ranging from
@@ -193,7 +193,7 @@ const ReservePage = () => {
           && <FormValidation message={validationMessage.message} />}
         </div>
 
-        <input type="submit" value="Register" className={`${styles.submitBtn}`} />
+        <input type="submit" value="Register" className={`${styles.submitBtn} button-white`} />
       </form>
     </div>
     )
