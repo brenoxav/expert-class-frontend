@@ -8,7 +8,7 @@ import styles from './Carousel.module.scss';
 import 'swiper/swiper.scss';
 import 'swiper/modules/navigation/navigation.scss';
 import 'swiper/modules/pagination/pagination.scss';
-import './Swiper.css';
+import './Swiper.scss';
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
