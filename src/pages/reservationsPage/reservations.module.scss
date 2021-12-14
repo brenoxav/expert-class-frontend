@@ -5,7 +5,6 @@
   grid-gap: 0.25rem;
   background-color: $dark-green-full;
   border-top: solid 1rem $dark-green-full;
-  // grid-auto-rows: auto;
 }
 
 .heading {
@@ -13,13 +12,12 @@
   background-color: $dark-green;
   color: $white;
   text-align: center;
-  margin: 25px auto;
+  margin: 0 auto 2rem;
   text-transform: uppercase;
 }
 
 .reservationItem {
   padding: 1rem;
-  // border: 0.3px solid #97bf0f;
   text-align: left;
   background-color: $white;
 }
