@@ -1,29 +1,21 @@
-.remove-class-container {
-  width: 1070px;
-  height: 100vh;
-  padding: 20px;
-  margin-left: 240px;
-}
+@import '../../styles/abstracts/variables';
 
 .heading {
-  text-align: center;
   margin: 25px auto;
   text-transform: uppercase;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .reservations-table {
   border-collapse: collapse;
   margin: 25px auto;
   font-size: 0.9em;
-  font-family: sans-serif;
   min-width: 700px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .reservations-table thead tr {
-  background-color: #97bf0f;
-  color: #fff;
+  background-color: $dark-green-full;
+  color: $white;
   text-align: left;
 }
 
@@ -36,35 +28,53 @@
   border-bottom: thin solid #ddd;
 }
 
+.reservations-table tbody tr td {
+  vertical-align: middle;
+}
+
 .reservations-table tbody tr:nth-of-type(even) {
   background-color: #f3f3f3;
 }
 
 .reservations-table tbody tr:last-of-type {
-  border-bottom: 2px solid #97bf0f;
+  border-bottom: 2px solid $dark-green-full;
 }
 
 .reservations-table tbody tr.active-row {
   font-weight: bold;
-  color: #97bf0f;
+  color: $dark-green-full;
 }
 
 .class-item {
   padding: 1rem;
-  border: 1px solid greenyellow;
+  border: 1px solid $light-green-transparency;
+}
+
+.itemTitle {
+  font-size: 1.6rem;
 }
 
 .remove_btn {
   background-color: transparent;
-  border: 0;
-  color: #97bf0f;
+  border: none;
+  color: $dark-green-full;
+  border-radius: 0;
+  cursor: pointer;
+  font-weight: normal;
+  padding: 0;
+  display: block;
+  margin: 0;
+  box-shadow: none;
 }
 
-.remove_btn:hover {
-  background-color: transparent;
-  font-size: 14px;
-  width: 25px;
-  border: 0;
+.remove_btn svg {
+  display: block;
+  width: 100%;
+  transition: all var(--speed);
+}
+
+.remove_btn svg:hover {
   color: red;
-  text-decoration: underline;
+  transition: all var(--speed);
+  transform: scale(1.2);
 }
