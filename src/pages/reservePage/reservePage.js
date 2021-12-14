@@ -53,18 +53,25 @@ const ReservePage = () => {
   const [open, setOpen] = useState(intialDdState);
   const [resetForm, setResetForm] = useState(false);
 
-  const flashMessageTimeout = () => setTimeout(() => setFormMessage(initialFormMessage), 4000);
-  const formValidationTimeout = () => {
-    setTimeout(() => setValidationMessage(initialValidationMessage), 3000);
-  };
-
   useEffect(() => {
+    let timeoutActive = true;
     if (formMessage.display) {
-      flashMessageTimeout();
+      setTimeout(() => {
+        if (timeoutActive) {
+          setFormMessage(initialFormMessage)
+        }
+      }, 4000);
     }
     if (validationMessage.display) {
-      formValidationTimeout();
+      setTimeout(() => {
+        if (timeoutActive) {
+          setValidationMessage(initialValidationMessage)
+        }
+      }, 3000);
     }
+    return () => {
+      timeoutActive = false;
+    };
   }, [formMessage, validationMessage]);
 
   const toggleDropdownMenu = (keyName) => {
