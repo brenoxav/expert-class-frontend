@@ -1,0 +1,59 @@
+@import '../../styles/abstracts/variables';
+
+.formContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: linear-gradient(180deg, $dark-green-full, $extra-dark-green), url(../../assets/images/expertClass02.jpg);
+  color: $white;
+  overflow: scroll;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 50px;
+}
+
+.title {
+  padding: 2rem 0;
+  color: $white;
+  margin-top: 5rem;
+}
+
+.inputWrapper {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploadBox {
+  background-color: $dark-green;
+  padding: 1.6rem 4rem;
+  border: 1.4px solid $light-green;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  margin: 2rem 0;
+}
+
+.imageLabel {
+  display: block;
+  margin-bottom: 1.6rem;
+  font-size: 1.8rem;
+}
+
+.instructorImage {
+  width: 250px;
+  font-size: 1.8rem;
+  display: flex;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
