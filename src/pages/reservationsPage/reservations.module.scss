@@ -1,0 +1,29 @@
+@import '../../styles/abstracts/variables';
+
+.reservationsGridContainer {
+  display: grid;
+  grid-gap: 0.25rem;
+  background-color: $dark-green-full;
+  border-top: solid 1rem $dark-green-full;
+  // grid-auto-rows: auto;
+}
+
+.heading {
+  padding: 2rem;
+  background-color: $dark-green;
+  color: $white;
+  text-align: center;
+  margin: 25px auto;
+  text-transform: uppercase;
+}
+
+.reservationItem {
+  padding: 1rem;
+  // border: 0.3px solid #97bf0f;
+  text-align: left;
+  background-color: $white;
+}
+
+.item {
+  padding: 0.2rem;
+}
