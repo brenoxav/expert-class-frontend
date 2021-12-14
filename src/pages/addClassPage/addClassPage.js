@@ -6,7 +6,7 @@ import {
 } from '../classesPage/classesPageSlice';
 import FlashMessage from '../../components/flashMessage/flashMessage';
 import FormValidation from '../../components/formValidation/formValidation';
-import './addClassPage.css';
+import './addClassPage.scss';
 
 const AddClassPage = () => {
   const dispatch = useDispatch();
@@ -83,7 +83,7 @@ const AddClassPage = () => {
 
   return (
     <>
-      <div className="add-class-container">
+      <div className="add-class-container private-page-container">
         { formMessage.display
           && <FlashMessage data-testid="flashMessage" message={formMessage.message} type={formMessage.type} />}
 

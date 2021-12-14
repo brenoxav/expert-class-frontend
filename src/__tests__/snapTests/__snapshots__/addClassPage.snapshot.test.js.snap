@@ -2,7 +2,7 @@
 
 exports[`AddClassPage Renders the page 1`] = `
 <div
-  className="add-class-container"
+  className="add-class-container private-page-container"
 >
   <div
     className="main-container"
