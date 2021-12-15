@@ -56,7 +56,11 @@ export const loginStatus = createAsyncThunk(
 export const sessionSlice = createSlice({
   name: 'session',
   initialState,
-  reducers: {},
+  reducers: {
+    resetError(state) {
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(signUpUser.pending, (state) => {
@@ -87,6 +91,7 @@ export const sessionSlice = createSlice({
           state.status = 'fulfilled';
           state.user = action.payload.user;
           state.logged_in = action.payload.logged_in;
+          state.error = null;
         } else {
           state.status = 'fulfilled';
           state.user = {};
@@ -106,6 +111,7 @@ export const sessionSlice = createSlice({
           state.status = 'fulfilled';
           state.user = action.payload.user;
           state.logged_in = action.payload.logged_in;
+          state.error = null;
         } else {
           state.status = 'fulfilled';
           state.user = {};
@@ -132,6 +138,8 @@ export const sessionSlice = createSlice({
       });
   },
 });
+
+export const { resetError } = sessionSlice.actions;
 
 export const currentUser = (state) => state.users.user;
 export const loggedInStatus = (state) => state.users.logged_in;

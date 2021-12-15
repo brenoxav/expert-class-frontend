@@ -1,4 +1,4 @@
-import './navPanel.css';
+import './navPanel.scss';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
@@ -34,7 +34,7 @@ function NavPanel() {
       <NavLink to="/remove-class" className="nav-link" activeClassName="active-nav-link" exact>
         Remove Class
       </NavLink>
-      <button type="button" className="logOutBtn" onClick={handleLogoutClick}>Logout</button>
+      <button type="button" className="button-white logOutBtn" onClick={handleLogoutClick}>Logout</button>
 
     </nav>
   );

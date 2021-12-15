@@ -1,0 +1,28 @@
+.errorMessage {
+  background-color: white;
+  width: 143px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 10px;
+  color: grey;
+  position: absolute;
+  z-index: 100;
+  left: 0;
+  right: 0;
+  top: -60px;
+  margin: 0 auto;
+}
+
+.errorMessage.bottom-arrow::after {
+  content: " ";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: -15px;
+  border-bottom: none;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-top: 15px solid white;
+}

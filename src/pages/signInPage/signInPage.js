@@ -2,29 +2,43 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, Redirect } from 'react-router-dom';
 import { unwrapResult } from '@reduxjs/toolkit';
-import styles from './signInPage.module.css';
-import { loginUser, loggedInStatus, authErrors } from '../../auth/sessionSlice';
-import SpeechBubble from '../../common/speechBubble/speechBubble';
+import styles from './signInPage.module.scss';
+import {
+  loginUser, loggedInStatus, authErrors, resetError,
+} from '../../auth/sessionSlice';
+import FlashMessage from '../../components/flashMessage/flashMessage';
 
 function SignInPage() {
   const dispatch = useDispatch();
   const loggedIn = useSelector(loggedInStatus);
-  const history = useHistory();
   const error = useSelector(authErrors);
-  const { state } = useLocation();
-  const redirectPath = state?.from || 'classes';
+  const history = useHistory();
+  const location = useLocation();
+  const redirectPath = location.state?.from || 'classes';
+  const initialFormMessage = { message: '', display: false, type: null };
 
   const [formData, setFormData] = useState({ username: '' });
-  const [formMessage, setFormMessage] = useState({ message: error, display: false });
+  const [formMessage, setFormMessage] = useState(initialFormMessage);
 
   if (loggedIn) {
     return (<Redirect to="classes" />);
   }
 
   useEffect(() => {
+    let timeoutActive = true;
     if (error) {
-      setFormMessage({ message: error, display: true });
+      setFormMessage({ message: error, display: true, type: 'alert' });
+      setTimeout(() => {
+        if (timeoutActive) {
+          setFormMessage(initialFormMessage);
+        }
+      }, 4000);
     }
+    return () => {
+      timeoutActive = false;
+      setFormMessage(initialFormMessage);
+      dispatch(resetError());
+    };
   }, [error]);
 
   const change = (e) => setFormData({ ...formData, username: e.target.value });
@@ -38,20 +52,20 @@ function SignInPage() {
         history.replace(redirectPath);
       }
     } catch (rejectedValueOrSerializedError) {
-      setFormMessage({ message: 'There was an error loggin in. Please try again in a moment.', display: true });
+      history.replace('/');
     }
   };
 
   return (
-    <div className={styles.mainContainer}>
-      { formMessage.display && <SpeechBubble message={formMessage.message} /> }
+    <div className="page-container">
+      { formMessage.display
+      && <FlashMessage message={formMessage.message} type={formMessage.type} /> }
 
       <div className={styles.innerContainer}>
         <h2 className={styles.title}>Sign In</h2>
 
         <form className={styles.signInForm} onSubmit={handleSubmit}>
           <input
-            className={styles.formInput}
             onChange={change}
             type="text"
             name="username"
@@ -59,7 +73,7 @@ function SignInPage() {
             placeholder="Please enter your username"
             required
           />
-          <input className={styles.formSubmit} type="submit" value="Sign in" />
+          <input className="button-white" type="submit" value="Sign in" />
         </form>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import styles from './landingPage.module.css';
+import styles from './landingPage.module.scss';
 import { loggedInStatus } from '../../auth/sessionSlice';
 
 export default function LandingPage() {
@@ -17,7 +17,7 @@ export default function LandingPage() {
   }
 
   return (
-    <div className={styles.mainContainer}>
+    <div className="page-container">
       <div className={styles.innerContainer}>
         <h1 className={styles.pageTitle}>OUR EXPERT CLASSES</h1>
         <p className={styles.caption}>
@@ -30,8 +30,8 @@ export default function LandingPage() {
         </p>
 
         <div className={styles.buttonsDiv}>
-          <button className={styles.button1} type="button" onClick={() => handleClick('/sign-in')}>SignIn</button>
-          <button className={styles.button2} type="button" onClick={() => handleClick('/sign-up')}>SignUp</button>
+          <button className="button-green" type="button" onClick={() => handleClick('/sign-in')}>SignIn</button>
+          <button className="button-white" type="button" onClick={() => handleClick('/sign-up')}>SignUp</button>
         </div>
       </div>
     </div>

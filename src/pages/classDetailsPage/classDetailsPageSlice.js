@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import expertClassApi from '../../app/expertClassApi';
 
 const initialState = {
-  classObj: [],
+  classObj: {},
   status: 'idle',
   error: null,
 };

@@ -1,26 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import styles from './signUpPage.module.css';
-import { signUpUser, loggedInStatus, authErrors } from '../../auth/sessionSlice';
-import SpeechBubble from '../../common/speechBubble/speechBubble';
+import { useHistory, Redirect } from 'react-router-dom';
+import { unwrapResult } from '@reduxjs/toolkit';
+import styles from './signUpPage.module.scss';
+import {
+  signUpUser, loggedInStatus, authErrors, resetError,
+} from '../../auth/sessionSlice';
+import FlashMessage from '../../components/flashMessage/flashMessage';
 
 function SignUpPage() {
   const dispatch = useDispatch();
   const loggedIn = useSelector(loggedInStatus);
   const error = useSelector(authErrors);
+  const history = useHistory();
+  const initialFormData = { username: '', name: '' };
+  const initialFormMessage = { message: '', display: false, type: null };
 
-  const [formData, setFormData] = useState({ username: '', name: '' });
-  const [formMessage, setFormMessage] = useState({ message: error, display: false });
+  const [formData, setFormData] = useState(initialFormData);
+  const [formMessage, setFormMessage] = useState(initialFormMessage);
 
   if (loggedIn) {
     return (<Redirect to="classes" />);
   }
 
   useEffect(() => {
+    let timeoutActive = true;
     if (error) {
-      setFormMessage({ message: error, display: true });
+      setFormMessage({ message: error, display: true, type: 'alert' });
+      setTimeout(() => {
+        if (timeoutActive) {
+          setFormMessage(initialFormMessage);
+        }
+      }, 4000);
     }
+    return () => {
+      timeoutActive = false;
+      setFormMessage(initialFormMessage);
+      dispatch(resetError());
+    };
   }, [error]);
 
   const handleChange = (e) => {
@@ -31,14 +48,23 @@ function SignUpPage() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(signUpUser(formData));
+    try {
+      const resultAction = await dispatch(signUpUser(formData));
+      const originalPromiseResult = unwrapResult(resultAction);
+      if (originalPromiseResult.status === 'created') {
+        history.replace('classes');
+      }
+    } catch (rejectedValueOrSerializedError) {
+      history.replace('/');
+    }
   };
 
   return (
-    <div className={styles.mainContainer}>
-      { formMessage.display && <SpeechBubble message={formMessage.message} /> }
+    <div className="page-container">
+      { formMessage.display
+      && <FlashMessage message={formMessage.message} type={formMessage.type} /> }
 
       <div className={styles.innerContainer}>
         <h2 className={styles.title}>Sign Up</h2>
@@ -46,7 +72,7 @@ function SignUpPage() {
         <form className={styles.signInForm} onSubmit={handleSubmit}>
           <input className={styles.formInput} onChange={handleChange} value={formData.username} type="text" name="username" id="username" placeholder="Please enter your username" minLength="6" maxLength="20" required />
           <input className={styles.nameInput} onChange={handleChange} value={formData.name} type="text" name="name" id="name" placeholder="Please enter your name" maxLength="24" required />
-          <input className={styles.formSubmit} type="submit" value="Sign up" />
+          <input className="button-white" type="submit" value="Sign up" />
         </form>
       </div>
     </div>

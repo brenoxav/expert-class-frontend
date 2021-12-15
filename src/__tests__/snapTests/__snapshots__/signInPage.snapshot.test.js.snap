@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignIn Page Renders the page 1`] = `
+<div
+  className="page-container"
+>
+  <div
+    className="innerContainer"
+  >
+    <h2
+      className="title"
+    >
+      Sign In
+    </h2>
+    <form
+      className="signInForm"
+      onSubmit={[Function]}
+    >
+      <input
+        name="username"
+        onChange={[Function]}
+        placeholder="Please enter your username"
+        required={true}
+        type="text"
+        value=""
+      />
+      <input
+        className="button-white"
+        type="submit"
+        value="Sign in"
+      />
+    </form>
+  </div>
+</div>
+`;

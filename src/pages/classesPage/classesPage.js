@@ -4,7 +4,7 @@ import Carousel from '../../common/Carousel/Carousel';
 import {
   fetchClassesData, currentClasses, classesStateStatus, classesErrorMessage,
 } from './classesPageSlice';
-import styles from './classesPage.module.css';
+import styles from './classesPage.module.scss';
 
 const ClassesPage = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const ClassesPage = () => {
   return (
     (fetchStatus === 'fulfilled')
     && (
-    <div className={styles.classesContainer}>
+    <div className="private-page-container">
       <h2 className={styles.heading}>Classes</h2>
       <Carousel classes={classes} />
     </div>

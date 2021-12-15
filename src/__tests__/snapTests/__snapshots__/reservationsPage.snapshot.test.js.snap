@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReservationsPage Renders the page 1`] = `
+<div
+  className="private-page-container"
+>
+  <h2
+    className="heading"
+  >
+    My Reservations
+  </h2>
+  <div
+    className="reservationsGridContainer"
+  />
+</div>
+`;

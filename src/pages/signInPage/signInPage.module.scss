@@ -1,0 +1,28 @@
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  color: white;
+  margin-bottom: 30px;
+}
+
+.signInForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nameInput {
+  width: 28rem;
+  height: 3rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 50px;
+  border: 2px solid white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
