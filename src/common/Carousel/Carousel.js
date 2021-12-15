@@ -28,12 +28,13 @@ export default function Carousel({ classes }) {
           url(${c.course_image_url}) center center/cover no-repeat content-box, rgb(153, 140, 140)`,
         }}
       >
-        <div className={styles.textContainer}>
-          <h3 className={styles.title}>{c.title}</h3>
-          <p className={styles.instructor}>{c.instructor}</p>
-          <SocialIcons />
-        </div>
+        {/* <div></div> */}
       </NavLink>
+      <div className={styles.textContainer}>
+        <h3 className={styles.title}>{c.title}</h3>
+        <p className={styles.instructor}>{c.instructor}</p>
+        <SocialIcons />
+      </div>
     </SwiperSlide>
   ));
 
@@ -52,9 +53,6 @@ export default function Carousel({ classes }) {
             waitForTransition: true,
           }}
           speed={1000}
-          pagination={{
-            clickable: true,
-          }}
           navigation
           className={styles.swiper}
         >
