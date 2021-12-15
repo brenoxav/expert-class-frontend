@@ -23,3 +23,11 @@
   fill: $light-green;
   display: block;
 }
+
+.socialIconCircle:hover {
+  border-color: $white;
+
+  .socialIcon {
+    fill: $white;
+  }
+}
