@@ -1,0 +1,19 @@
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  color: white;
+  margin-bottom: 30px;
+  margin-top: 100px;
+}
+
+.signInForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}

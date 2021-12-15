@@ -2,12 +2,15 @@
 
 exports[`ReservationsPage Renders the page 1`] = `
 <div
-  className="mainContainer"
+  className="private-page-container"
 >
-  <h1
+  <h2
     className="heading"
   >
     My Reservations
-  </h1>
+  </h2>
+  <div
+    className="reservationsGridContainer"
+  />
 </div>
 `;

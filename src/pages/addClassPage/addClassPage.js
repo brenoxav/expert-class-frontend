@@ -6,7 +6,7 @@ import {
 } from '../classesPage/classesPageSlice';
 import FlashMessage from '../../components/flashMessage/flashMessage';
 import FormValidation from '../../components/formValidation/formValidation';
-import './addClassPage.css';
+import styles from './addClassPage.module.scss';
 
 const AddClassPage = () => {
   const dispatch = useDispatch();
@@ -33,18 +33,25 @@ const AddClassPage = () => {
   const [formMessage, setFormMessage] = useState(initialFormMessage);
   const [validationMessage, setValidationMessage] = useState(initialValidationMessage);
 
-  const flashMessageTimeout = () => setTimeout(() => setFormMessage(initialFormMessage), 4000);
-  const formValidationTimeout = () => {
-    setTimeout(() => setValidationMessage(initialValidationMessage), 3000);
-  };
-
   useEffect(() => {
+    let timeoutActive = true;
     if (formMessage.display) {
-      flashMessageTimeout();
+      setTimeout(() => {
+        if (timeoutActive) {
+          setFormMessage(initialFormMessage);
+        }
+      }, 4000);
     }
     if (validationMessage.display) {
-      formValidationTimeout();
+      setTimeout(() => {
+        if (timeoutActive) {
+          setValidationMessage(initialValidationMessage);
+        }
+      }, 3000);
     }
+    return () => {
+      timeoutActive = false;
+    };
   }, [formMessage, validationMessage]);
 
   const handleChange = (e) => {
@@ -82,56 +89,55 @@ const AddClassPage = () => {
   };
 
   return (
+    fetchStatus === 'fulfilled'
+    && (
     <>
-      <div className="add-class-container">
+      <div className={`${styles.formContainer} private-page-container`}>
         { formMessage.display
           && <FlashMessage data-testid="flashMessage" message={formMessage.message} type={formMessage.type} />}
 
-        <div className="main-container">
-          <h2 className="heading">Add Class</h2>
-          <form onSubmit={handleSubmit} data-testid="add-class-form" className="add-class-form">
+        <h2 className={`${styles.title}`}>Add Class</h2>
+        <form onSubmit={handleSubmit} data-testid="add-class-form" className={`${styles.form}`}>
 
-            <div className="inputWrapper">
-              <label htmlFor="title">
-                <input id="title" onChange={handleChange} type="text" name="course[title]" className="add-class-title" placeholder="Title" value={inputs.title} />
-                { validationMessage.display && validationMessage.id === 'title'
+          <div className={styles.inputWrapper}>
+            <input id="title" className={styles.formInput} onChange={handleChange} type="text" name="course[title]" placeholder="Title" value={inputs.title} />
+            { validationMessage.display && validationMessage.id === 'title'
                 && <FormValidation message={validationMessage.message} />}
-              </label>
-            </div>
-            <div className="inputWrapper">
-              <label htmlFor="description">
-                <input id="description" onChange={handleChange} type="text" name="course[description]" className="class-description" placeholder="Description" value={inputs.description} />
-                { validationMessage.display && validationMessage.id === 'description'
+          </div>
+          <div className={styles.inputWrapper}>
+            <input id="description" className={styles.formInput} onChange={handleChange} type="text" name="course[description]" placeholder="Description" value={inputs.description} />
+            { validationMessage.display && validationMessage.id === 'description'
                 && <FormValidation message={validationMessage.message} />}
-              </label>
-            </div>
-            <div className="inputWrapper">
-              <label htmlFor="duration">
-                <input id="duration" onChange={handleChange} type="number" name="course[duration]" className="class-duration" placeholder="Duration" value={inputs.duration} />
-                { validationMessage.display && validationMessage.id === 'duration'
+          </div>
+          <div className={styles.inputWrapper}>
+
+            <input id="duration" className={styles.formInput} onChange={handleChange} type="number" name="course[duration]" placeholder="Duration" value={inputs.duration} />
+            { validationMessage.display && validationMessage.id === 'duration'
                 && <FormValidation message={validationMessage.message} />}
-              </label>
-            </div>
-            <div className="inputWrapper">
-              <label htmlFor="instructor">
-                <input id="instructor" onChange={handleChange} type="text" name="course[instructor]" className="class-instructor" placeholder="Instructor" value={inputs.instructor} />
-                { validationMessage.display && validationMessage.id === 'instructor'
+
+          </div>
+          <div className={styles.inputWrapper}>
+
+            <input id="instructor" className={styles.formInput} onChange={handleChange} type="text" name="course[instructor]" placeholder="Instructor" value={inputs.instructor} />
+            { validationMessage.display && validationMessage.id === 'instructor'
                 && <FormValidation message={validationMessage.message} />}
-              </label>
-            </div>
-            <div className="upload-box inputWrapper">
-              <span className="instruction">Upload Instructor Image</span>
-              <input id="image" data-testid="imageInput" onChange={handleChange} type="file" name="course[image]" accept="image/png, image/jpeg" className="instructor-image" placeholder="Add image" />
-              { validationMessage.display && validationMessage.id === 'image'
-                && <FormValidation message={validationMessage.message} />}
-            </div>
-            <div>
-              <input type="submit" value="Add" className="class-submit" />
-            </div>
-          </form>
-        </div>
+
+          </div>
+          <div className={`${styles.inputWrapper} ${styles.uploadBox}`}>
+            <span className={styles.imageLabel}>Upload Instructor Image</span>
+            <input id="image" data-testid="imageInput" onChange={handleChange} type="file" name="course[image]" accept="image/png, image/jpeg" className={`${styles.instructorImage}`} />
+            { validationMessage.display && validationMessage.id === 'image'
+                  && <FormValidation message={validationMessage.message} />}
+
+          </div>
+          <div>
+            <input type="submit" value="Add" className="button-white" />
+          </div>
+        </form>
+
       </div>
     </>
+    )
   );
 };
 

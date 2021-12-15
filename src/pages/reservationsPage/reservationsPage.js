@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './reservations.module.css';
+import styles from './reservations.module.scss';
 import { fetchReservations, userReservations, reservationsState } from './reservationsPageSlice';
 
 export default function ReservationsPage() {
@@ -40,9 +40,9 @@ export default function ReservationsPage() {
   ));
 
   return (
-    <div className={styles.mainContainer}>
-      <h1 className={styles.heading}>My Reservations</h1>
-      {ReservationsList}
+    <div className="private-page-container">
+      <h2 className={styles.heading}>My Reservations</h2>
+      <div className={styles.reservationsGridContainer}>{ReservationsList}</div>
     </div>
   );
 }

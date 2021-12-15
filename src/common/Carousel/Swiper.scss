@@ -1,4 +1,6 @@
+@import '../../styles/abstracts/variables';
+
 #swiper-container .swiper-button-next,
 #swiper-container .swiper-button-prev {
-  color: grey;
+  color: $dark-green-full;
 }

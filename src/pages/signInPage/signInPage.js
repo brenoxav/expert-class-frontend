@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, Redirect } from 'react-router-dom';
 import { unwrapResult } from '@reduxjs/toolkit';
-import styles from './signInPage.module.css';
-import { loginUser, loggedInStatus, authErrors } from '../../auth/sessionSlice';
+import styles from './signInPage.module.scss';
+import {
+  loginUser, loggedInStatus, authErrors, resetError,
+} from '../../auth/sessionSlice';
 import FlashMessage from '../../components/flashMessage/flashMessage';
 
 function SignInPage() {
@@ -22,13 +24,21 @@ function SignInPage() {
     return (<Redirect to="classes" />);
   }
 
-  const flashMessageTimeout = () => setTimeout(() => setFormMessage(initialFormMessage), 4000);
-
   useEffect(() => {
+    let timeoutActive = true;
     if (error) {
       setFormMessage({ message: error, display: true, type: 'alert' });
-      flashMessageTimeout();
+      setTimeout(() => {
+        if (timeoutActive) {
+          setFormMessage(initialFormMessage);
+        }
+      }, 4000);
     }
+    return () => {
+      timeoutActive = false;
+      setFormMessage(initialFormMessage);
+      dispatch(resetError());
+    };
   }, [error]);
 
   const change = (e) => setFormData({ ...formData, username: e.target.value });
@@ -47,7 +57,7 @@ function SignInPage() {
   };
 
   return (
-    <div className={styles.mainContainer}>
+    <div className="page-container">
       { formMessage.display
       && <FlashMessage message={formMessage.message} type={formMessage.type} /> }
 
@@ -56,7 +66,6 @@ function SignInPage() {
 
         <form className={styles.signInForm} onSubmit={handleSubmit}>
           <input
-            className={styles.formInput}
             onChange={change}
             type="text"
             name="username"
@@ -64,7 +73,7 @@ function SignInPage() {
             placeholder="Please enter your username"
             required
           />
-          <input className={styles.formSubmit} type="submit" value="Sign in" />
+          <input className="button-white" type="submit" value="Sign in" />
         </form>
       </div>
     </div>

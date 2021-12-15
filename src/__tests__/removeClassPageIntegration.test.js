@@ -38,9 +38,10 @@ describe('Remove Class Page', () => {
     const classTitle = queryByText('Singing');
     expect(classTitle).toBeInTheDocument();
     const removeButtons = getAllByTestId('removeBtn');
+    expect(removeButtons).toHaveLength(2);
 
     fireEvent.click(removeButtons[1]);
-    await waitFor(() => expect(classTitle).not.toBeInTheDocument());
-    expect(getAllByTestId('classItem')).toHaveLength(1);
+    await waitFor(() => expect(getAllByTestId('classItem')).toHaveLength(1));
+    expect(classTitle).not.toBeInTheDocument();
   });
 });

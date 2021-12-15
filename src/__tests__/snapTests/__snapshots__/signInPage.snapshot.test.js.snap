@@ -2,7 +2,7 @@
 
 exports[`SignIn Page Renders the page 1`] = `
 <div
-  className="mainContainer"
+  className="page-container"
 >
   <div
     className="innerContainer"
@@ -17,7 +17,6 @@ exports[`SignIn Page Renders the page 1`] = `
       onSubmit={[Function]}
     >
       <input
-        className="formInput"
         name="username"
         onChange={[Function]}
         placeholder="Please enter your username"
@@ -26,7 +25,7 @@ exports[`SignIn Page Renders the page 1`] = `
         value=""
       />
       <input
-        className="formSubmit"
+        className="button-white"
         type="submit"
         value="Sign in"
       />

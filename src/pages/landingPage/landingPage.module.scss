@@ -1,32 +1,37 @@
-.mainContainer {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(180deg, rgba(151, 191, 15, 0.7), rgba(151, 191, 15, 0.7)), url(../../assets/images/expertClass02.jpg);
-  background-repeat: no-repeat, repeat;
-  background-size: cover;
-  height: 100vh;
-}
+@import '../../styles/abstracts/variables';
+@import '../../styles/abstracts/fonts';
 
 .innerContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: $desktop-full-width;
+  padding: 0 10rem;
 }
 
-.title {
+.pageTitle {
   color: white;
-  margin-bottom: 30px;
-  margin-top: 100px;
+  font-family: $secondary-font;
+}
+
+.caption {
+  color: white;
+  text-align: center;
+  padding: 1rem 2.5rem;
+}
+
+.buttonsDiv {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: row;
 }
 
 .signInForm {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .formInput {
@@ -51,13 +56,12 @@
 }
 
 .formSubmit {
-  background-color: white;
   margin: 1rem 0;
   height: 2.5rem;
   width: 9rem;
   font-size: 1.5rem;
   font-weight: 500;
-  color: rgba(151, 191, 15, 1);
+  color: $dark-green-full;
   border-radius: 50px;
   border: 2px solid white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
