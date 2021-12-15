@@ -27,9 +27,7 @@ export default function Carousel({ classes }) {
           linear-gradient(to right bottom, rgba(151, 191, 15, 1) 5%, transparent 10%),
           url(${c.course_image_url}) center center/cover no-repeat content-box, rgb(153, 140, 140)`,
         }}
-      >
-        {/* <div></div> */}
-      </NavLink>
+      />
       <div className={styles.textContainer}>
         <h3 className={styles.title}>{c.title}</h3>
         <p className={styles.instructor}>{c.instructor}</p>
