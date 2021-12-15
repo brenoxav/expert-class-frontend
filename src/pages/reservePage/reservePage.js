@@ -58,14 +58,14 @@ const ReservePage = () => {
     if (formMessage.display) {
       setTimeout(() => {
         if (timeoutActive) {
-          setFormMessage(initialFormMessage)
+          setFormMessage(initialFormMessage);
         }
       }, 4000);
     }
     if (validationMessage.display) {
       setTimeout(() => {
         if (timeoutActive) {
-          setValidationMessage(initialValidationMessage)
+          setValidationMessage(initialValidationMessage);
         }
       }, 3000);
     }
