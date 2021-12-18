@@ -35,7 +35,6 @@ function NavPanel() {
         Remove Class
       </NavLink>
       <button type="button" className="button-white logOutBtn" onClick={handleLogoutClick}>Logout</button>
-
     </nav>
   );
 }

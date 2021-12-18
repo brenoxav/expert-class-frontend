@@ -1,7 +1,7 @@
 @import '../../styles/abstracts/variables';
 
 .nav-panel {
-  display: flex;
+  display: none;
   flex-direction: column;
   position: absolute;
   height: 100vh;
@@ -34,4 +34,15 @@
   bottom: 0;
   font-size: 1.4rem;
   padding: 1.2rem 5rem;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .nav-panel {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    height: 100vh;
+    width: var(--nav-panel-width);
+    border-right: 2px solid #eee;
+  }
 }
