@@ -1,4 +1,5 @@
 // Breakpoints
+$desktop-full-width: 1200px;
 $breakpoint-tablet: 768px;
 
 // Primary Colors
@@ -12,11 +13,10 @@ $light-green: rgb(210, 221, 173);
 $light-green-transparency: rgb(161, 201, 29);
 $orange: rgba(255, 180, 0, 1);
 
-// Spacing
-$desktop-full-width: 1200px;
-
 // Padding top for Slider Cards
 $padding-top-mobile: 80vh;
-$padding-top: max(280px, calc(45% - 21px));
+$padding-top: max(270px, calc(45% - 21px));
 $padding-top-details: max(280px, 30%);
+
+// Other
 $details-col-1-width: max(280px, 30%);

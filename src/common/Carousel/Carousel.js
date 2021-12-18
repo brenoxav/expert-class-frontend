@@ -13,18 +13,15 @@ import './Swiper.scss';
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 export default function Carousel({ classes }) {
-  // const breakpoints = {
-  //   // when window width is >= 640px
-  //   640: {
-  //     width: 640,
-  //     slidesPerView: 1,
-  //   },
-  //   // when window width is >= 768px
-  //   768: {
-  //     width: 768,
-  //     slidesPerView: 2,
-  //   },
-  // };
+  const breakpoints = {
+    640: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 3,
+    },
+  };
+
   const classesList = classes.map((c) => (
     <SwiperSlide
       key={c.id}
@@ -52,20 +49,8 @@ export default function Carousel({ classes }) {
     if (totalClasses >= 3) {
       return (
         <Swiper
-          breakpoints={{
-            // when window width is >= 640px
-            640: {
-              // width: 640,
-              slidesPerView: 1,
-            },
-            // when window width is >= 768px
-            768: {
-              // width: 768,
-              slidesPerView: 3,
-            },
-          }}
+          breakpoints={breakpoints}
           id="swiper-container"
-          // slidesPerView={3}
           spaceBetween={30}
           loop
           loopFillGroupWithBlank
@@ -85,7 +70,7 @@ export default function Carousel({ classes }) {
     return (
       <Swiper
         id="swiper-container"
-        slidesPerView={3}
+        breakpoints={breakpoints}
         spaceBetween={30}
         centerInsufficientSlides
         className={styles.swiper}
