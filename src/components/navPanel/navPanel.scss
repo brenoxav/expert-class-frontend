@@ -30,6 +30,7 @@
 }
 
 .logOutBtn {
+  display: none;
   position: absolute;
   bottom: 0;
   font-size: 1.4rem;
@@ -94,5 +95,9 @@
     height: 100vh;
     width: var(--nav-panel-width);
     border-right: 2px solid #eee;
+  }
+
+  .logOutBtn {
+    display: block;
   }
 }
