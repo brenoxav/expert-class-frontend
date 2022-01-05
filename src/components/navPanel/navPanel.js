@@ -38,6 +38,7 @@ function NavPanel() {
         <button type="button" className="button-white logOutBtn" onClick={handleLogoutClick}>Logout</button>
       </nav>
       <div className="overlay-nav">
+        <i class="far fa-times"></i>
         <nav className="overlay-nav__nav-list">
           <NavLink to="/classes" className="nav-link-mobile" activeClassName="" exact>
             Classes

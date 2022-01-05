@@ -7,6 +7,7 @@ import { loggedInStatus, loginStatus, status } from './auth/sessionSlice';
 import ClassesPage from './pages/classesPage/classesPage';
 import LandingPage from './pages/landingPage/landingPage';
 import NavPanel from './components/navPanel/navPanel';
+import MobileMenu from './components/mobileMenu/mobileMenu';
 import ReservePage from './pages/reservePage/reservePage';
 import ReservationsPage from './pages/reservationsPage/reservationsPage';
 import AddClassPage from './pages/addClassPage/addClassPage';
@@ -42,6 +43,7 @@ function App() {
     <Router>
       <div className="App">
         { loggedIn && <NavPanel />}
+        { loggedIn && <MobileMenu />}
 
         <Switch>
           <Route exact path="/" component={LandingPage} />
