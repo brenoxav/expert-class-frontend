@@ -53,18 +53,16 @@
 }
 
 .overlay-nav__nav-list {
-  padding-top: 30%;
+  padding-top: 100px;
   padding-left: 4rem;
-  position: absolute;
-  top: 0;
-  transform: translateX(-100%);
-  left: -1000px;
-  transition: transform 0.1s;
+  width: fit-content;
+  transform: translateX(-1000%);
+  transition: transform 0.6s;
 }
 
 .overlay-nav__nav-list--overlay-transition {
+  transition: transform 1s;
   transform: translateX(0%);
-  left: 0;
 }
 
 .nav-link-mobile {
@@ -77,7 +75,6 @@
 
 .overlay-nav__copyright {
   text-align: center;
-  // width: 100%;
   left: -200px;
   width: 0;
   position: absolute;
