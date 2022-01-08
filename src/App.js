@@ -42,8 +42,12 @@ function App() {
     && (
     <Router>
       <div className="App">
-        { loggedIn && <NavPanel />}
-        { loggedIn && <MobileMenu />}
+        { loggedIn && (
+        <>
+          <NavPanel />
+          <MobileMenu />
+        </>
+        )}
 
         <Switch>
           <Route exact path="/" component={LandingPage} />

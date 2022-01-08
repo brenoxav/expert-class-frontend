@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import styles from './mobileMenu.module.scss'
+import styles from './mobileMenu.module.scss';
 
 const MobileMenu = () => {
   const mobileNav = document.querySelector('.overlay-nav');
@@ -10,30 +9,29 @@ const MobileMenu = () => {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
-  }
+  };
 
   useEffect(() => {
     if (open) {
-      mobileNav.style.width = '100%';
-      mobileNavLinks.style.transform = 'translateX(0%)';
-      mobileNavLinks.style.left = '0';
-      copyright.style.width = '100%';
-      copyright.style.left = '0';
+      mobileNav.classList.add('overlay-nav--show');
+      mobileNavLinks.classList.add('overlay-nav__nav-list--overlay-transition');
+      copyright.classList.add('overlay-nav__copyright--show');
+    } else if (!open && mobileNav) {
+      mobileNav.classList.remove('overlay-nav--show');
+      mobileNavLinks.classList.remove('overlay-nav__nav-list--overlay-transition');
+      copyright.classList.remove('overlay-nav__copyright--show');
     }
-  }, [open])
+  }, [open]);
 
   return (
     <button
+      type="button"
       className={styles.mobileMenu}
       onClick={handleClick}
     >
-      <i className={`fas fa-bars ${styles.menuIcon}`}></i>
+      {open ? <i className={`far fa-times ${styles.menuIcon}`} /> : <i className={`fas fa-bars ${styles.menuIcon}`} />}
     </button>
-  )
-}
-
-MobileMenu.propTypes = {
-
-}
+  );
+};
 
 export default MobileMenu;
