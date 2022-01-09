@@ -40,7 +40,7 @@ export default function ReservationsPage() {
   ));
 
   return (
-    <div className="private-page-container">
+    <div className={`private-page-container ${styles.pageContainer}`}>
       <h2 className={styles.heading}>My Reservations</h2>
       <div className={styles.reservationsGridContainer}>{ReservationsList}</div>
     </div>
