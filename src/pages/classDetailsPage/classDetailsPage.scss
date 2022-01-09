@@ -10,6 +10,7 @@
 .details-col-1 {
   width: $details-col-1-width;
   padding-top: $padding-top-details;
+  margin-top: 5.6rem;
   height: 0;
   position: relative;
   margin-bottom: 2rem;
@@ -58,4 +59,10 @@
 
 .class-instructor {
   margin: 2px 0;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .details-col-1 {
+    margin-top: 0;
+  }
 }
