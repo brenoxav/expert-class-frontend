@@ -77,3 +77,9 @@
   transform: translateX(0%);
   z-index: 15;
 }
+
+@media (min-width: $breakpoint-tablet) {
+  .mobileMenu {
+    display: none;
+  }
+}
