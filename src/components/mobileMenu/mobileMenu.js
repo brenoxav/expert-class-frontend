@@ -1,25 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
-import { unwrapResult } from '@reduxjs/toolkit';
-import { logoutUser } from '../../auth/sessionSlice';
+import { NavLink } from 'react-router-dom';
 import styles from './mobileMenu.module.scss';
 
 const MobileMenu = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
-  };
-
-  const handleLogoutClick = async () => {
-    const resultAction = await dispatch(logoutUser());
-    const originalPromiseResult = unwrapResult(resultAction);
-    if (originalPromiseResult.logged_out) {
-      history.replace('/');
-    }
   };
 
   return (
@@ -51,7 +37,6 @@ const MobileMenu = () => {
             Remove Class
           </NavLink>
         </nav>
-        <button type="button" className="button-white logOutBtn" onClick={handleLogoutClick}>Logout</button>
         <p className={open ? `${styles.overlayNav__copyright} ${styles.overlayNav__copyright__show}` : styles.overlayNav__copyright}>
           © Copyright
           <br />

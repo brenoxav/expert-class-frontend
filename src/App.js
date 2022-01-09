@@ -7,6 +7,7 @@ import { loggedInStatus, loginStatus, status } from './auth/sessionSlice';
 import ClassesPage from './pages/classesPage/classesPage';
 import LandingPage from './pages/landingPage/landingPage';
 import NavPanel from './components/navPanel/navPanel';
+import MobileSignOutBtn from './components/mobileSignOutBtn/mobileSignOutBtn';
 import MobileMenu from './components/mobileMenu/mobileMenu';
 import ReservePage from './pages/reservePage/reservePage';
 import ReservationsPage from './pages/reservationsPage/reservationsPage';
@@ -45,6 +46,7 @@ function App() {
         { loggedIn && (
         <>
           <NavPanel />
+          <MobileSignOutBtn />
           <MobileMenu />
         </>
         )}
