@@ -17,6 +17,10 @@
   font-size: 30px;
 }
 
+.menuIcon__white {
+  color: $white;
+}
+
 .overlayNav {
   position: absolute;
   top: 0;
@@ -47,13 +51,17 @@
 
 .navLinkMobile {
   display: block;
-  font-size: 3rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $white;
+  font-size: 2rem;
   margin-bottom: 3rem;
-  font-weight: 500;
-  letter-spacing: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.8rem;
 }
 
 .overlayNav__copyright {
+  color: $white;
   text-align: center;
   width: fit-content;
   position: absolute;

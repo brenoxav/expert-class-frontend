@@ -37,57 +37,6 @@
   padding: 1.2rem 5rem;
 }
 
-// .overlay-nav {
-//   position: absolute;
-//   top: 0;
-//   min-height: 100vh;
-//   width: 0%;
-//   left: 0;
-//   background-color: $dark-green-full;
-//   z-index: 10;
-//   transition: width 0.5s;
-// }
-
-// .overlay-nav--show {
-//   width: 100%;
-// }
-
-// .overlay-nav__nav-list {
-//   padding-top: 100px;
-//   padding-left: 4rem;
-//   width: fit-content;
-//   transform: translateX(-1000%);
-//   transition: transform 0.5s;
-// }
-
-// .overlay-nav__nav-list--overlay-transition {
-//   transition: transform 0.5s;
-//   transform: translateX(0%);
-// }
-
-// .nav-link-mobile {
-//   display: block;
-//   font-size: 3rem;
-//   margin-bottom: 3rem;
-//   font-weight: 500;
-//   letter-spacing: 1rem;
-// }
-
-// .overlay-nav__copyright {
-//   text-align: center;
-//   left: -200px;
-//   width: 0;
-//   position: absolute;
-//   bottom: 0;
-//   padding-bottom: 2rem;
-//   line-height: 3rem;
-// }
-
-// .overlay-nav__copyright--show {
-//   width: 100%;
-//   left: 0;
-// }
-
 @media (min-width: $breakpoint-tablet) {
   .nav-panel {
     display: flex;
