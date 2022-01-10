@@ -43,7 +43,7 @@ describe('NavPanel', () => {
     );
 
     const navLinks = (getAllByRole('link'));
-    expect(navLinks).toHaveLength(5);
+    expect(navLinks).toHaveLength(10);
     fireEvent.click(navLinks[0]);
     expect(await findByText('English Composition')).toBeInTheDocument();
     expect(await findByText('Singing')).toBeInTheDocument();

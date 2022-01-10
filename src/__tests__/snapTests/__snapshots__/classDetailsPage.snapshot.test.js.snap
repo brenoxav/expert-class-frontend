@@ -2,21 +2,24 @@
 
 exports[`Class Details Page Renders the page 1`] = `
 <div
-  className="details-container"
+  className="private-page-container details-container"
 >
   <div
     className="details-col-1"
   >
-    <img
-      alt="expert class"
+    <div
+      className="class-details-img"
+      style={
+        Object {
+          "background": "url(undefined) center center/cover no-repeat, rgb(153, 140, 140)",
+        }
+      }
     />
   </div>
   <div
     className="details-col-2"
   >
-    <div
-      className="title"
-    >
+    <div>
       <h2
         className="class-title"
       />
@@ -47,7 +50,7 @@ exports[`Class Details Page Renders the page 1`] = `
           Hour(s)
         </span>
       </h4>
-      <h4>
+      <div>
         <svg
           className="bi bi-megaphone"
           fill="currentColor"
@@ -61,7 +64,7 @@ exports[`Class Details Page Renders the page 1`] = `
           />
         </svg>
         <span />
-      </h4>
+      </div>
     </div>
   </div>
 </div>

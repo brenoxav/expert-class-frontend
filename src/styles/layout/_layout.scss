@@ -43,6 +43,10 @@ a:hover {
   text-decoration: none;
 }
 
+.App {
+  position: relative;
+}
+
 /* Buttons */
 
 button,
@@ -121,7 +125,6 @@ input[type="number"]:focus::placeholder {
 .private-page-container {
   height: 100vh;
   padding: 20px;
-  margin-left: var(--nav-panel-width);
 }
 
 /* Loading Animaion */
@@ -135,4 +138,10 @@ input[type="number"]:focus::placeholder {
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .private-page-container {
+    margin-left: var(--nav-panel-width);
+  }
 }

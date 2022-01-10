@@ -1,0 +1,25 @@
+@import '../../styles/abstracts/variables';
+
+.logoutBtnMobile {
+  color: $black;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 0;
+  z-index: 5;
+}
+
+.signOutIcon {
+  margin: 1rem;
+  font-size: 30px;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .logoutBtnMobile {
+    display: none;
+  }
+}

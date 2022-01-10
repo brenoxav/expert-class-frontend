@@ -7,17 +7,27 @@
 }
 
 .socialIconCircle {
-  width: 1rem;
-  height: 1rem;
+  width: 1.2rem;
+  height: 1.2rem;
   padding: 1rem;
   margin: 0 5px;
   border: 2px solid $light-green;
   border-radius: 50%;
-  cursor: pointer;
   position: relative;
+  display: block;
+  cursor: pointer;
+  z-index: 100;
 }
 
 .socialIcon {
   fill: $light-green;
   display: block;
+}
+
+.socialIconCircle:hover {
+  border-color: $white;
+
+  .socialIcon {
+    fill: $white;
+  }
 }

@@ -1,0 +1,68 @@
+@import '../../styles/abstracts/variables';
+
+.details-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.details-col-1 {
+  width: $details-col-1-width;
+  padding-top: $padding-top-details;
+  margin-top: 5.6rem;
+  height: 0;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.class-details-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.details-col-2 {
+  max-width: 500px;
+  margin: 0 3rem;
+}
+
+.desc-table h4,
+.desc-table div {
+  padding: 15px;
+  border: 1px solid #eee;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.desc-table svg {
+  flex-basis: 10%;
+}
+
+.desc-table span {
+  margin: 10px;
+  flex-basis: 90%;
+}
+
+.details-col-2 h4:nth-child(even) {
+  background-color: #eee;
+}
+
+.class-title {
+  text-transform: uppercase;
+  padding: 15px 0;
+  margin-bottom: 1rem;
+}
+
+.class-instructor {
+  margin: 2px 0;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .details-col-1 {
+    margin-top: 0;
+  }
+}
