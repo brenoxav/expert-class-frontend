@@ -13,6 +13,15 @@ import './Swiper.scss';
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 export default function Carousel({ classes }) {
+  const breakpoints = {
+    640: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 3,
+    },
+  };
+
   const classesList = classes.map((c) => (
     <SwiperSlide
       key={c.id}
@@ -27,13 +36,12 @@ export default function Carousel({ classes }) {
           linear-gradient(to right bottom, rgba(151, 191, 15, 1) 5%, transparent 10%),
           url(${c.course_image_url}) center center/cover no-repeat content-box, rgb(153, 140, 140)`,
         }}
-      >
-        <div className={styles.textContainer}>
-          <h3 className={styles.title}>{c.title}</h3>
-          <p className={styles.instructor}>{c.instructor}</p>
-          <SocialIcons />
-        </div>
-      </NavLink>
+      />
+      <div className={styles.textContainer}>
+        <h3 className={styles.title}>{c.title}</h3>
+        <p className={styles.instructor}>{c.instructor}</p>
+        <SocialIcons />
+      </div>
     </SwiperSlide>
   ));
 
@@ -41,8 +49,8 @@ export default function Carousel({ classes }) {
     if (totalClasses >= 3) {
       return (
         <Swiper
+          breakpoints={breakpoints}
           id="swiper-container"
-          slidesPerView={3}
           spaceBetween={30}
           loop
           loopFillGroupWithBlank
@@ -52,9 +60,6 @@ export default function Carousel({ classes }) {
             waitForTransition: true,
           }}
           speed={1000}
-          pagination={{
-            clickable: true,
-          }}
           navigation
           className={styles.swiper}
         >
@@ -65,7 +70,7 @@ export default function Carousel({ classes }) {
     return (
       <Swiper
         id="swiper-container"
-        slidesPerView={3}
+        breakpoints={breakpoints}
         spaceBetween={30}
         centerInsufficientSlides
         className={styles.swiper}

@@ -2,7 +2,7 @@
 
 exports[`ReservationsPage Renders the page 1`] = `
 <div
-  className="private-page-container"
+  className="private-page-container pageContainer"
 >
   <h2
     className="heading"

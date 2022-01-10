@@ -2,17 +2,15 @@
 
 .swiper {
   width: 100%;
-  min-height: 400px;
 }
 
 .swiperSlide {
+  padding-top: $padding-top-mobile;
   height: 0;
-  padding-top: 45%;
   position: relative;
   color: $white;
   text-align: center;
-  font-size: 18px;
-  min-width: 200px;
+  min-width: calc(100% - 20px);
   border-radius: 15px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -41,10 +39,6 @@
   right: 0;
 }
 
-.swiperImgContainer {
-  width: 100%;
-}
-
 .swiperImg {
   width: 100%;
   height: auto;
@@ -53,7 +47,6 @@
 
 .textContainer {
   position: absolute;
-  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
@@ -61,7 +54,7 @@
   flex-direction: column;
   padding: 1rem;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .title {
@@ -72,4 +65,11 @@
 .instructor {
   padding: 0.5rem;
   color: $white;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .swiperSlide {
+    padding-top: $padding-top;
+    min-width: 200px;
+  }
 }

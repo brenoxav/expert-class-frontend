@@ -18,25 +18,26 @@ function NavPanel() {
   };
 
   return (
-    <nav className="nav-panel">
-      <NavLink to="/classes" className="nav-link" activeClassName="active-nav-link" exact>
-        Classes
-      </NavLink>
-      <NavLink to="/reserve" className="nav-link" activeClassName="active-nav-link" exact>
-        Reserve
-      </NavLink>
-      <NavLink to="/reservations" className="nav-link" activeClassName="active-nav-link" exact>
-        My Reservations
-      </NavLink>
-      <NavLink to="/add-class" className="nav-link" activeClassName="active-nav-link" exact>
-        Add Class
-      </NavLink>
-      <NavLink to="/remove-class" className="nav-link" activeClassName="active-nav-link" exact>
-        Remove Class
-      </NavLink>
-      <button type="button" className="button-white logOutBtn" onClick={handleLogoutClick}>Logout</button>
-
-    </nav>
+    <>
+      <nav className="nav-panel">
+        <NavLink to="/classes" className="nav-link" activeClassName="active-nav-link" exact>
+          Classes
+        </NavLink>
+        <NavLink to="/reserve" className="nav-link" activeClassName="active-nav-link" exact>
+          Reserve
+        </NavLink>
+        <NavLink to="/reservations" className="nav-link" activeClassName="active-nav-link" exact>
+          My Reservations
+        </NavLink>
+        <NavLink to="/add-class" className="nav-link" activeClassName="active-nav-link" exact>
+          Add Class
+        </NavLink>
+        <NavLink to="/remove-class" className="nav-link" activeClassName="active-nav-link" exact>
+          Remove Class
+        </NavLink>
+        <button type="button" className="button-white logOutBtn" onClick={handleLogoutClick}>Logout</button>
+      </nav>
+    </>
   );
 }
 

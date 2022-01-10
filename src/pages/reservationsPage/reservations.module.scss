@@ -1,5 +1,9 @@
 @import '../../styles/abstracts/variables';
 
+.pageContainer {
+  padding-top: 5.6rem !important;
+}
+
 .reservationsGridContainer {
   display: grid;
   grid-gap: 0.25rem;
@@ -24,4 +28,10 @@
 
 .item {
   padding: 0.2rem;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .pageContainer {
+    padding-top: 2rem;
+  }
 }
