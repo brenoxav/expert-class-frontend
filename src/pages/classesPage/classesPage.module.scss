@@ -1,3 +1,14 @@
+.classesPageContainer {
+  margin-left: calc(var(--nav-panel-width) + 1.6rem) !important;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.classesContentWrapper {
+  width: calc(100vw - (var(--nav-panel-width) + 1.6rem + 40px));
+}
+
 .heading {
   text-align: center;
   margin: 25px auto;
