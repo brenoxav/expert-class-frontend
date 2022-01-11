@@ -23,7 +23,11 @@ const ClassesPage = () => {
     && (
     <div className={`private-page-container ${styles.classesPageContainer}`}>
       <div className={styles.classesContentWrapper}>
-        <h2 className={styles.heading}>Classes</h2>
+        <h2 className={styles.heading}>Our Classes</h2>
+        <p className={styles.subHeading}>
+          Please browse through our
+          wide selection of expert classes
+        </p>
         <Carousel classes={classes} />
       </div>
     </div>
