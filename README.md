@@ -1,5 +1,5 @@
 <div align="center">
-<h1>Expert Class</h1>
+<h1><a href="http://expert-class-frontend-v2.netlify.app" target="blank">Expert Class</a></h1>
 </div>
 
 <div align="center">
