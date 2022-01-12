@@ -21,9 +21,9 @@
 
 <br>
 
-<div align="center"><img width="40%" alt="app screenshot mobile" src="./.github/images/homepage_screenshot.png">
-<img width="40%" alt="app screenshot mobile" src="./.github/images/homepage2_screenshot.png">
-<img width="40%" alt="app screenshot mobile" src="./.github/images/details_page_screenshot.png">
+<div align="center"><img width="100%" alt="app screenshot mobile" src="./.github/images/Screenshot_main.png">
+<img width="45%" alt="app screenshot mobile" src="./.github/images/Screenshot_register.png">
+<img width="45%" alt="app screenshot mobile" src="./.github/images/Screenshot_remove.png">
 </div>
 
 ## About
@@ -58,7 +58,11 @@ Deployed to Netlify: [Live Demo](http://expert-class-frontend-v2.netlify.app)
 ### Built With
 - HTML, CSS, JavaScript
 - React
-- Redux
+- React Router
+- Redux Toolkit
+- Axios
+- Sass
+- Jest
 - MSW
 - React Testing Library
 - Swiper
